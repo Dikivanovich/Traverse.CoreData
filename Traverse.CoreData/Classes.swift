@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 struct Position {
     var x: Double?
@@ -17,6 +18,7 @@ struct Position {
 
 class CurrentData {
     
+  static let instance = CurrentData()
     
     
    func returnDate() -> String
@@ -27,15 +29,8 @@ class CurrentData {
         let dateString = dateFormater.string(from: date as Date)
         return dateString
     }
-    var date: String = ""
-    
-    init() {
-     
-        self.date = returnDate()
-        
-    }
-    
-    
+  
+    private init() {}
 }
 
 
@@ -64,9 +59,12 @@ class StationTest {
     
     
 
-        
 
     
+    
+
+
+
 
     
 

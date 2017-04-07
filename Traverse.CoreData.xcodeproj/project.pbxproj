@@ -3,28 +3,34 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A68E0321E8BBFCA005F5699 /* Traverse_CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2A68E0301E8BBFCA005F5699 /* Traverse_CoreData.xcdatamodeld */; };
+		2A68E0351E8BC008005F5699 /* Station+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A68E0331E8BC008005F5699 /* Station+CoreDataClass.swift */; };
+		2A68E0361E8BC008005F5699 /* Station+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A68E0341E8BC008005F5699 /* Station+CoreDataProperties.swift */; };
+		2AA5F1651E92938E0003BA6A /* StationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA5F1641E92938E0003BA6A /* StationsTableViewController.swift */; };
+		2AB1B4151E8BAD52005EE4CF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB1B4141E8BAD52005EE4CF /* CoreDataManager.swift */; };
 		2ADCF33F1E8323440080DCF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADCF33E1E8323440080DCF5 /* AppDelegate.swift */; };
-		2ADCF3471E8323440080DCF5 /* Traverse_CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2ADCF3451E8323440080DCF5 /* Traverse_CoreData.xcdatamodeld */; };
 		2ADCF3491E8323440080DCF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2ADCF3481E8323440080DCF5 /* Assets.xcassets */; };
 		2ADCF34C1E8323440080DCF5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADCF34A1E8323440080DCF5 /* LaunchScreen.storyboard */; };
 		2ADCF35D1E8324A20080DCF5 /* Classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADCF35B1E8324A20080DCF5 /* Classes.swift */; };
-		2ADCF35E1E8324A20080DCF5 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADCF35C1E8324A20080DCF5 /* TableViewController.swift */; };
 		2ADCF3611E832A480080DCF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADCF35F1E832A470080DCF5 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A68E0311E8BBFCA005F5699 /* Traverse_CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Traverse_CoreData.xcdatamodel; sourceTree = "<group>"; };
+		2A68E0331E8BC008005F5699 /* Station+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Station+CoreDataClass.swift"; path = "Classes Core Data/Station+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2A68E0341E8BC008005F5699 /* Station+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Station+CoreDataProperties.swift"; path = "Classes Core Data/Station+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2AA5F1641E92938E0003BA6A /* StationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StationsTableViewController.swift; path = ../StationsTableViewController.swift; sourceTree = "<group>"; };
+		2AB1B4141E8BAD52005EE4CF /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 1; name = CoreDataManager.swift; path = Traverse.CoreData/CoreDataManager.swift; sourceTree = "<group>"; };
 		2ADCF33B1E8323440080DCF5 /* Traverse.CoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Traverse.CoreData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ADCF33E1E8323440080DCF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2ADCF3461E8323440080DCF5 /* Traverse_CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Traverse_CoreData.xcdatamodel; sourceTree = "<group>"; };
 		2ADCF3481E8323440080DCF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2ADCF34B1E8323440080DCF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2ADCF34D1E8323440080DCF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2ADCF35B1E8324A20080DCF5 /* Classes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Classes.swift; sourceTree = "<group>"; };
-		2ADCF35C1E8324A20080DCF5 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		2ADCF3601E832A470080DCF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -42,6 +48,9 @@
 		2ADCF3321E8323440080DCF5 = {
 			isa = PBXGroup;
 			children = (
+				2A68E0331E8BC008005F5699 /* Station+CoreDataClass.swift */,
+				2A68E0341E8BC008005F5699 /* Station+CoreDataProperties.swift */,
+				2AB1B4141E8BAD52005EE4CF /* CoreDataManager.swift */,
 				2ADCF33D1E8323440080DCF5 /* Traverse.CoreData */,
 				2ADCF33C1E8323440080DCF5 /* Products */,
 			);
@@ -59,13 +68,13 @@
 			isa = PBXGroup;
 			children = (
 				2ADCF33E1E8323440080DCF5 /* AppDelegate.swift */,
-				2ADCF35C1E8324A20080DCF5 /* TableViewController.swift */,
+				2AA5F1641E92938E0003BA6A /* StationsTableViewController.swift */,
 				2ADCF35B1E8324A20080DCF5 /* Classes.swift */,
 				2ADCF3481E8323440080DCF5 /* Assets.xcassets */,
 				2ADCF35F1E832A470080DCF5 /* Main.storyboard */,
 				2ADCF34A1E8323440080DCF5 /* LaunchScreen.storyboard */,
 				2ADCF34D1E8323440080DCF5 /* Info.plist */,
-				2ADCF3451E8323440080DCF5 /* Traverse_CoreData.xcdatamodeld */,
+				2A68E0301E8BBFCA005F5699 /* Traverse_CoreData.xcdatamodeld */,
 			);
 			path = Traverse.CoreData;
 			sourceTree = "<group>";
@@ -103,12 +112,13 @@
 					2ADCF33A1E8323440080DCF5 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 27C43TV93N;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
 			buildConfigurationList = 2ADCF3361E8323440080DCF5 /* Build configuration list for PBXProject "Traverse.CoreData" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -143,10 +153,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2ADCF3471E8323440080DCF5 /* Traverse_CoreData.xcdatamodeld in Sources */,
 				2ADCF33F1E8323440080DCF5 /* AppDelegate.swift in Sources */,
+				2AA5F1651E92938E0003BA6A /* StationsTableViewController.swift in Sources */,
+				2A68E0361E8BC008005F5699 /* Station+CoreDataProperties.swift in Sources */,
 				2ADCF35D1E8324A20080DCF5 /* Classes.swift in Sources */,
-				2ADCF35E1E8324A20080DCF5 /* TableViewController.swift in Sources */,
+				2A68E0351E8BC008005F5699 /* Station+CoreDataClass.swift in Sources */,
+				2AB1B4151E8BAD52005EE4CF /* CoreDataManager.swift in Sources */,
+				2A68E0321E8BBFCA005F5699 /* Traverse_CoreData.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,16 +323,17 @@
 				2ADCF3521E8323440080DCF5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		2ADCF3451E8323440080DCF5 /* Traverse_CoreData.xcdatamodeld */ = {
+		2A68E0301E8BBFCA005F5699 /* Traverse_CoreData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				2ADCF3461E8323440080DCF5 /* Traverse_CoreData.xcdatamodel */,
+				2A68E0311E8BBFCA005F5699 /* Traverse_CoreData.xcdatamodel */,
 			);
-			currentVersion = 2ADCF3461E8323440080DCF5 /* Traverse_CoreData.xcdatamodel */;
+			currentVersion = 2A68E0311E8BBFCA005F5699 /* Traverse_CoreData.xcdatamodel */;
 			path = Traverse_CoreData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
