@@ -8,18 +8,60 @@
 
 import UIKit
 import CoreData
+import Foundation
 
-class StationsTableViewController: UITableViewController  {
+
+
+class StationsTableViewController: UITableViewController, KeyboardDelegate   {
+    
+    
+
+    let customKeyboard = MyCustomKeyboard.instance.loadFromNib()
+    
+    var selectedStation = String()
     
     
     
+    var buttonText: String = "" {
+        
+        didSet{
+            
+            
+            print("текст изменился на \(buttonText)")
+            
+        }
+        
+        willSet {
+            
+            
+        }
+        
+        
+    }
+    
+   func keyWasTapped(_ text: String) {
+        
+    
+        
+        buttonText.append(text)
+        
+        print("Клавиша \(text) перешла")
+        
+        
+    }
+    
+   
+
     
     
     
     
     @IBAction func addNewStationAction(_ sender: Any) {
         
-        let alert = UIAlertController.init(title: "Добавьте станцию", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+        
+        
+        let alert = UIAlertController.init(title: "Добавьте станцию", message: "Введите в текстовое поле имя вашей новой станции", preferredStyle: UIAlertControllerStyle.alert)
+        
         
         alert.addTextField { (textField) in
             textField.placeholder = "Название"
@@ -29,10 +71,90 @@ class StationsTableViewController: UITableViewController  {
         let alertActionAdd = UIAlertAction.init(title: "Добавить", style: UIAlertActionStyle.default) { (alertAction) in
             if alert.textFields?.first?.text != "" {
                 
-                CoreDataManager.instance.addNewStation(name: alert.textFields!.first!.text!, date: CurrentData.instance.returnDate())
+               
+                let alertFixedOrNotStation = UIAlertController.init(title: "Положение станции", message: "Является ли положение станции фиксированным", preferredStyle: UIAlertControllerStyle.actionSheet)
                 
-                self.tableView.reloadData()
                 
+                let alertActionFixedStation = UIAlertAction.init(title: "Да", style: UIAlertActionStyle.default, handler: { (alertAction) in
+                    
+                    let alertInputCoordinateController = UIAlertController.init(title: "Координаты станции", message: "Введите координаты станции", preferredStyle: UIAlertControllerStyle.alert)
+                    
+                    alertInputCoordinateController.addTextField(configurationHandler: { (textFieldX)  in
+                        
+                        textFieldX.inputView = self.customKeyboard
+                        
+                       textFieldX.placeholder = "координата x"
+                        
+                        textFieldX.text = self.buttonText
+                        
+                    })
+                    
+                    
+                    alertInputCoordinateController.addTextField(configurationHandler: { (textFieldY) in
+                        
+                        textFieldY.inputView = self.customKeyboard
+                        textFieldY.placeholder = "координата y"
+                        
+                    })
+                    
+                    alertInputCoordinateController.addTextField(configurationHandler: { (textFieldZ) in
+                        
+                        textFieldZ.inputView = self.customKeyboard
+                        textFieldZ.placeholder = "координата z"
+                        
+                    })
+
+                    
+                    
+                    
+                        let alertAddCoordinatAction = UIAlertAction.init(title: "Сохранить", style: UIAlertActionStyle.default, handler: { (alertAction) in
+                            if alertInputCoordinateController.textFields?[0].text! != "" && alertInputCoordinateController.textFields?[1].text! != "" && alertInputCoordinateController.textFields?[2].text! != "" {
+                                
+                                CoreDataManager.instance.addNewStation(name: alert.textFields!.first!.text!, date: CurrentData.instance.returnDate(), fixed: true, x: alertInputCoordinateController.textFields![0].text!, y: alertInputCoordinateController.textFields![1].text!, z: alertInputCoordinateController.textFields![2].text!)
+                                self.tableView.reloadData()
+                           }
+                            
+                            
+                            
+                        })
+                    
+                    let alertActionCancel = UIAlertAction.init(title: "Cancel", style: UIAlertActionStyle.cancel) { (alertAction) in
+                        print("push cancel")
+                        
+                        
+                        
+                        
+                        
+                    }
+                    
+                    alertInputCoordinateController.addAction(alertAddCoordinatAction)
+                    alertInputCoordinateController.addAction(alertActionCancel)
+                    self.present(alertInputCoordinateController, animated: true, completion: nil)
+                    
+                  
+                    
+                    
+                    
+                    })
+                
+                    
+                    
+                
+                
+                
+                let alertActionNotFixedStation = UIAlertAction.init(title: "Нет", style: UIAlertActionStyle.default, handler: { (alertAction) in
+                   
+                    CoreDataManager.instance.addNewStation(name: alert.textFields!.first!.text!, date: CurrentData.instance.returnDate(), fixed: false)
+                    self.tableView.reloadData()
+                    
+                })
+                
+                alertFixedOrNotStation.addAction(alertActionFixedStation)
+                alertFixedOrNotStation.addAction(alertActionNotFixedStation)
+                
+                self.present(alertFixedOrNotStation, animated: true, completion: nil)
+
+            
             }
             
         }
@@ -42,10 +164,20 @@ class StationsTableViewController: UITableViewController  {
             
         }
         
+        
+        
+
+        
+        
         alert.addAction(alertActionAdd)
         alert.addAction(alertActionCancel)
         
+        
         self.present(alert, animated: true, completion: nil)
+        
+        
+        
+        
         
     }
     
@@ -54,7 +186,14 @@ class StationsTableViewController: UITableViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        // MARK: - Настройка вида TableView
+        self.tableView.backgroundColor = UIColor.gray
+         MyCustomKeyboard.instance.delegate = self
+       self.tableView.separatorColor = UIColor.magenta
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLineEtched
+        
+        
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -82,6 +221,7 @@ class StationsTableViewController: UITableViewController  {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         let fetchRequest: NSFetchRequest<Station> = Station.fetchRequest()
+        fetchRequest.returnsObjectsAsFaults = false
         do {
             let results = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequest)
             
@@ -99,12 +239,14 @@ class StationsTableViewController: UITableViewController  {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
+        
         let fetchRequest: NSFetchRequest<Station> = Station.fetchRequest()
+        fetchRequest.returnsObjectsAsFaults = false
         do {
             let results = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequest)
             
               cell.textLabel?.text = results[indexPath.row].nameStation
-            cell.detailTextLabel?.text = results[indexPath.row].dateInitStation
+            cell.detailTextLabel?.text = "Дата установки станции: " + results[indexPath.row].dateInitStation!
             
         } catch  {
             
@@ -131,6 +273,7 @@ class StationsTableViewController: UITableViewController  {
             // Delete the row from the data source
 
             let fetchRequest: NSFetchRequest<Station> = Station.fetchRequest()
+            fetchRequest.returnsObjectsAsFaults = false
             do {
             let results = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequest)
                 
@@ -174,14 +317,51 @@ class StationsTableViewController: UITableViewController  {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+        if segue.identifier == "ShowMeasurements" {
+            
+            
+     (segue.destination as! MeasurementsListViewController).nameSelectedStation = selectedStation
+     
+        
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath?
+     {
+        
+        let fetchRequest: NSFetchRequest<Station> = Station.fetchRequest()
+        fetchRequest.returnsObjectsAsFaults = false
+        do {
+            
+            let results = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequest)
+            
+            selectedStation = results[indexPath.row].nameStation!
+            
+        }
+            
+        catch {
+            
+            let err = error as NSError
+            print(err.userInfo)
+            
+                    }
+        
+        return indexPath
+        
+    }
+        
+    
+    
+    }
 
-}
+
