@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A0564E01E9AD27C001997A5 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0564DD1E9AD27C001997A5 /* CustomButton.swift */; };
+		2A0564E11E9AD27C001997A5 /* MyCustomKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0564DE1E9AD27C001997A5 /* MyCustomKeyboard.swift */; };
+		2A0564E21E9AD27C001997A5 /* MyCustomKeyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A0564DF1E9AD27C001997A5 /* MyCustomKeyboard.xib */; };
 		2A68E0321E8BBFCA005F5699 /* Traverse_CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2A68E0301E8BBFCA005F5699 /* Traverse_CoreData.xcdatamodeld */; };
 		2A68E0351E8BC008005F5699 /* Station+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A68E0331E8BC008005F5699 /* Station+CoreDataClass.swift */; };
 		2A68E0361E8BC008005F5699 /* Station+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A68E0341E8BC008005F5699 /* Station+CoreDataProperties.swift */; };
+		2A70CB6F1E983F2900285CB3 /* MeasurementsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A70CB6E1E983F2900285CB3 /* MeasurementsListViewController.swift */; };
 		2AA5F1651E92938E0003BA6A /* StationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA5F1641E92938E0003BA6A /* StationsTableViewController.swift */; };
 		2AB1B4151E8BAD52005EE4CF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB1B4141E8BAD52005EE4CF /* CoreDataManager.swift */; };
 		2ADCF33F1E8323440080DCF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADCF33E1E8323440080DCF5 /* AppDelegate.swift */; };
@@ -17,12 +21,37 @@
 		2ADCF34C1E8323440080DCF5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADCF34A1E8323440080DCF5 /* LaunchScreen.storyboard */; };
 		2ADCF35D1E8324A20080DCF5 /* Classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADCF35B1E8324A20080DCF5 /* Classes.swift */; };
 		2ADCF3611E832A480080DCF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADCF35F1E832A470080DCF5 /* Main.storyboard */; };
+		2AF6D22C1E9F80C900428E9E /* Traverse_CoreDataUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF6D22B1E9F80C900428E9E /* Traverse_CoreDataUITests.swift */; };
+		2AF6D23A1E9F80D900428E9E /* Traverse_CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF6D2391E9F80D900428E9E /* Traverse_CoreDataTests.swift */; };
+		2AF6D2A41E9F8BF100428E9E /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB1B4141E8BAD52005EE4CF /* CoreDataManager.swift */; };
+		2AF6D2A51E9F8BF200428E9E /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB1B4141E8BAD52005EE4CF /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		2AF6D22E1E9F80C900428E9E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2ADCF3331E8323440080DCF5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2ADCF33A1E8323440080DCF5;
+			remoteInfo = Traverse.CoreData;
+		};
+		2AF6D23C1E9F80D900428E9E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2ADCF3331E8323440080DCF5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2ADCF33A1E8323440080DCF5;
+			remoteInfo = Traverse.CoreData;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		2A0564DD1E9AD27C001997A5 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		2A0564DE1E9AD27C001997A5 /* MyCustomKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCustomKeyboard.swift; sourceTree = "<group>"; };
+		2A0564DF1E9AD27C001997A5 /* MyCustomKeyboard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCustomKeyboard.xib; sourceTree = "<group>"; };
 		2A68E0311E8BBFCA005F5699 /* Traverse_CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Traverse_CoreData.xcdatamodel; sourceTree = "<group>"; };
 		2A68E0331E8BC008005F5699 /* Station+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Station+CoreDataClass.swift"; path = "Classes Core Data/Station+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2A68E0341E8BC008005F5699 /* Station+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Station+CoreDataProperties.swift"; path = "Classes Core Data/Station+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2A70CB6E1E983F2900285CB3 /* MeasurementsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementsListViewController.swift; sourceTree = "<group>"; };
 		2AA5F1641E92938E0003BA6A /* StationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StationsTableViewController.swift; path = ../StationsTableViewController.swift; sourceTree = "<group>"; };
 		2AB1B4141E8BAD52005EE4CF /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 1; name = CoreDataManager.swift; path = Traverse.CoreData/CoreDataManager.swift; sourceTree = "<group>"; };
 		2ADCF33B1E8323440080DCF5 /* Traverse.CoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Traverse.CoreData.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -32,6 +61,13 @@
 		2ADCF34D1E8323440080DCF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2ADCF35B1E8324A20080DCF5 /* Classes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Classes.swift; sourceTree = "<group>"; };
 		2ADCF3601E832A470080DCF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2AED02031EA606CD00322C64 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
+		2AF6D2291E9F80C900428E9E /* Traverse.CoreDataUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Traverse.CoreDataUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2AF6D22B1E9F80C900428E9E /* Traverse_CoreDataUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Traverse_CoreDataUITests.swift; sourceTree = "<group>"; };
+		2AF6D22D1E9F80C900428E9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2AF6D2371E9F80D900428E9E /* Traverse.CoreDataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Traverse.CoreDataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2AF6D2391E9F80D900428E9E /* Traverse_CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Traverse_CoreDataTests.swift; sourceTree = "<group>"; };
+		2AF6D23B1E9F80D900428E9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,16 +78,52 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2AF6D2261E9F80C900428E9E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2AF6D2341E9F80D900428E9E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2ADCF3321E8323440080DCF5 = {
+		2A0564DC1E9AD27C001997A5 /* Custom Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				2A0564DD1E9AD27C001997A5 /* CustomButton.swift */,
+				2A0564DE1E9AD27C001997A5 /* MyCustomKeyboard.swift */,
+				2A0564DF1E9AD27C001997A5 /* MyCustomKeyboard.xib */,
+			);
+			path = "Custom Keyboard";
+			sourceTree = "<group>";
+		};
+		2A70CB6D1E983BEA00285CB3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				2A68E0331E8BC008005F5699 /* Station+CoreDataClass.swift */,
 				2A68E0341E8BC008005F5699 /* Station+CoreDataProperties.swift */,
 				2AB1B4141E8BAD52005EE4CF /* CoreDataManager.swift */,
+			);
+			name = Model;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		2ADCF3321E8323440080DCF5 = {
+			isa = PBXGroup;
+			children = (
+				2AED02031EA606CD00322C64 /* MyPlayground.playground */,
+				2A0564DC1E9AD27C001997A5 /* Custom Keyboard */,
 				2ADCF33D1E8323440080DCF5 /* Traverse.CoreData */,
+				2AF6D22A1E9F80C900428E9E /* Traverse.CoreDataUITests */,
+				2AF6D2381E9F80D900428E9E /* Traverse.CoreDataTests */,
 				2ADCF33C1E8323440080DCF5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -60,6 +132,8 @@
 			isa = PBXGroup;
 			children = (
 				2ADCF33B1E8323440080DCF5 /* Traverse.CoreData.app */,
+				2AF6D2291E9F80C900428E9E /* Traverse.CoreDataUITests.xctest */,
+				2AF6D2371E9F80D900428E9E /* Traverse.CoreDataTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -69,7 +143,9 @@
 			children = (
 				2ADCF33E1E8323440080DCF5 /* AppDelegate.swift */,
 				2AA5F1641E92938E0003BA6A /* StationsTableViewController.swift */,
+				2A70CB6E1E983F2900285CB3 /* MeasurementsListViewController.swift */,
 				2ADCF35B1E8324A20080DCF5 /* Classes.swift */,
+				2A70CB6D1E983BEA00285CB3 /* Model */,
 				2ADCF3481E8323440080DCF5 /* Assets.xcassets */,
 				2ADCF35F1E832A470080DCF5 /* Main.storyboard */,
 				2ADCF34A1E8323440080DCF5 /* LaunchScreen.storyboard */,
@@ -77,6 +153,24 @@
 				2A68E0301E8BBFCA005F5699 /* Traverse_CoreData.xcdatamodeld */,
 			);
 			path = Traverse.CoreData;
+			sourceTree = "<group>";
+		};
+		2AF6D22A1E9F80C900428E9E /* Traverse.CoreDataUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2AF6D22B1E9F80C900428E9E /* Traverse_CoreDataUITests.swift */,
+				2AF6D22D1E9F80C900428E9E /* Info.plist */,
+			);
+			path = Traverse.CoreDataUITests;
+			sourceTree = "<group>";
+		};
+		2AF6D2381E9F80D900428E9E /* Traverse.CoreDataTests */ = {
+			isa = PBXGroup;
+			children = (
+				2AF6D2391E9F80D900428E9E /* Traverse_CoreDataTests.swift */,
+				2AF6D23B1E9F80D900428E9E /* Info.plist */,
+			);
+			path = Traverse.CoreDataTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -99,13 +193,49 @@
 			productReference = 2ADCF33B1E8323440080DCF5 /* Traverse.CoreData.app */;
 			productType = "com.apple.product-type.application";
 		};
+		2AF6D2281E9F80C900428E9E /* Traverse.CoreDataUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2AF6D2321E9F80C900428E9E /* Build configuration list for PBXNativeTarget "Traverse.CoreDataUITests" */;
+			buildPhases = (
+				2AF6D2251E9F80C900428E9E /* Sources */,
+				2AF6D2261E9F80C900428E9E /* Frameworks */,
+				2AF6D2271E9F80C900428E9E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2AF6D22F1E9F80C900428E9E /* PBXTargetDependency */,
+			);
+			name = Traverse.CoreDataUITests;
+			productName = Traverse.CoreDataUITests;
+			productReference = 2AF6D2291E9F80C900428E9E /* Traverse.CoreDataUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		2AF6D2361E9F80D900428E9E /* Traverse.CoreDataTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2AF6D23E1E9F80D900428E9E /* Build configuration list for PBXNativeTarget "Traverse.CoreDataTests" */;
+			buildPhases = (
+				2AF6D2331E9F80D900428E9E /* Sources */,
+				2AF6D2341E9F80D900428E9E /* Frameworks */,
+				2AF6D2351E9F80D900428E9E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2AF6D23D1E9F80D900428E9E /* PBXTargetDependency */,
+			);
+			name = Traverse.CoreDataTests;
+			productName = Traverse.CoreDataTests;
+			productReference = 2AF6D2371E9F80D900428E9E /* Traverse.CoreDataTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		2ADCF3331E8323440080DCF5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Kantulaev Ruslan";
 				TargetAttributes = {
@@ -114,6 +244,16 @@
 						DevelopmentTeam = 27C43TV93N;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
+					};
+					2AF6D2281E9F80C900428E9E = {
+						CreatedOnToolsVersion = 8.3.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 2ADCF33A1E8323440080DCF5;
+					};
+					2AF6D2361E9F80D900428E9E = {
+						CreatedOnToolsVersion = 8.3.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 2ADCF33A1E8323440080DCF5;
 					};
 				};
 			};
@@ -131,6 +271,8 @@
 			projectRoot = "";
 			targets = (
 				2ADCF33A1E8323440080DCF5 /* Traverse.CoreData */,
+				2AF6D2281E9F80C900428E9E /* Traverse.CoreDataUITests */,
+				2AF6D2361E9F80D900428E9E /* Traverse.CoreDataTests */,
 			);
 		};
 /* End PBXProject section */
@@ -143,6 +285,21 @@
 				2ADCF3611E832A480080DCF5 /* Main.storyboard in Resources */,
 				2ADCF34C1E8323440080DCF5 /* LaunchScreen.storyboard in Resources */,
 				2ADCF3491E8323440080DCF5 /* Assets.xcassets in Resources */,
+				2A0564E21E9AD27C001997A5 /* MyCustomKeyboard.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2AF6D2271E9F80C900428E9E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2AF6D2351E9F80D900428E9E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,15 +312,49 @@
 			files = (
 				2ADCF33F1E8323440080DCF5 /* AppDelegate.swift in Sources */,
 				2AA5F1651E92938E0003BA6A /* StationsTableViewController.swift in Sources */,
+				2A0564E01E9AD27C001997A5 /* CustomButton.swift in Sources */,
 				2A68E0361E8BC008005F5699 /* Station+CoreDataProperties.swift in Sources */,
+				2A70CB6F1E983F2900285CB3 /* MeasurementsListViewController.swift in Sources */,
 				2ADCF35D1E8324A20080DCF5 /* Classes.swift in Sources */,
 				2A68E0351E8BC008005F5699 /* Station+CoreDataClass.swift in Sources */,
+				2A0564E11E9AD27C001997A5 /* MyCustomKeyboard.swift in Sources */,
 				2AB1B4151E8BAD52005EE4CF /* CoreDataManager.swift in Sources */,
 				2A68E0321E8BBFCA005F5699 /* Traverse_CoreData.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2AF6D2251E9F80C900428E9E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2AF6D2A41E9F8BF100428E9E /* CoreDataManager.swift in Sources */,
+				2AF6D22C1E9F80C900428E9E /* Traverse_CoreDataUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2AF6D2331E9F80D900428E9E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2AF6D2A51E9F8BF200428E9E /* CoreDataManager.swift in Sources */,
+				2AF6D23A1E9F80D900428E9E /* Traverse_CoreDataTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2AF6D22F1E9F80C900428E9E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2ADCF33A1E8323440080DCF5 /* Traverse.CoreData */;
+			targetProxy = 2AF6D22E1E9F80C900428E9E /* PBXContainerItemProxy */;
+		};
+		2AF6D23D1E9F80D900428E9E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2ADCF33A1E8323440080DCF5 /* Traverse.CoreData */;
+			targetProxy = 2AF6D23C1E9F80D900428E9E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2ADCF34A1E8323440080DCF5 /* LaunchScreen.storyboard */ = {
@@ -304,6 +495,68 @@
 			};
 			name = Release;
 		};
+		2AF6D2301E9F80C900428E9E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				DEVELOPMENT_TEAM = 27C43TV93N;
+				INFOPLIST_FILE = Traverse.CoreDataUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Kantulaev-Ruslan.Traverse-CoreDataUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Traverse.CoreData;
+			};
+			name = Debug;
+		};
+		2AF6D2311E9F80C900428E9E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				DEVELOPMENT_TEAM = 27C43TV93N;
+				INFOPLIST_FILE = Traverse.CoreDataUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Kantulaev-Ruslan.Traverse-CoreDataUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Traverse.CoreData;
+			};
+			name = Release;
+		};
+		2AF6D23F1E9F80D900428E9E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				DEVELOPMENT_TEAM = 27C43TV93N;
+				INFOPLIST_FILE = Traverse.CoreDataTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Kantulaev-Ruslan.Traverse-CoreDataTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Traverse.CoreData.app/Traverse.CoreData";
+			};
+			name = Debug;
+		};
+		2AF6D2401E9F80D900428E9E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				DEVELOPMENT_TEAM = 27C43TV93N;
+				INFOPLIST_FILE = Traverse.CoreDataTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Kantulaev-Ruslan.Traverse-CoreDataTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Traverse.CoreData.app/Traverse.CoreData";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -321,6 +574,24 @@
 			buildConfigurations = (
 				2ADCF3511E8323440080DCF5 /* Debug */,
 				2ADCF3521E8323440080DCF5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2AF6D2321E9F80C900428E9E /* Build configuration list for PBXNativeTarget "Traverse.CoreDataUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2AF6D2301E9F80C900428E9E /* Debug */,
+				2AF6D2311E9F80C900428E9E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2AF6D23E1E9F80D900428E9E /* Build configuration list for PBXNativeTarget "Traverse.CoreDataTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2AF6D23F1E9F80D900428E9E /* Debug */,
+				2AF6D2401E9F80D900428E9E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

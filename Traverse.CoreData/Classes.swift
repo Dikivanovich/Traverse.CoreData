@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import CoreData
+
 
 struct Position {
     var x: Double?
@@ -56,11 +56,45 @@ class StationTest {
         
     }
     
+
+ class CustomCell: UITableViewCell {
+    
+   required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.layer.cornerRadius = 15
+        self.layer.borderWidth = 1
+        self.layer.borderColor = UIColor.cyan.cgColor
+        self.backgroundColor = UIColor.orange
+        self.clipsToBounds = true
+    self.layer.shadowColor = UIColor.magenta.cgColor
+        
+    }
     
     
+}
+
+class TextFieldPresentation: UITextField {
+    
+    
+    
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)!
+        self.layer.cornerRadius = 10
+        self.layer.borderWidth = 1
+        self.layer.borderColor = UIColor.brown.cgColor
+        inputView = MyCustomKeyboard.instance.loadFromNib()
+        
+        
+    }
+    
+}
 
 
-    
+
+
+
+
+
     
 
 

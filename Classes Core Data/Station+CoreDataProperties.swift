@@ -2,7 +2,7 @@
 //  Station+CoreDataProperties.swift
 //  Traverse.CoreData
 //
-//  Created by Dik on 29.03.17.
+//  Created by Dik on 10.04.17.
 //  Copyright © 2017 Kantulaev Ruslan. All rights reserved.
 //
 
@@ -17,9 +17,10 @@ extension Station {
     }
 
     @NSManaged public var dateInitStation: String?
+    @NSManaged public var fixed: Bool
     @NSManaged public var nameStation: String?
-    @NSManaged public var x: Double
-    @NSManaged public var y: Double
-    @NSManaged public var z: Double
+    @NSManaged public var x: NSDecimalNumber?
+    @NSManaged public var y: NSDecimalNumber?
+    @NSManaged public var z: NSDecimalNumber?
 
 }
