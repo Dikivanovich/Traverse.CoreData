@@ -11,7 +11,7 @@ import Foundation
 
 protocol KeyboardDelegate  {
     
-    func keyWasTapped(_ text: String)
+    func keyWasTapped(_ text: UIButton)
 }
 
 
@@ -20,6 +20,11 @@ class MyCustomKeyboard: UIView {
     
     static let instance = MyCustomKeyboard()
   
+    
+    
+    
+  
+    
     
    
     
@@ -65,18 +70,19 @@ class MyCustomKeyboard: UIView {
     
     
     
-    @IBAction func pressOne(_ sender: UIButton) {
-        
-       delegate?.keyWasTapped(sender.titleLabel!.text!)
-        print("Нажата клавиша \(sender.titleLabel!.text!)")
-       
-        
-    }
+//    @IBAction func pressOne(_ sender: UIButton) {
+//        
+//       delegate?.keyWasTapped(sender.currentTitle!)
+//        print("Нажата клавиша \(sender.currentTitle!)")
+//       UserDefaults.standard.mutableSetValue(forKey: "selectedButton")
+//        UserDefaults.standard.synchronize()
+//        
+//    }
     
     @IBAction func pressTwo(_ sender: UIButton) {
         
-        delegate?.keyWasTapped(sender.titleLabel!.text!)
-        print("Нажата клавиша \(sender.titleLabel!.text!)")
+        delegate?.keyWasTapped(sender)
+        print("Нажата клавиша \(sender.currentTitle!)")
         
     }
     
@@ -136,11 +142,15 @@ class MyCustomKeyboard: UIView {
     var nibName: String = "MyCustomKeyboard"
 
     override init(frame: CGRect) {
+        
+        
         super.init(frame: frame)
         
     }
     
     required init?(coder aDecoder: NSCoder) {
+        
+        
         super.init(coder: aDecoder)
        
         layer.backgroundColor = UIColor.clear.cgColor
@@ -150,12 +160,15 @@ class MyCustomKeyboard: UIView {
     }
     
     func loadFromNib() -> UIView {
+        
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: nibName, bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
         return view
+       
     }
     func setup() {
+        
         view = loadFromNib()
         view.frame = bounds
         view.layer.backgroundColor = UIColor.clear.cgColor
