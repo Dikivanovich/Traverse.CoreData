@@ -109,6 +109,7 @@ class MeasurementsListViewController: UITableViewController {
                 let alertActionNo = UIAlertAction.init(title: "Нет", style: .default, handler: { (alertAction) in
                     
                     CoreDataManager.instance.addNewMeasure(name: alert.textFields!.first!.text!, station: self.indexPathSelectedStation!)
+                    
                     self.tableView.reloadData()
                     
                 })
@@ -170,16 +171,16 @@ class MeasurementsListViewController: UITableViewController {
         do {
              let stations = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequest)
             
-            let points = stations[indexPathSelectedStation!.row].point?.count
+            let pointsCount = stations[indexPathSelectedStation!.row].point?.count
             
-        return points!
-        
+        return pointsCount!
         
         } catch  {
+            let err = error as NSError
+            print(err.userInfo)
             return 0
         }
         
-       
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -249,9 +250,6 @@ class MeasurementsListViewController: UITableViewController {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         //        }
     }
-        
-        
-        
         
     }
     

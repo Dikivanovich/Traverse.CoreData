@@ -15,12 +15,8 @@ import Foundation
 class StationsTableViewController: UITableViewController   {
     
     
-        
-    
-
-    
-    
     var selectedStation: Station?
+    
     var indexPathStation: IndexPath?
     
     
@@ -43,6 +39,11 @@ class StationsTableViewController: UITableViewController   {
     }
     
     
+    @IBAction func unwindToDetailStationVC (sender: UIStoryboardSegue) {
+       
+        tableView.reloadData()
+        
+    }
     
     @IBAction func addNewStationAction(_ sender: Any) {
         
@@ -350,12 +351,7 @@ class StationsTableViewController: UITableViewController   {
 //        }    
     }
     
-    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        
-        performSegue(withIdentifier: "ShowDetailStation", sender: Station.self)
-        
-        print("Функция работает")
-    }
+   
     
 
     /*
@@ -377,10 +373,31 @@ class StationsTableViewController: UITableViewController   {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        
+        let fetchedResultController = CoreDataManager.instance.returnFetchedResultsControllerStation()
+        
+        do {
+            try fetchedResultController.performFetch()
+            
+        } catch  {
+            
+            let err = error as NSError
+            print(err.userInfo)
+            
+        }
+        
+        let station = fetchedResultController.object(at: indexPath)
+        
+        performSegue(withIdentifier: "ShowDetailStation", sender: station)
+        
+        print("Выбрана станция: \(station.nameStation!)")
+        
+        
+    }
     
     
-    
-    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath?     {
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath     {
         
         let fetchRequest: NSFetchRequest<Station> = Station.fetchRequest()
         fetchRequest.returnsObjectsAsFaults = false
@@ -403,6 +420,10 @@ class StationsTableViewController: UITableViewController   {
       
     }
     
+//    override func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+//        
+//    }
+    
    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -411,6 +432,12 @@ class StationsTableViewController: UITableViewController   {
             
            (segue.destination as! MeasurementsListViewController).nameSelectedStation = selectedStation
             (segue.destination as! MeasurementsListViewController).indexPathSelectedStation = indexPathStation
+            
+        }
+        
+        if segue.identifier == "ShowDetailStation" {
+            
+            (segue.destination as! DetailStationViewController).editableStation = sender as? Station
             
         }
         
