@@ -11,6 +11,8 @@
 		2A0564E11E9AD27C001997A5 /* MyCustomKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0564DE1E9AD27C001997A5 /* MyCustomKeyboard.swift */; };
 		2A0564E21E9AD27C001997A5 /* MyCustomKeyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A0564DF1E9AD27C001997A5 /* MyCustomKeyboard.xib */; };
 		2A179D5C1EB38796002CA4D8 /* DetailStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A179D5B1EB38796002CA4D8 /* DetailStationViewController.swift */; };
+		2A57BA6C1EC3B1C80023A239 /* DataPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A57BA6B1EC3B1C80023A239 /* DataPickerView.swift */; };
+		2A5AE9911EC325A100C2FECF /* MyCustomPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5AE9901EC325A100C2FECF /* MyCustomPickerView.swift */; };
 		2A68E0321E8BBFCA005F5699 /* Traverse_CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2A68E0301E8BBFCA005F5699 /* Traverse_CoreData.xcdatamodeld */; };
 		2A70CB6F1E983F2900285CB3 /* MeasurementsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A70CB6E1E983F2900285CB3 /* MeasurementsListViewController.swift */; };
 		2A84109A1EB8CB22006685B1 /* StationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8410961EB8CB22006685B1 /* StationsTableViewController.swift */; };
@@ -37,6 +39,8 @@
 		2A0564DE1E9AD27C001997A5 /* MyCustomKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCustomKeyboard.swift; sourceTree = "<group>"; };
 		2A0564DF1E9AD27C001997A5 /* MyCustomKeyboard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCustomKeyboard.xib; sourceTree = "<group>"; };
 		2A179D5B1EB38796002CA4D8 /* DetailStationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailStationViewController.swift; sourceTree = "<group>"; };
+		2A57BA6B1EC3B1C80023A239 /* DataPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataPickerView.swift; path = MyCustomPickerView/DataPickerView.swift; sourceTree = "<group>"; };
+		2A5AE9901EC325A100C2FECF /* MyCustomPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyCustomPickerView.swift; path = MyCustomPickerView/MyCustomPickerView.swift; sourceTree = "<group>"; };
 		2A68E0311E8BBFCA005F5699 /* Traverse_CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Traverse_CoreData.xcdatamodel; sourceTree = "<group>"; };
 		2A70CB6E1E983F2900285CB3 /* MeasurementsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementsListViewController.swift; sourceTree = "<group>"; };
 		2A7EFA5D1EAE99A100F7CAD6 /* Traverse_CoreData 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Traverse_CoreData 2.xcdatamodel"; sourceTree = "<group>"; };
@@ -53,7 +57,6 @@
 		2ADCF34D1E8323440080DCF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2ADCF35B1E8324A20080DCF5 /* Classes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Classes.swift; sourceTree = "<group>"; };
 		2ADCF3601E832A470080DCF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		2AED02031EA606CD00322C64 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		2AFA73AA1EAFE0FF0018B907 /* Traverse_CoreData(AllToMany).xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Traverse_CoreData(AllToMany).xcdatamodel"; sourceTree = "<group>"; };
 		2AFE6FA51EB0A8C800DFA94F /* Points+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Points+CoreDataProperties.swift"; path = "Classes Core Data/Points+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2AFE6FA71EB0A8C800DFA94F /* Station+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Station+CoreDataProperties.swift"; path = "Classes Core Data/Station+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -103,10 +106,19 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		2A732BCF1EBB749E000EFFF6 /* CustomPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				2A5AE9901EC325A100C2FECF /* MyCustomPickerView.swift */,
+				2A57BA6B1EC3B1C80023A239 /* DataPickerView.swift */,
+			);
+			name = CustomPickerView;
+			sourceTree = "<group>";
+		};
 		2ADCF3321E8323440080DCF5 = {
 			isa = PBXGroup;
 			children = (
-				2AED02031EA606CD00322C64 /* MyPlayground.playground */,
+				2A732BCF1EBB749E000EFFF6 /* CustomPickerView */,
 				2A0564DC1E9AD27C001997A5 /* Custom Keyboard */,
 				2ADCF33D1E8323440080DCF5 /* Traverse.CoreData */,
 				2ADCF33C1E8323440080DCF5 /* Products */,
@@ -224,9 +236,11 @@
 				2A70CB6F1E983F2900285CB3 /* MeasurementsListViewController.swift in Sources */,
 				2ADCF35D1E8324A20080DCF5 /* Classes.swift in Sources */,
 				2AFE6FB11EB0A8C800DFA94F /* Station+CoreDataProperties.swift in Sources */,
+				2A57BA6C1EC3B1C80023A239 /* DataPickerView.swift in Sources */,
 				2AFE6FAF1EB0A8C800DFA94F /* Points+CoreDataProperties.swift in Sources */,
 				2AFE6FB51EB0A8C800DFA94F /* MeasurementsToStationBackSide+CoreDataProperties.swift in Sources */,
 				2A0564E11E9AD27C001997A5 /* MyCustomKeyboard.swift in Sources */,
+				2A5AE9911EC325A100C2FECF /* MyCustomPickerView.swift in Sources */,
 				2A84109E1EB8CC28006685B1 /* Station+CoreDataClass.swift in Sources */,
 				2A179D5C1EB38796002CA4D8 /* DetailStationViewController.swift in Sources */,
 				2A8410A61EB8CE2D006685B1 /* MeasurementsToStationForwardSide+CoreDataClass.swift in Sources */,
@@ -357,6 +371,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 27C43TV93N;
 				INFOPLIST_FILE = Traverse.CoreData/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Kantulaev-Ruslan.Traverse-CoreData";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -370,6 +385,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 27C43TV93N;
 				INFOPLIST_FILE = Traverse.CoreData/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Kantulaev-Ruslan.Traverse-CoreData";
 				PRODUCT_NAME = "$(TARGET_NAME)";

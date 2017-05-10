@@ -8,17 +8,17 @@
 
 import UIKit
 import CoreData
-import Foundation
 
 
 
-class StationsTableViewController: UITableViewController   {
+
+class StationsTableViewController: UITableViewController, NSFetchedResultsControllerDelegate    {
     
+    var station: Station?
     
-    var selectedStation: Station?
+    var selectedAtIndexPath: IndexPath?
     
-    var indexPathStation: IndexPath?
-    
+    let fetchedResultController = CoreDataManager.instance.returnFetchedResultsControllerStation()
     
     func customozationTextField(textField: UITextField, placeholder: String) {
         
@@ -30,7 +30,7 @@ class StationsTableViewController: UITableViewController   {
         textField.layer.repeatCount = 1
         textField.backgroundColor = #colorLiteral(red: 0.8642458376, green: 1, blue: 0.8972792964, alpha: 1)
         textField.layer.cornerRadius = 5
-       
+        
         let label = UILabel(frame: .init(x: -18, y: -11, width: 50, height: 50))
         label.textColor = #colorLiteral(red: 0.4691409734, green: 0.6283831361, blue: 0.9686274529, alpha: 1)
         label.text = "\(placeholder):"
@@ -38,9 +38,10 @@ class StationsTableViewController: UITableViewController   {
         
     }
     
-    
     @IBAction func unwindToDetailStationVC (sender: UIStoryboardSegue) {
-       
+        
+        print("unwind")
+        
         tableView.reloadData()
         
     }
@@ -48,20 +49,20 @@ class StationsTableViewController: UITableViewController   {
     @IBAction func addNewStationAction(_ sender: Any) {
         
         
-//  MARK: - Создание запроса на ввод имени станции
+        //  MARK: - Создание запроса на ввод имени станции
         let alert = UIAlertController.init(title: "Добавьте станцию", message: "Введите в текстовое поле имя вашей новой станции", preferredStyle: .alert)
         
         
         alert.addTextField { (textField) in textField.placeholder = "Название"} // добавление текстового поля в запрос на созданине станции
         
         
-
         
-//        MARK: - Релизация кнопки "Добавить":
+        
+        //        MARK: - Релизация кнопки "Добавить":
         let alertActionAdd = UIAlertAction.init(title: "Добавить", style: UIAlertActionStyle.default) { (alertAction) in
             if alert.textFields?.first?.text != "" {
                 
-              
+                
                 
                 let alertFixedOrNotStation = UIAlertController.init(title: "Категория положения станции", message: "Является ли положение станции фиксированным", preferredStyle: .actionSheet)
                 
@@ -75,13 +76,13 @@ class StationsTableViewController: UITableViewController   {
                     
                     let alertInputCoordinateController = UIAlertController.init(title: "Координаты станции", message: "Введите координаты станции", preferredStyle: .alert)
                     
-                      
                     
-//  MARK: -  Настройка текстовых полей для ввода координат:
+                    
+                    //  MARK: -  Настройка текстовых полей для ввода координат:
                     
                     alertInputCoordinateController.addTextField(configurationHandler: {  (textFieldX)  in
                         
-                       self.customozationTextField(textField: textFieldX, placeholder: "x")
+                        self.customozationTextField(textField: textFieldX, placeholder: "x")
                         
                         
                     })
@@ -89,44 +90,44 @@ class StationsTableViewController: UITableViewController   {
                     
                     alertInputCoordinateController.addTextField(configurationHandler: { (textFieldY) in
                         
-                       self.customozationTextField(textField: textFieldY, placeholder: "y")
+                        self.customozationTextField(textField: textFieldY, placeholder: "y")
                     })
                     
                     alertInputCoordinateController.addTextField(configurationHandler: { (textFieldZ) in
                         
-                       self.customozationTextField(textField: textFieldZ, placeholder: "z")
+                        self.customozationTextField(textField: textFieldZ, placeholder: "z")
                         
                     })
                     
                     
                     
                     
-                        let alertAddCoordinatAction = UIAlertAction.init(title: "Сохранить", style: UIAlertActionStyle.default, handler: {  (alertAction) in
+                    let alertAddCoordinatAction = UIAlertAction.init(title: "Сохранить", style: UIAlertActionStyle.default, handler: {  (alertAction) in
+                        
+                        if  alertInputCoordinateController.textFields?[0].text! != "" && alertInputCoordinateController.textFields?[1].text! != "" && alertInputCoordinateController.textFields?[2].text! != "" {
                             
-                            if  alertInputCoordinateController.textFields?[0].text! != "" && alertInputCoordinateController.textFields?[1].text! != "" && alertInputCoordinateController.textFields?[2].text! != "" {
-                                
-                                CoreDataManager.instance.addNewStation(name: alert.textFields!.first!.text!, x: alertInputCoordinateController.textFields![0].text!, y: alertInputCoordinateController.textFields![1].text!, z: alertInputCoordinateController.textFields![2].text!)
-                                self.tableView.reloadData()
-                            } else {
-                                
-                                
-                                let alertError = UIAlertController.init(title: "Ошибка!", message: "Введите координаты станции для последующего сохранения", preferredStyle: UIAlertControllerStyle.alert)
-                                
-                                let alertErrorAction = UIAlertAction.init(title: "Ok", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
-                                    self.present(alertInputCoordinateController, animated: true, completion: nil)
-                                })
-                                
-                                alertError.addAction(alertErrorAction)
-                                
-                                self.present(alertError, animated: true, completion: nil)
-                                
-                                
-                                
-                            }
+                            CoreDataManager.instance.addNewStation(name: alert.textFields!.first!.text!, x: alertInputCoordinateController.textFields![0].text!, y: alertInputCoordinateController.textFields![1].text!, z: alertInputCoordinateController.textFields![2].text!)
+                            self.tableView.reloadData()
+                        } else {
+                            
+                            
+                            let alertError = UIAlertController.init(title: "Ошибка!", message: "Введите координаты станции для последующего сохранения", preferredStyle: UIAlertControllerStyle.alert)
+                            
+                            let alertErrorAction = UIAlertAction.init(title: "Ok", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+                                self.present(alertInputCoordinateController, animated: true, completion: nil)
+                            })
+                            
+                            alertError.addAction(alertErrorAction)
+                            
+                            self.present(alertError, animated: true, completion: nil)
                             
                             
                             
-                        })
+                        }
+                        
+                        
+                        
+                    })
                     
                     let alertActionCancel = UIAlertAction.init(title: "Cancel", style: UIAlertActionStyle.cancel) { (alertAction) in
                         print("push cancel")
@@ -141,19 +142,19 @@ class StationsTableViewController: UITableViewController   {
                     alertInputCoordinateController.addAction(alertActionCancel)
                     self.present(alertInputCoordinateController, animated: true, completion: nil)
                     
-                  
                     
                     
                     
-                    })
+                    
+                })
                 
-                    
-                    
+                
+                
                 
                 
                 
                 let alertActionNotFixedStation = UIAlertAction.init(title: "Нет", style: UIAlertActionStyle.default, handler: { (alertAction) in
-                   
+                    
                     CoreDataManager.instance.addNewStation(name: alert.textFields!.first!.text!)
                     self.tableView.reloadData()
                     
@@ -163,8 +164,8 @@ class StationsTableViewController: UITableViewController   {
                 alertFixedOrNotStation.addAction(alertActionNotFixedStation)
                 
                 self.present(alertFixedOrNotStation, animated: true, completion: nil)
-
-            
+                
+                
             }
             
         }
@@ -176,7 +177,7 @@ class StationsTableViewController: UITableViewController   {
         
         
         
-
+        
         
         
         alert.addAction(alertActionAdd)
@@ -191,10 +192,18 @@ class StationsTableViewController: UITableViewController   {
         
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        
+        //        Делегат
+        
+        fetchedResultController.delegate = self
+        
+        
+        
         
         // MARK: - Настройка вида TableView
         
@@ -202,22 +211,25 @@ class StationsTableViewController: UITableViewController   {
         title = "Станции"
         
         self.tableView.backgroundColor = UIColor.gray
-       self.tableView.separatorColor = UIColor.magenta
+        self.tableView.separatorColor = UIColor.magenta
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLineEtched
         
         
-        
-       
-        
+        do {
+            try fetchedResultController.performFetch()
+        } catch  {
+            let err = error as NSError
+            print(err.userInfo)
+        }
         
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
@@ -226,212 +238,115 @@ class StationsTableViewController: UITableViewController   {
         
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
+    
+    /*  override func numberOfSections(in tableView: UITableView) -> Int {
+     // #warning Incomplete implementation, return the number of sections
+     guard let section = fetchedResultController.sections else {
+     return 0
+     }
+     
+     return section.count
+     } */
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        
-        
-        
-        
-        
-                let fetchRequest: NSFetchRequest<Station> = Station.fetchRequest()
-                fetchRequest.returnsObjectsAsFaults = false
-        
-                do {
-                    let results = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequest)
-        
-                    return results.count
-        
-                } catch  {
-        
-                    print(error)
-                    return 0
-                }
+        guard let stations = fetchedResultController.fetchedObjects else {
+            return 0
+        }
+        return stations.count
         
     }
-
     
-  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-    cell.detailTextLabel?.numberOfLines = 3
-    let detailButton = UITableViewCellAccessoryType.detailButton
-    cell.accessoryType = detailButton
-    
-    
-    
-            let fetchRequest: NSFetchRequest<Station> = Station.fetchRequest()
-            fetchRequest.returnsObjectsAsFaults = false
-            do {
-                let stations = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequest)
-    
-                cell.textLabel?.text = stations[indexPath.row].nameStation
-                
-               
-                
-                if stations[indexPath.row].fixed == false {
-    
-                    cell.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-                    cell.detailTextLabel?.text = "Дата установки станции: " + stations[indexPath.row].dateInitStation! + "\nВычисляемая"
-                } else {
-                    
-                    
-                    cell.detailTextLabel?.text = "Дата установки станции: " + stations[indexPath.row].dateInitStation! + "\nФиксированная"
-                    
-                }
-            } catch  {
-    
-                print(error)
-    
-            }
-//     Configure the cell...
-    return cell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.detailTextLabel?.numberOfLines = 3
+        let detailButton = UITableViewCellAccessoryType.detailButton
+        cell.accessoryType = detailButton
+        
+        
+        let station = fetchedResultController.object(at: indexPath)
+        
+        
+        cell.textLabel?.text = station.nameStation
+        
+        
+        
+        if station.fixed == true {
+            
+            cell.detailTextLabel?.text = "Дата установки станции: " + station.dateInitStation! + "\nФиксированная"
+            
+        } else {
+            
+            cell.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+            cell.detailTextLabel?.text = "Дата установки станции: " + station.dateInitStation! + "\nВычисляемая"
+            
+            
+        }
+        
+        //     Configure the cell...
+        return cell
     }
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-    
-
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        
         switch editingStyle {
             
         case .delete:
             
             // Delete the row from the data source
             
-            let fetchRequest: NSFetchRequest<Station> = Station.fetchRequest()
-            fetchRequest.returnsObjectsAsFaults = false
+            let station = fetchedResultController.object(at: indexPath)
+            CoreDataManager.instance.persistentContainer.viewContext.delete(station)
             
-            do {
-                
-                let results = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequest)
-                
-                CoreDataManager.instance.persistentContainer.viewContext.delete(results[indexPath.row])
-                CoreDataManager.instance.saveContext()
-                
-            }
-                
-            catch {
-                
-                let err = error as NSError
-                print(err.userInfo)
-                
-                
-            }
+            CoreDataManager.instance.saveContext()
+            //            Если котроллер не подписан на делегат, то надо добавть строку:
+            //            tableView.deleteRows(at: [indexPath], with: .fade)
             
-            
-            tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.reloadData()
-            
             
         default:
             
-            break
-         
+            return
+            
             
         }
-            
-            
-//         else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-//        }    
+        
+        
     }
-    
-   
-    
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        
-        let fetchedResultController = CoreDataManager.instance.returnFetchedResultsControllerStation()
-        
-        do {
-            try fetchedResultController.performFetch()
-            
-        } catch  {
-            
-            let err = error as NSError
-            print(err.userInfo)
-            
-        }
         
         let station = fetchedResultController.object(at: indexPath)
         
         performSegue(withIdentifier: "ShowDetailStation", sender: station)
         
-        print("Выбрана станция: \(station.nameStation!)")
-        
-        
     }
     
-    
-    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath     {
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath)  -> IndexPath? {
         
-        let fetchRequest: NSFetchRequest<Station> = Station.fetchRequest()
-        fetchRequest.returnsObjectsAsFaults = false
+        print("выбрана строка №: \(indexPath.row + 1)")
         
-        do {
-            let results = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequest)
-            
-            selectedStation = results[indexPath.row]
-            
-        } catch  {
-            
-            let err = error as NSError
-            
-            print(err)
-        }
-        
-        indexPathStation = indexPath
-        
+        station = fetchedResultController.object(at: indexPath)
+        selectedAtIndexPath = indexPath
         return indexPath
-      
+        
     }
-    
-//    override func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
-//        
-//    }
-    
-   
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        
+        
         if segue.identifier == "ShowMeasurements" {
             
-           (segue.destination as! MeasurementsListViewController).nameSelectedStation = selectedStation
-            (segue.destination as! MeasurementsListViewController).indexPathSelectedStation = indexPathStation
+            (segue.destination as! MeasurementsListViewController).didSelectedStation = station
+            
             
         }
         
@@ -443,7 +358,88 @@ class StationsTableViewController: UITableViewController   {
         
     }
     
+    //    MARK: - Отслеживание изменения данных в таблице через делегат (NSFetchedResultController):
     
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        
+        print("таблица редактируется")
+        tableView.beginUpdates()
+        
+        
     }
+    
+    //        если нужно отслеживать разбивку таблицы по секциям:
+    
+    /*
+     func controller(controller: NSFetchedResultsController<NSFetchRequestResult>, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+     switch type {
+     case .insert:
+     tableView.insertSections(NSIndexSet(index: sectionIndex) as IndexSet, with: .fade)
+     tableView.reloadData()
+     case .delete:
+     tableView.deleteSections(NSIndexSet(index: sectionIndex) as IndexSet, with: .fade)
+     tableView.reloadData()
+     default:
+     return
+     }
+     }
+     */
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
+        switch type {
+        case .insert:
+            if let indexPath = newIndexPath {
+                tableView.insertRows(at: [indexPath], with: .automatic)
+                //                tableView.reloadData()
+            }
+        case .update:
+            if let indexPath = indexPath {
+                print("Функия именования ячейки работает")
+                let station = fetchedResultController.object(at: indexPath)
+                guard let cell = tableView.cellForRow(at: indexPath) else { break }
+                cell.detailTextLabel?.numberOfLines = 3
+                let detailButton = UITableViewCellAccessoryType.detailButton
+                cell.accessoryType = detailButton
+                cell.textLabel?.text = station.nameStation
+                if station.fixed == true {
+                    
+                    cell.detailTextLabel?.text = "Дата установки станции: " + station.dateInitStation! + "\nФиксированная"
+                    
+                } else {
+                    
+                    cell.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+                    cell.detailTextLabel?.text = "Дата установки станции: " + station.dateInitStation! + "\nВычисляемая"
+                    
+                }
+            }
+        case .move:
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                //                tableView.reloadData()
+            }
+            if let newIndexPath = newIndexPath {
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+                //                tableView.reloadData()
+            }
+        case .delete:
+            print("функция удаления ячейки сработала")
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                //                tableView.reloadData()
+            }
+            
+        }
+        
+        
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>){
+        print("таблица закончила редактироваться")
+        tableView.endUpdates()
+        
+    }
+    
+}
 
 

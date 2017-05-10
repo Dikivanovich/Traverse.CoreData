@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreData
 
-class DetailStationViewController: UIViewController {
+class DetailStationViewController: UIViewController, NSFetchedResultsControllerDelegate {
     
     var editableStation: Station?
     
@@ -144,6 +145,9 @@ class DetailStationViewController: UIViewController {
 
             
                     }
+        
+        
+        
         
         
         // Do any additional setup after loading the view.
