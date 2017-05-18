@@ -241,14 +241,6 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
     
     // MARK: - Table view data source
     
-    /*  override func numberOfSections(in tableView: UITableView) -> Int {
-     // #warning Incomplete implementation, return the number of sections
-     guard let section = fetchedResultController.sections else {
-     return 0
-     }
-     
-     return section.count
-     } */
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -260,7 +252,10 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        //     Configure the cell...
+        
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomCell
         cell.detailTextLabel?.numberOfLines = 3
         let detailButton = UITableViewCellAccessoryType.detailButton
         cell.accessoryType = detailButton
@@ -285,7 +280,6 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
             
         }
         
-        //     Configure the cell...
         return cell
     }
     
@@ -391,13 +385,14 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
         case .insert:
             if let indexPath = newIndexPath {
                 tableView.insertRows(at: [indexPath], with: .automatic)
-                //                tableView.reloadData()
+                
             }
         case .update:
             if let indexPath = indexPath {
                 print("Функия именования ячейки работает")
                 let station = fetchedResultController.object(at: indexPath)
-                guard let cell = tableView.cellForRow(at: indexPath) else { break }
+                let cell = tableView.cellForRow(at: indexPath)! as! CustomCell
+                
                 cell.detailTextLabel?.numberOfLines = 3
                 let detailButton = UITableViewCellAccessoryType.detailButton
                 cell.accessoryType = detailButton
@@ -416,17 +411,17 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
         case .move:
             if let indexPath = indexPath {
                 tableView.deleteRows(at: [indexPath], with: .automatic)
-                //                tableView.reloadData()
+                
             }
             if let newIndexPath = newIndexPath {
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
-                //                tableView.reloadData()
+                
             }
         case .delete:
             print("функция удаления ячейки сработала")
             if let indexPath = indexPath {
                 tableView.deleteRows(at: [indexPath], with: .automatic)
-                //                tableView.reloadData()
+                
             }
             
         }

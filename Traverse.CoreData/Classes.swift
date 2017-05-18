@@ -156,23 +156,20 @@ extension UITextField {
     }
     
     
-    
-    
-    
-    
-    
 }
 
 extension MeasurementsListViewController {
     
-    /// Настройка ввода текста с помощью кастомной клавиатуры, настройка, отображения имени координат перед текстовым полем, настройка borderColor #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1), borderWidth = 1, backgroundColor #colorLiteral(red: 0.8642458376, green: 1, blue: 0.8972792964, alpha: 1), cornerRadius = 5, настройка отображения имени координат в placeholder
+    /// Данная функция реализует кастомную клавиатуру для указанного в аргументе текстового поля.
     ///
     /// - Parameters:
-    ///   - textField: Текстовое поле, над которым будет выполнена процедура настройки
-    ///   - placeholder: Имя оси координат, которое будет указываться слева от границы текстового поля и в placeholder.
-    func customozationTextField(textField: UITextField, placeholder: String) {
+    ///   - textField: Текстовое поле, над которым будет выполнена процедура настройки.
+    ///   - placeholder: Текст, который должен указываться в placeholder выбранного текстовго поля.
+    func customozationTextField(textField: UITextField, placeholder: String?) {
         textField.inputView = MyCustomKeyboard.init().loadFromNib()
-        textField.placeholder = "координата \(placeholder)"
+        if placeholder != nil {
+            textField.placeholder = "координата \(placeholder!)"
+        }
         textField.borderStyle = UITextBorderStyle.roundedRect
         textField.layer.borderColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1).cgColor
         textField.layer.borderWidth = 1
@@ -180,14 +177,38 @@ extension MeasurementsListViewController {
         textField.layer.cornerRadius = 5
         let label = UILabel(frame: .init(x: -18, y: -11, width: 50, height: 50))
         label.textColor = #colorLiteral(red: 0.4691409734, green: 0.6283831361, blue: 0.9686274529, alpha: 1)
-        label.text = "\(placeholder):"
+        if placeholder != nil { label.text = "\(placeholder!):"}
         textField.addSubview(label)
         
     }
     
-    
+    /// Данная функция реализует Custom Picker View для указанного в аргументе текстового поля.
+    ///
+    /// - Parameters:
+    ///   - textField: Текстовое поле, над которым будет выполнена процедура настройки.
+    ///   - placeholder: Текст, который должен указываться в placeholder выбранного текстовго поля.
+    func customozationTextFieldForPicker(textField: UITextField, placeholder: String) {
+        let pickerView = PickerView.init()
+        pickerView.configPickerView(textField: textField, dataForPicker: DataModel.getData())
+        textField.inputView = pickerView
+        textField.placeholder = "\(placeholder)"
+        textField.borderStyle = UITextBorderStyle.roundedRect
+        textField.layer.borderColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1).cgColor
+        textField.layer.borderWidth = 1
+        textField.backgroundColor = #colorLiteral(red: 0.8642458376, green: 1, blue: 0.8972792964, alpha: 1)
+        textField.layer.cornerRadius = 5
+        textField.textAlignment = .center
+        textField.font = UIFont(name: UIFontTextStyle.title1.rawValue, size: 20)
+
+        
+        
+    }
+
     
 }
+
+
+
 
 
 

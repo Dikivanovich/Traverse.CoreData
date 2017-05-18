@@ -8,8 +8,7 @@
 
 import UIKit
 
-
-class CustomButton: UIButton {
+  class CustomButton: UIButton {
     
     
     required init?(coder aDecoder: NSCoder) {
@@ -25,7 +24,7 @@ class CustomButton: UIButton {
 }
 
 
-class AllButton: UIButton {
+ class AllButton: UIButton {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

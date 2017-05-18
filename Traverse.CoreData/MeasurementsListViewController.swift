@@ -10,15 +10,11 @@ import UIKit
 import CoreData
 
 
-class MeasurementsListViewController: UITableViewController, NSFetchedResultsControllerDelegate, UIPickerViewDelegate, UITextFieldDelegate {
+class MeasurementsListViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+
     
     var didSelectedStation: Station?
     
-//    var degree: CountableRange<Int> = 0..<360
-//    var minutes: CountableRange<Int> = 0..<60
-//    var seconds: CountableRange<Int> = 0..<60
-//    
-//    var pickeView = MyCustomPickerView()
     
     @IBAction func addNewMeasure(_ sender: Any) {
         
@@ -58,15 +54,17 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
                         
                     })
                     
-                    alertInsertCoordinateController.addTextField(configurationHandler: { (textFieldHorizontalAngle) in
+                    alertInsertCoordinateController.addTextField(configurationHandler: {  (textFieldHorizontalAngle) in
                         
-                       
+                        self.customozationTextFieldForPicker(textField: textFieldHorizontalAngle, placeholder: "горизонтальный лимб")
                         
-                        
-                        textFieldHorizontalAngle.inputView = MyCustomPickerView.instance
-                        
-                       
                     })
+                    
+                    alertInsertCoordinateController.addTextField(configurationHandler: {  (textFieldVerticalAngle) in
+                        
+                        self.customozationTextFieldForPicker(textField: textFieldVerticalAngle, placeholder: "вертикальный круг")
+                    })
+                    
                     
                     
                     let alertAddCoordinatAction = UIAlertAction.init(title: "Сохранить", style: UIAlertActionStyle.default, handler: {  (alertAction) in
@@ -105,9 +103,39 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
                 
                 let alertActionNo = UIAlertAction.init(title: "Нет", style: .default, handler: { (alertAction) in
                     
-                    CoreDataManager.instance.addNewMeasure(name: alert.textFields!.first!.text!, fromStation: self.didSelectedStation!)
+                    let alertInsertMeasureController = UIAlertController.init(title: "Измерения на цель", message: "Введите отчет по горизонтальному и вертикальному лимбу", preferredStyle: .alert)
                     
-                    self.tableView.reloadData()
+                    alertInsertMeasureController.addTextField(configurationHandler: { (textFieldHorizontalAngle) in
+                        
+                        self.customozationTextFieldForPicker(textField: textFieldHorizontalAngle, placeholder: "горизонтальный лимб")
+                        
+                    })
+                    
+                    alertInsertMeasureController.addTextField(configurationHandler: { (textFieldVerticalAngle) in
+                        
+                        self.customozationTextFieldForPicker(textField: textFieldVerticalAngle, placeholder: "вертикальный угол")                    })
+                    
+                    let alertAddMeasureAction = UIAlertAction(title: "Сохранить", style: .default, handler: { (alertAction) in
+                        
+                        if alertInsertMeasureController.textFields?[0] != nil ?? alertInsertMeasureController.textFields?[1] {
+                            
+                           
+                            
+                        }
+                        
+                        
+                        
+                        
+                        
+                    })
+                    
+                    let alertAddMeasureCancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: { (alertAction) in
+                        print("push cancel")
+                    })
+                    
+                    alertInsertMeasureController.addAction(alertAddMeasureAction)
+                    alertInsertMeasureController.addAction(alertAddMeasureCancelAction)
+                    self.present(alertInsertMeasureController, animated: true, completion: nil)
                     
                 })
                 
@@ -150,10 +178,8 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
         tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
         tableView.separatorColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         
-////        pickeView.degree = degree
-//        pickeView.minutes = minutes
-//        pickeView.seconds = seconds
-       
+        
+        
         // Do any additional setup after loading the view.
     }
     
@@ -164,7 +190,7 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        let sortDescriptor = NSSortDescriptor(key: "dateMeasure", ascending: true)
+        let sortDescriptor = NSSortDescriptor(key: "dateMeasure", ascending: false)
         let points = didSelectedStation?.point?.sortedArray(using: [sortDescriptor])
         
         if points?.count == 0 {
@@ -177,10 +203,10 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CellPoints", for: indexPath)
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CellPoints", for: indexPath) as! CustomCell
+        
         cell.detailTextLabel?.numberOfLines = 6
-        let sortDescriptor = NSSortDescriptor(key: "dateMeasure", ascending: true)
+        let sortDescriptor = NSSortDescriptor(key: "dateMeasure", ascending: false)
         let points = didSelectedStation?.point?.sortedArray(using: [sortDescriptor]) as! [Points]
         let point = points[indexPath.row]
         
@@ -213,27 +239,12 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
             
             CoreDataManager.instance.persistentContainer.viewContext.delete(point)
             CoreDataManager.instance.saveContext()
-            
-            
-            
-            
-            
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.reloadData()
         }
         
-        
-        //         else if editingStyle == .insert {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        //        }
     }
-    
-    
-    
-  
-    
-    
-    
+
 }
 
 

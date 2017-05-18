@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 
 
-class MyCustomKeyboard: UIView {
+ class MyCustomKeyboard: UIView {
     
     static let instance = MyCustomKeyboard()
   
@@ -49,11 +49,4 @@ class MyCustomKeyboard: UIView {
         addSubview(view)
         
     }
-    
-   
-    
-
-
-
-    
 }
