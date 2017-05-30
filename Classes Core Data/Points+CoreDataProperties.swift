@@ -2,7 +2,7 @@
 //  Points+CoreDataProperties.swift
 //  Traverse.CoreData
 //
-//  Created by Dik on 02.05.17.
+//  Created by Dik on 21.05.17.
 //  Copyright © 2017 Kantulaev Ruslan. All rights reserved.
 //
 
@@ -23,5 +23,23 @@ extension Points {
     @NSManaged public var y: NSDecimalNumber?
     @NSManaged public var z: NSDecimalNumber?
     @NSManaged public var station: Station?
+    @NSManaged public var mesureFromStation: NSSet?
+
+}
+
+// MARK: Generated accessors for mesureFromStation
+extension Points {
+
+    @objc(addMesureFromStationObject:)
+    @NSManaged public func addToMesureFromStation(_ value: MeasurementsToPointHz)
+
+    @objc(removeMesureFromStationObject:)
+    @NSManaged public func removeFromMesureFromStation(_ value: MeasurementsToPointHz)
+
+    @objc(addMesureFromStation:)
+    @NSManaged public func addToMesureFromStation(_ values: NSSet)
+
+    @objc(removeMesureFromStation:)
+    @NSManaged public func removeFromMesureFromStation(_ values: NSSet)
 
 }

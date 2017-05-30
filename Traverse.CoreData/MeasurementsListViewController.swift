@@ -11,7 +11,8 @@ import CoreData
 
 
 class MeasurementsListViewController: UITableViewController, NSFetchedResultsControllerDelegate {
-
+    
+    
     
     var didSelectedStation: Station?
     
@@ -56,13 +57,13 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
                     
                     alertInsertCoordinateController.addTextField(configurationHandler: {  (textFieldHorizontalAngle) in
                         
-                        self.customozationTextFieldForPicker(textField: textFieldHorizontalAngle, placeholder: "горизонтальный лимб")
+                        self.customozationTextFieldForPicker(textField: textFieldHorizontalAngle, placeholder: "горизонтальный лимб", showSideCircle: true)
                         
                     })
                     
                     alertInsertCoordinateController.addTextField(configurationHandler: {  (textFieldVerticalAngle) in
                         
-                        self.customozationTextFieldForPicker(textField: textFieldVerticalAngle, placeholder: "вертикальный круг")
+                        self.customozationTextFieldForPicker(textField: textFieldVerticalAngle, placeholder: "вертикальный круг", showSideCircle: false)
                     })
                     
                     
@@ -101,31 +102,32 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
                     
                 })
                 
+                //                MARK: - реализация ввода данных вычисляемой точки:
                 let alertActionNo = UIAlertAction.init(title: "Нет", style: .default, handler: { (alertAction) in
                     
                     let alertInsertMeasureController = UIAlertController.init(title: "Измерения на цель", message: "Введите отчет по горизонтальному и вертикальному лимбу", preferredStyle: .alert)
                     
                     alertInsertMeasureController.addTextField(configurationHandler: { (textFieldHorizontalAngle) in
                         
-                        self.customozationTextFieldForPicker(textField: textFieldHorizontalAngle, placeholder: "горизонтальный лимб")
+                        self.customozationTextFieldForPicker(textField: textFieldHorizontalAngle, placeholder: "горизонтальный лимб", showSideCircle: true)
                         
                     })
                     
                     alertInsertMeasureController.addTextField(configurationHandler: { (textFieldVerticalAngle) in
                         
-                        self.customozationTextFieldForPicker(textField: textFieldVerticalAngle, placeholder: "вертикальный угол")                    })
+                        self.customozationTextFieldForPicker(textField: textFieldVerticalAngle, placeholder: "вертикальный угол", showSideCircle: false)
+                        
+                    })
                     
                     let alertAddMeasureAction = UIAlertAction(title: "Сохранить", style: .default, handler: { (alertAction) in
                         
-                        if alertInsertMeasureController.textFields?[0] != nil ?? alertInsertMeasureController.textFields?[1] {
+                        if alertInsertMeasureController.textFields?[0].text != "" && alertInsertMeasureController.textFields?[1].text != ""  {
                             
-                           
+                            let angle = self.returnAngleFromTextField(textField: alertInsertMeasureController.textFields![0])
+                            CoreDataManager.instance.addNewMeasure(name: alert.textFields!.first!.text!, fromStation: self.didSelectedStation!, hzAngle: angle)
+                            self.tableView.reloadData()
                             
                         }
-                        
-                        
-                        
-                        
                         
                     })
                     
@@ -209,6 +211,9 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
         let sortDescriptor = NSSortDescriptor(key: "dateMeasure", ascending: false)
         let points = didSelectedStation?.point?.sortedArray(using: [sortDescriptor]) as! [Points]
         let point = points[indexPath.row]
+        let measure = point.mesureFromStation?.anyObject() as! MeasurementsToPointHz
+        
+        
         
         cell.textLabel?.text = point.namePoint
         
@@ -220,7 +225,7 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
         } else {
             
             cell.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-            cell.detailTextLabel?.text = "Вычисляемая" + "\nСтанция: \(didSelectedStation!.nameStation!)" + "\nДата создания наблюдения: \(point.dateMeasure!)"
+            cell.detailTextLabel?.text = "Вычисляемая" + "\nСтанция: \(didSelectedStation!.nameStation!)" + "\nДата создания наблюдения: \(point.dateMeasure!)" + "\n\(measure.degree)" + "˚ " + "\(measure.minutes)" + "' " + "\(measure.seconds)" + "\""
         }
         
         
@@ -244,7 +249,7 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
         }
         
     }
-
+    
 }
 
 

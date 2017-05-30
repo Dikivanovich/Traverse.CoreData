@@ -42,8 +42,6 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
         
         print("unwind")
         
-        tableView.reloadData()
-        
     }
     
     @IBAction func addNewStationAction(_ sender: Any) {
@@ -269,7 +267,7 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
         
         
         if station.fixed == true {
-            
+            cell.backgroundColor = UIColor.orange
             cell.detailTextLabel?.text = "Дата установки станции: " + station.dateInitStation! + "\nФиксированная"
             
         } else {
@@ -398,7 +396,7 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
                 cell.accessoryType = detailButton
                 cell.textLabel?.text = station.nameStation
                 if station.fixed == true {
-                    
+                    cell.backgroundColor = UIColor.orange
                     cell.detailTextLabel?.text = "Дата установки станции: " + station.dateInitStation! + "\nФиксированная"
                     
                 } else {

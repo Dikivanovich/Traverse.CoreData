@@ -34,7 +34,6 @@ class CustomCell: UITableViewCell {
         self.layer.cornerRadius = 15
         self.layer.borderWidth = 1
         self.layer.borderColor = #colorLiteral(red: 0.7946271728, green: 0.6012833646, blue: 0.9686274529, alpha: 0.5649882277).cgColor
-        self.backgroundColor = UIColor.orange
         self.clipsToBounds = true
         
         
@@ -160,6 +159,10 @@ extension UITextField {
 
 extension MeasurementsListViewController {
     
+
+
+    
+    
     /// Данная функция реализует кастомную клавиатуру для указанного в аргументе текстового поля.
     ///
     /// - Parameters:
@@ -187,9 +190,10 @@ extension MeasurementsListViewController {
     /// - Parameters:
     ///   - textField: Текстовое поле, над которым будет выполнена процедура настройки.
     ///   - placeholder: Текст, который должен указываться в placeholder выбранного текстовго поля.
-    func customozationTextFieldForPicker(textField: UITextField, placeholder: String) {
+    func customozationTextFieldForPicker(textField: UITextField, placeholder: String, showSideCircle: Bool) {
+        
         let pickerView = PickerView.init()
-        pickerView.configPickerView(textField: textField, dataForPicker: DataModel.getData())
+        pickerView.configPickerView(textField: textField, dataForPicker: DataModel.getData(), showSideCircle: showSideCircle)
         textField.inputView = pickerView
         textField.placeholder = "\(placeholder)"
         textField.borderStyle = UITextBorderStyle.roundedRect
@@ -200,15 +204,36 @@ extension MeasurementsListViewController {
         textField.textAlignment = .center
         textField.font = UIFont(name: UIFontTextStyle.title1.rawValue, size: 20)
 
-        
-        
-    }
-
     
 }
 
+}
 
 
+extension MeasurementsListViewController {
+    
+    func returnAngleFromTextField(textField: UITextField) -> (degree: Int16, minutes: Int16, seconds: Int16) {
+        
+        var textAngle = textField.text!
+        let replacingText: [String] = ["˚", "'", "\""]
+        for item in replacingText {
+            textAngle = textAngle.replacingOccurrences(of: item, with: "")
+        }
+        let splityngText: [String.CharacterView] = textAngle.characters.split(separator: " ")
+        
+        let degreeText = String(splityngText[0])
+        let minutesText = String(splityngText[1])
+        let secondsText = String(splityngText[2])
+        
+        let angle = (degree: Int16(degreeText)!, minutes: Int16(minutesText)!, seconds: Int16(secondsText)!)
+        
+        return angle
+        
+    }
+    
+    
+    
+}
 
 
 
