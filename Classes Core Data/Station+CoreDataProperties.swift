@@ -2,7 +2,7 @@
 //  Station+CoreDataProperties.swift
 //  Traverse.CoreData
 //
-//  Created by Dik on 21.05.17.
+//  Created by Dik on 31.05.17.
 //  Copyright © 2017 Kantulaev Ruslan. All rights reserved.
 //
 
@@ -22,27 +22,45 @@ extension Station {
     @NSManaged public var x: NSDecimalNumber?
     @NSManaged public var y: NSDecimalNumber?
     @NSManaged public var z: NSDecimalNumber?
-    @NSManaged public var measurementsToPoint: NSSet?
+    @NSManaged public var measurementsToPointHz: NSSet?
+    @NSManaged public var measurementsToPointVz: NSSet?
     @NSManaged public var measurementsToStationBackSide: NSSet?
     @NSManaged public var measurementsToStationForwardSide: NSSet?
     @NSManaged public var point: NSSet?
 
 }
 
-// MARK: Generated accessors for measurementsToPoint
+// MARK: Generated accessors for measurementsToPointHz
 extension Station {
 
-    @objc(addMeasurementsToPointObject:)
-    @NSManaged public func addToMeasurementsToPoint(_ value: MeasurementsToPointHz)
+    @objc(addMeasurementsToPointHzObject:)
+    @NSManaged public func addToMeasurementsToPointHz(_ value: MeasurementsToPointHz)
 
-    @objc(removeMeasurementsToPointObject:)
-    @NSManaged public func removeFromMeasurementsToPoint(_ value: MeasurementsToPointHz)
+    @objc(removeMeasurementsToPointHzObject:)
+    @NSManaged public func removeFromMeasurementsToPointHz(_ value: MeasurementsToPointHz)
 
-    @objc(addMeasurementsToPoint:)
-    @NSManaged public func addToMeasurementsToPoint(_ values: NSSet)
+    @objc(addMeasurementsToPointHz:)
+    @NSManaged public func addToMeasurementsToPointHz(_ values: NSSet)
 
-    @objc(removeMeasurementsToPoint:)
-    @NSManaged public func removeFromMeasurementsToPoint(_ values: NSSet)
+    @objc(removeMeasurementsToPointHz:)
+    @NSManaged public func removeFromMeasurementsToPointHz(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for measurementsToPointVz
+extension Station {
+
+    @objc(addMeasurementsToPointVzObject:)
+    @NSManaged public func addToMeasurementsToPointVz(_ value: MeasurementsToPointVz)
+
+    @objc(removeMeasurementsToPointVzObject:)
+    @NSManaged public func removeFromMeasurementsToPointVz(_ value: MeasurementsToPointVz)
+
+    @objc(addMeasurementsToPointVz:)
+    @NSManaged public func addToMeasurementsToPointVz(_ values: NSSet)
+
+    @objc(removeMeasurementsToPointVz:)
+    @NSManaged public func removeFromMeasurementsToPointVz(_ values: NSSet)
 
 }
 

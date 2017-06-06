@@ -2,7 +2,7 @@
 //  MeasurementsToStationBackSide+CoreDataProperties.swift
 //  Traverse.CoreData
 //
-//  Created by Dik on 21.05.17.
+//  Created by Dik on 31.05.17.
 //  Copyright © 2017 Kantulaev Ruslan. All rights reserved.
 //
 

@@ -12,27 +12,41 @@ import CoreData
 
 class MeasurementsListViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
-    
-    
     var didSelectedStation: Station?
     
+    var selectedPoint: Points?
+    
+    func alertControllerWillDisappear(textFields: [UITextField]?) {
+        
+        for textField in textFields! {
+            textField.inputView = nil
+        }
+    }
+    
+    @IBAction func unwindFromDetailPointVC (sender: UIStoryboardSegue) {
+        
+    }
     
     @IBAction func addNewMeasure(_ sender: Any) {
         
+//        MARK: - создание основного контроллера для запроса ввода имени пункта наблюдения:
+        
         let alert = UIAlertController.init(title: "Добавьте наблюдение", message: "Введите имя пункта наблюдения", preferredStyle: .alert)
         
-        alert.addTextField { (texfield) in
+        alert.addTextField {  (texfield) in
             texfield.placeholder = "Название пункта"
         }
         
         let alertActionOK = UIAlertAction.init(title: "Сохранить", style: .default) { (alertAction) in
             if alert.textFields?.first?.text != "" {
                 
+//          MARK: - создание запроса положения измерения (фиксированное или вычисляемое):
                 
                 let alertFixedOrNotPoint = UIAlertController.init(title: "Категория положения цели", message: "Является ли положение цели фиксированным", preferredStyle: .actionSheet)
                 
+//                действие при фиксированном положении измерения (когда известны координаты):
                 
-                let alertActionYes = UIAlertAction.init(title: "Да", style: .default, handler: { (alertAction) in
+               let alertActionYes = UIAlertAction.init(title: "Да", style: .default, handler: { (alertAction) in
                     
                     let alertInsertCoordinateController = UIAlertController.init(title: "Координаты цели", message: "Введите координаты цели", preferredStyle: .alert)
                     
@@ -41,39 +55,50 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
                         self.customozationTextField(textField: textFieldX, placeholder: "x")
                         
                         
+                        
                     })
                     
-                    
-                    alertInsertCoordinateController.addTextField(configurationHandler: { (textFieldY) in
+                    alertInsertCoordinateController.addTextField(configurationHandler: {  (textFieldY) in
                         
                         self.customozationTextField(textField: textFieldY, placeholder: "y")
+                        
+                        
                     })
                     
-                    alertInsertCoordinateController.addTextField(configurationHandler: { (textFieldZ) in
+                    alertInsertCoordinateController.addTextField(configurationHandler: {  (textFieldZ) in
                         
                         self.customozationTextField(textField: textFieldZ, placeholder: "z")
                         
                     })
                     
-                    alertInsertCoordinateController.addTextField(configurationHandler: {  (textFieldHorizontalAngle) in
+                    alertInsertCoordinateController.addTextField(configurationHandler: {   (textFieldHorizontalAngle) in
                         
                         self.customozationTextFieldForPicker(textField: textFieldHorizontalAngle, placeholder: "горизонтальный лимб", showSideCircle: true)
                         
+                        
                     })
                     
-                    alertInsertCoordinateController.addTextField(configurationHandler: {  (textFieldVerticalAngle) in
+                    alertInsertCoordinateController.addTextField(configurationHandler: {   (textFieldVerticalAngle) in
                         
                         self.customozationTextFieldForPicker(textField: textFieldVerticalAngle, placeholder: "вертикальный круг", showSideCircle: false)
                     })
                     
+                    alertInsertCoordinateController.addTextField(configurationHandler: {  (distanceTextField) in
+                        self.customozationTextField(textField: distanceTextField, placeholder: nil)
+                    })
                     
                     
                     let alertAddCoordinatAction = UIAlertAction.init(title: "Сохранить", style: UIAlertActionStyle.default, handler: {  (alertAction) in
                         
-                        if  alertInsertCoordinateController.textFields?[0].text! != "" && alertInsertCoordinateController.textFields?[1].text! != "" && alertInsertCoordinateController.textFields?[2].text! != "" {
+                        if  alertInsertCoordinateController.textFields?[0].text! != "" && alertInsertCoordinateController.textFields?[1].text! != "" && alertInsertCoordinateController.textFields?[2].text! != "" && alertInsertCoordinateController.textFields?[3].text! != "" && alertInsertCoordinateController.textFields?[4].text! != "" &&
+                            alertInsertCoordinateController.textFields?[5].text! != "" {
                             
-                            CoreDataManager.instance.addNewMeasure(name: alert.textFields!.first!.text!, x: alertInsertCoordinateController.textFields![0].text! , y: alertInsertCoordinateController.textFields![1].text!, z: alertInsertCoordinateController.textFields![2].text!, fromStation: self.didSelectedStation!)
+                            let angleHz = self.returnAngleFromTextField(textField: alertInsertCoordinateController.textFields?[3])
+                            let angleVz = self.returnAngleFromTextField(textField: alertInsertCoordinateController.textFields?[4])
+                            
+                            CoreDataManager.instance.addNewMeasure(name: alert.textFields!.first!.text!, x: alertInsertCoordinateController.textFields![0].text! , y: alertInsertCoordinateController.textFields![1].text!, z: alertInsertCoordinateController.textFields![2].text!, fromStation: self.didSelectedStation!,distance: alertInsertCoordinateController.textFields![5].text!, hzAngle: angleHz, vAngle: angleVz)
                             self.tableView.reloadData()
+                            self.alertControllerWillDisappear(textFields: alertInsertCoordinateController.textFields)
                         } else {
                             
                             
@@ -102,7 +127,8 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
                     
                 })
                 
-                //                MARK: - реализация ввода данных вычисляемой точки:
+//                MARK: - реализация ввода данных вычисляемой точки:
+                
                 let alertActionNo = UIAlertAction.init(title: "Нет", style: .default, handler: { (alertAction) in
                     
                     let alertInsertMeasureController = UIAlertController.init(title: "Измерения на цель", message: "Введите отчет по горизонтальному и вертикальному лимбу", preferredStyle: .alert)
@@ -119,14 +145,41 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
                         
                     })
                     
+                    alertInsertMeasureController.addTextField(configurationHandler: { (distanceTextField) in
+                        
+                        self.customozationTextField(textField: distanceTextField, placeholder: nil)
+                        
+                    })
+                    
                     let alertAddMeasureAction = UIAlertAction(title: "Сохранить", style: .default, handler: { (alertAction) in
                         
-                        if alertInsertMeasureController.textFields?[0].text != "" && alertInsertMeasureController.textFields?[1].text != ""  {
+                        if alertInsertMeasureController.textFields?[0].text != "" && alertInsertMeasureController.textFields?[1].text != "" && alertInsertMeasureController.textFields?[2].text != ""  {
                             
-                            let angle = self.returnAngleFromTextField(textField: alertInsertMeasureController.textFields![0])
-                            CoreDataManager.instance.addNewMeasure(name: alert.textFields!.first!.text!, fromStation: self.didSelectedStation!, hzAngle: angle)
+                            let hzAngle = self.returnAngleFromTextField(textField: alertInsertMeasureController.textFields?[0])
+                            let vAngle = self.returnAngleFromTextField(textField: (alertInsertMeasureController.textFields?[1]))
+                            
+                            CoreDataManager.instance.addNewMeasure(name: alert.textFields!.first!.text!, fromStation: self.didSelectedStation!,distance: alertInsertMeasureController.textFields![2].text! , hzAngle: hzAngle, vAngle: vAngle)
                             self.tableView.reloadData()
+                            self.alertControllerWillDisappear(textFields: alertInsertMeasureController.textFields)
+                        } else if alertInsertMeasureController.textFields?[0].text != "" && alertInsertMeasureController.textFields?[1].text == "" && alertInsertMeasureController.textFields?[2].text != "" {
                             
+                            let hzAngle = self.returnAngleFromTextField(textField: alertInsertMeasureController.textFields?[0])
+                            CoreDataManager.instance.addNewMeasure(name: alert.textFields!.first!.text!, fromStation: self.didSelectedStation!, distance: alertInsertMeasureController.textFields![2].text!, hzAngle: hzAngle, vAngle: nil)
+                            self.tableView.reloadData()
+                            self.alertControllerWillDisappear(textFields: alertInsertMeasureController.textFields)
+                            
+                        } else {
+                            
+                            let alertError = UIAlertController.init(title: "Ошибка!", message: "Поле отчета по горизонтальному лимбу должно быть обязательно заполнено!", preferredStyle: UIAlertControllerStyle.alert)
+                            
+                            let alertErrorAction = UIAlertAction.init(title: "Ok", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+                                self.present(alertInsertMeasureController, animated: true, completion: nil)
+                            })
+                            
+                            alertError.addAction(alertErrorAction)
+                            
+                            self.present(alertError, animated: true, completion: nil)
+
                         }
                         
                     })
@@ -158,6 +211,8 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
         alert.addAction(alertActionOK)
         alert.addAction(alertActionCancel)
         self.present(alert, animated: true, completion: nil)
+        
+      
         
     }
     
@@ -206,12 +261,15 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellPoints", for: indexPath) as! CustomCell
-        
         cell.detailTextLabel?.numberOfLines = 6
+        
+
+        
         let sortDescriptor = NSSortDescriptor(key: "dateMeasure", ascending: false)
         let points = didSelectedStation?.point?.sortedArray(using: [sortDescriptor]) as! [Points]
         let point = points[indexPath.row]
-        let measure = point.mesureFromStation?.anyObject() as! MeasurementsToPointHz
+        let measureHz = point.mesureFromStationHz?.anyObject() as! MeasurementsToPointHz
+        let measureVa = point.mesureFromStationVz?.anyObject() as? MeasurementsToPointVz
         
         
         
@@ -219,13 +277,13 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
         
         if points[indexPath.row].fixed == true {
             
-            
+            cell.backgroundColor = UIColor.orange
             cell.detailTextLabel?.text = "Фиксированная" + "\nПункт измерения: \(didSelectedStation!.nameStation!)" + "\nx: \(point.x!)" + "\ny: \(point.y!)" + "\nz: \(point.z!)" + "\nДата создания наблюдения: \(point.dateMeasure!)"
             
         } else {
             
             cell.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-            cell.detailTextLabel?.text = "Вычисляемая" + "\nСтанция: \(didSelectedStation!.nameStation!)" + "\nДата создания наблюдения: \(point.dateMeasure!)" + "\n\(measure.degree)" + "˚ " + "\(measure.minutes)" + "' " + "\(measure.seconds)" + "\""
+            cell.detailTextLabel?.text = "Вычисляемая" + "\nСтанция: \(didSelectedStation!.nameStation!)" + "\nДата создания наблюдения: \(point.dateMeasure!)" + "\nОтчет по горизонтальному лимбу: \(measureHz.degree)" + "˚ " + "\(measureHz.minutes)" + "' " + "\(measureHz.seconds)" + "\"" + "\nВертикальный угол: \(String(describing: measureVa?.degree))˚ " + "\(String(describing: measureVa?.minutes))' " + "\(String(describing: measureVa?.seconds))\""
         }
         
         
@@ -250,9 +308,36 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
         
     }
     
+   
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        
+        let sortDescriptor = NSSortDescriptor(key: "dateMeasure", ascending: false)
+        let points = didSelectedStation?.point?.sortedArray(using: [sortDescriptor]) as! [Points]
+         selectedPoint = points[indexPath.row]
+        
+        
+        
+        return indexPath
+        
+        
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "DetailPointMeasure" {
+            
+            (segue.destination as! DetailPointMeasureViewController).willSelectedPoint = selectedPoint
+        
+    }
+    
 }
-
-
-
+    
+    deinit {
+       
+        print("класс MeasurementsListViewController деинициализируется")
+    }
+    
+    
+}
 
 

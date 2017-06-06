@@ -49,4 +49,10 @@ import Foundation
         addSubview(view)
         
     }
+    
+    deinit {
+        print("экземпляр класса MyCustomKeyboard удален")
+    }
+    
+    
 }

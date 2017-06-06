@@ -10,10 +10,11 @@
 		2A0564E01E9AD27C001997A5 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0564DD1E9AD27C001997A5 /* CustomButton.swift */; };
 		2A0564E11E9AD27C001997A5 /* MyCustomKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0564DE1E9AD27C001997A5 /* MyCustomKeyboard.swift */; };
 		2A0564E21E9AD27C001997A5 /* MyCustomKeyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A0564DF1E9AD27C001997A5 /* MyCustomKeyboard.xib */; };
+		2A108EFE1EE6FCC200EE07AE /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A108EFD1EE6FCC200EE07AE /* Extentions.swift */; };
 		2A179D5C1EB38796002CA4D8 /* DetailStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A179D5B1EB38796002CA4D8 /* DetailStationViewController.swift */; };
-		2A30C0D11EDE1E130012DA72 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A30C0CE1EDE1E130012DA72 /* Data.swift */; };
-		2A30C0D21EDE1E130012DA72 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A30C0CF1EDE1E130012DA72 /* PickerView.swift */; };
-		2A30C0D31EDE1E130012DA72 /* PickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A30C0D01EDE1E130012DA72 /* PickerViewModel.swift */; };
+		2A30C0DD1EDE1EFF0012DA72 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A30C0DA1EDE1EFF0012DA72 /* Data.swift */; };
+		2A30C0DE1EDE1EFF0012DA72 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A30C0DB1EDE1EFF0012DA72 /* PickerView.swift */; };
+		2A30C0DF1EDE1EFF0012DA72 /* PickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A30C0DC1EDE1EFF0012DA72 /* PickerViewModel.swift */; };
 		2A613B901ECF9FEE0003E48A /* MeasurementsToPointHz+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A613B8E1ECF9FEE0003E48A /* MeasurementsToPointHz+CoreDataClass.swift */; };
 		2A613B911ECF9FEE0003E48A /* MeasurementsToPointHz+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A613B8F1ECF9FEE0003E48A /* MeasurementsToPointHz+CoreDataProperties.swift */; };
 		2A68E0321E8BBFCA005F5699 /* Traverse_CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2A68E0301E8BBFCA005F5699 /* Traverse_CoreData.xcdatamodeld */; };
@@ -24,12 +25,15 @@
 		2A8410A21EB8CC84006685B1 /* MeasurementsToStationBackSide+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8410A11EB8CC84006685B1 /* MeasurementsToStationBackSide+CoreDataClass.swift */; };
 		2A8410A41EB8CCD3006685B1 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8410A31EB8CCD3006685B1 /* CoreDataManager.swift */; };
 		2A8410A61EB8CE2D006685B1 /* MeasurementsToStationForwardSide+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8410A51EB8CE2D006685B1 /* MeasurementsToStationForwardSide+CoreDataClass.swift */; };
+		2A9B68281EE15742004A970D /* DetailPointMeasureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9B68271EE15742004A970D /* DetailPointMeasureViewController.swift */; };
+		2AACADFC1EDF544C0022F772 /* MeasurementsToPointVz+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACADFA1EDF544C0022F772 /* MeasurementsToPointVz+CoreDataClass.swift */; };
+		2AACADFD1EDF544C0022F772 /* MeasurementsToPointVz+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACADFB1EDF544C0022F772 /* MeasurementsToPointVz+CoreDataProperties.swift */; };
+		2AACADFF1EDF58E90022F772 /* Points+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACADFE1EDF58E90022F772 /* Points+CoreDataProperties.swift */; };
 		2ADCF33F1E8323440080DCF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADCF33E1E8323440080DCF5 /* AppDelegate.swift */; };
 		2ADCF3491E8323440080DCF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2ADCF3481E8323440080DCF5 /* Assets.xcassets */; };
 		2ADCF34C1E8323440080DCF5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADCF34A1E8323440080DCF5 /* LaunchScreen.storyboard */; };
 		2ADCF35D1E8324A20080DCF5 /* Classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADCF35B1E8324A20080DCF5 /* Classes.swift */; };
 		2ADCF3611E832A480080DCF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADCF35F1E832A470080DCF5 /* Main.storyboard */; };
-		2AFE6FAF1EB0A8C800DFA94F /* Points+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFE6FA51EB0A8C800DFA94F /* Points+CoreDataProperties.swift */; };
 		2AFE6FB11EB0A8C800DFA94F /* Station+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFE6FA71EB0A8C800DFA94F /* Station+CoreDataProperties.swift */; };
 		2AFE6FB31EB0A8C800DFA94F /* MeasurementsToStationForwardSide+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFE6FA91EB0A8C800DFA94F /* MeasurementsToStationForwardSide+CoreDataProperties.swift */; };
 		2AFE6FB51EB0A8C800DFA94F /* MeasurementsToStationBackSide+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFE6FAB1EB0A8C800DFA94F /* MeasurementsToStationBackSide+CoreDataProperties.swift */; };
@@ -39,10 +43,11 @@
 		2A0564DD1E9AD27C001997A5 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		2A0564DE1E9AD27C001997A5 /* MyCustomKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCustomKeyboard.swift; sourceTree = "<group>"; };
 		2A0564DF1E9AD27C001997A5 /* MyCustomKeyboard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCustomKeyboard.xib; sourceTree = "<group>"; };
+		2A108EFD1EE6FCC200EE07AE /* Extentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		2A179D5B1EB38796002CA4D8 /* DetailStationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailStationViewController.swift; sourceTree = "<group>"; };
-		2A30C0CE1EDE1E130012DA72 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Data.swift; path = MyCustomPickerView/Data.swift; sourceTree = "<group>"; };
-		2A30C0CF1EDE1E130012DA72 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PickerView.swift; path = MyCustomPickerView/PickerView.swift; sourceTree = "<group>"; };
-		2A30C0D01EDE1E130012DA72 /* PickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PickerViewModel.swift; path = MyCustomPickerView/PickerViewModel.swift; sourceTree = "<group>"; };
+		2A30C0DA1EDE1EFF0012DA72 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Data.swift; path = MyCustomPickerView/Data.swift; sourceTree = "<group>"; };
+		2A30C0DB1EDE1EFF0012DA72 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PickerView.swift; path = MyCustomPickerView/PickerView.swift; sourceTree = "<group>"; };
+		2A30C0DC1EDE1EFF0012DA72 /* PickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PickerViewModel.swift; path = MyCustomPickerView/PickerViewModel.swift; sourceTree = "<group>"; };
 		2A613B8E1ECF9FEE0003E48A /* MeasurementsToPointHz+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MeasurementsToPointHz+CoreDataClass.swift"; path = "Classes Core Data/MeasurementsToPointHz+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2A613B8F1ECF9FEE0003E48A /* MeasurementsToPointHz+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MeasurementsToPointHz+CoreDataProperties.swift"; path = "Classes Core Data/MeasurementsToPointHz+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2A68E0311E8BBFCA005F5699 /* Traverse_CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Traverse_CoreData.xcdatamodel; sourceTree = "<group>"; };
@@ -54,6 +59,10 @@
 		2A8410A11EB8CC84006685B1 /* MeasurementsToStationBackSide+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MeasurementsToStationBackSide+CoreDataClass.swift"; path = "Classes Core Data/MeasurementsToStationBackSide+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2A8410A31EB8CCD3006685B1 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataManager.swift; path = "Classes Core Data/CoreDataManager.swift"; sourceTree = "<group>"; };
 		2A8410A51EB8CE2D006685B1 /* MeasurementsToStationForwardSide+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MeasurementsToStationForwardSide+CoreDataClass.swift"; path = "Classes Core Data/MeasurementsToStationForwardSide+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2A9B68271EE15742004A970D /* DetailPointMeasureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailPointMeasureViewController.swift; sourceTree = "<group>"; };
+		2AACADFA1EDF544C0022F772 /* MeasurementsToPointVz+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MeasurementsToPointVz+CoreDataClass.swift"; path = "Classes Core Data/MeasurementsToPointVz+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2AACADFB1EDF544C0022F772 /* MeasurementsToPointVz+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MeasurementsToPointVz+CoreDataProperties.swift"; path = "Classes Core Data/MeasurementsToPointVz+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2AACADFE1EDF58E90022F772 /* Points+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Points+CoreDataProperties.swift"; path = "Classes Core Data/Points+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2ADCF33B1E8323440080DCF5 /* Traverse.CoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Traverse.CoreData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ADCF33E1E8323440080DCF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2ADCF3481E8323440080DCF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -62,7 +71,6 @@
 		2ADCF35B1E8324A20080DCF5 /* Classes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Classes.swift; sourceTree = "<group>"; };
 		2ADCF3601E832A470080DCF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2AFA73AA1EAFE0FF0018B907 /* Traverse_CoreData(AllToMany).xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Traverse_CoreData(AllToMany).xcdatamodel"; sourceTree = "<group>"; };
-		2AFE6FA51EB0A8C800DFA94F /* Points+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Points+CoreDataProperties.swift"; path = "Classes Core Data/Points+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2AFE6FA71EB0A8C800DFA94F /* Station+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Station+CoreDataProperties.swift"; path = "Classes Core Data/Station+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2AFE6FA91EB0A8C800DFA94F /* MeasurementsToStationForwardSide+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MeasurementsToStationForwardSide+CoreDataProperties.swift"; path = "Classes Core Data/MeasurementsToStationForwardSide+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2AFE6FAB1EB0A8C800DFA94F /* MeasurementsToStationBackSide+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MeasurementsToStationBackSide+CoreDataProperties.swift"; path = "Classes Core Data/MeasurementsToStationBackSide+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -92,12 +100,14 @@
 		2A70CB6D1E983BEA00285CB3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2AACADFA1EDF544C0022F772 /* MeasurementsToPointVz+CoreDataClass.swift */,
+				2AACADFB1EDF544C0022F772 /* MeasurementsToPointVz+CoreDataProperties.swift */,
 				2A613B8E1ECF9FEE0003E48A /* MeasurementsToPointHz+CoreDataClass.swift */,
 				2A613B8F1ECF9FEE0003E48A /* MeasurementsToPointHz+CoreDataProperties.swift */,
 				2A84109D1EB8CC28006685B1 /* Station+CoreDataClass.swift */,
 				2AFE6FA71EB0A8C800DFA94F /* Station+CoreDataProperties.swift */,
 				2A84109F1EB8CC5E006685B1 /* Points+CoreDataClass.swift */,
-				2AFE6FA51EB0A8C800DFA94F /* Points+CoreDataProperties.swift */,
+				2AACADFE1EDF58E90022F772 /* Points+CoreDataProperties.swift */,
 				2A8410A51EB8CE2D006685B1 /* MeasurementsToStationForwardSide+CoreDataClass.swift */,
 				2AFE6FA91EB0A8C800DFA94F /* MeasurementsToStationForwardSide+CoreDataProperties.swift */,
 				2A8410A11EB8CC84006685B1 /* MeasurementsToStationBackSide+CoreDataClass.swift */,
@@ -111,9 +121,9 @@
 		2A732BCF1EBB749E000EFFF6 /* CustomPickerView */ = {
 			isa = PBXGroup;
 			children = (
-				2A30C0CE1EDE1E130012DA72 /* Data.swift */,
-				2A30C0CF1EDE1E130012DA72 /* PickerView.swift */,
-				2A30C0D01EDE1E130012DA72 /* PickerViewModel.swift */,
+				2A30C0DA1EDE1EFF0012DA72 /* Data.swift */,
+				2A30C0DB1EDE1EFF0012DA72 /* PickerView.swift */,
+				2A30C0DC1EDE1EFF0012DA72 /* PickerViewModel.swift */,
 			);
 			name = CustomPickerView;
 			sourceTree = "<group>";
@@ -141,9 +151,11 @@
 			children = (
 				2ADCF33E1E8323440080DCF5 /* AppDelegate.swift */,
 				2A8410961EB8CB22006685B1 /* StationsTableViewController.swift */,
-				2A70CB6E1E983F2900285CB3 /* MeasurementsListViewController.swift */,
 				2A179D5B1EB38796002CA4D8 /* DetailStationViewController.swift */,
+				2A70CB6E1E983F2900285CB3 /* MeasurementsListViewController.swift */,
+				2A9B68271EE15742004A970D /* DetailPointMeasureViewController.swift */,
 				2ADCF35B1E8324A20080DCF5 /* Classes.swift */,
+				2A108EFD1EE6FCC200EE07AE /* Extentions.swift */,
 				2A70CB6D1E983BEA00285CB3 /* Model */,
 				2ADCF3481E8323440080DCF5 /* Assets.xcassets */,
 				2ADCF35F1E832A470080DCF5 /* Main.storyboard */,
@@ -233,21 +245,25 @@
 				2A84109A1EB8CB22006685B1 /* StationsTableViewController.swift in Sources */,
 				2A613B911ECF9FEE0003E48A /* MeasurementsToPointHz+CoreDataProperties.swift in Sources */,
 				2ADCF33F1E8323440080DCF5 /* AppDelegate.swift in Sources */,
-				2A30C0D21EDE1E130012DA72 /* PickerView.swift in Sources */,
+				2A30C0DE1EDE1EFF0012DA72 /* PickerView.swift in Sources */,
 				2A0564E01E9AD27C001997A5 /* CustomButton.swift in Sources */,
 				2A8410A01EB8CC5E006685B1 /* Points+CoreDataClass.swift in Sources */,
+				2A108EFE1EE6FCC200EE07AE /* Extentions.swift in Sources */,
 				2A70CB6F1E983F2900285CB3 /* MeasurementsListViewController.swift in Sources */,
 				2ADCF35D1E8324A20080DCF5 /* Classes.swift in Sources */,
-				2A30C0D31EDE1E130012DA72 /* PickerViewModel.swift in Sources */,
+				2A30C0DF1EDE1EFF0012DA72 /* PickerViewModel.swift in Sources */,
 				2AFE6FB11EB0A8C800DFA94F /* Station+CoreDataProperties.swift in Sources */,
-				2AFE6FAF1EB0A8C800DFA94F /* Points+CoreDataProperties.swift in Sources */,
-				2A30C0D11EDE1E130012DA72 /* Data.swift in Sources */,
+				2A30C0DD1EDE1EFF0012DA72 /* Data.swift in Sources */,
+				2AACADFC1EDF544C0022F772 /* MeasurementsToPointVz+CoreDataClass.swift in Sources */,
 				2AFE6FB51EB0A8C800DFA94F /* MeasurementsToStationBackSide+CoreDataProperties.swift in Sources */,
 				2A0564E11E9AD27C001997A5 /* MyCustomKeyboard.swift in Sources */,
 				2A84109E1EB8CC28006685B1 /* Station+CoreDataClass.swift in Sources */,
+				2AACADFD1EDF544C0022F772 /* MeasurementsToPointVz+CoreDataProperties.swift in Sources */,
+				2AACADFF1EDF58E90022F772 /* Points+CoreDataProperties.swift in Sources */,
 				2A179D5C1EB38796002CA4D8 /* DetailStationViewController.swift in Sources */,
 				2A8410A61EB8CE2D006685B1 /* MeasurementsToStationForwardSide+CoreDataClass.swift in Sources */,
 				2AFE6FB31EB0A8C800DFA94F /* MeasurementsToStationForwardSide+CoreDataProperties.swift in Sources */,
+				2A9B68281EE15742004A970D /* DetailPointMeasureViewController.swift in Sources */,
 				2A8410A41EB8CCD3006685B1 /* CoreDataManager.swift in Sources */,
 				2A68E0321E8BBFCA005F5699 /* Traverse_CoreData.xcdatamodeld in Sources */,
 			);
