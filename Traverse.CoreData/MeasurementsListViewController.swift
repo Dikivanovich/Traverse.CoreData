@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 
-
 class MeasurementsListViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     var didSelectedStation: Station?
@@ -24,6 +23,8 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
     }
     
     @IBAction func unwindFromDetailPointVC (sender: UIStoryboardSegue) {
+        
+       tableView.reloadData()
         
     }
     
@@ -263,32 +264,22 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellPoints", for: indexPath) as! CustomCell
         cell.detailTextLabel?.numberOfLines = 6
         
-
-        
         let sortDescriptor = NSSortDescriptor(key: "dateMeasure", ascending: false)
         let points = didSelectedStation?.point?.sortedArray(using: [sortDescriptor]) as! [Points]
         let point = points[indexPath.row]
-        let measureHz = point.mesureFromStationHz?.anyObject() as! MeasurementsToPointHz
-        let measureVa = point.mesureFromStationVz?.anyObject() as? MeasurementsToPointVz
-        
-        
         
         cell.textLabel?.text = point.namePoint
         
         if points[indexPath.row].fixed == true {
             
             cell.backgroundColor = UIColor.orange
-            cell.detailTextLabel?.text = "Фиксированная" + "\nПункт измерения: \(didSelectedStation!.nameStation!)" + "\nx: \(point.x!)" + "\ny: \(point.y!)" + "\nz: \(point.z!)" + "\nДата создания наблюдения: \(point.dateMeasure!)"
+            cell.detailTextLabel?.text = "Фиксированная" + "\nПункт измерения: \(didSelectedStation!.nameStation!)" + "\nДата наблюдения: \(point.dateMeasure!)"
             
         } else {
             
             cell.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-            cell.detailTextLabel?.text = "Вычисляемая" + "\nСтанция: \(didSelectedStation!.nameStation!)" + "\nДата создания наблюдения: \(point.dateMeasure!)" + "\nОтчет по горизонтальному лимбу: \(measureHz.degree)" + "˚ " + "\(measureHz.minutes)" + "' " + "\(measureHz.seconds)" + "\"" + "\nВертикальный угол: \(String(describing: measureVa?.degree))˚ " + "\(String(describing: measureVa?.minutes))' " + "\(String(describing: measureVa?.seconds))\""
+            cell.detailTextLabel?.text = "Вычисляемая" + "\nПункт измерения: \(didSelectedStation!.nameStation!)" + "\nДата создания наблюдения: \(point.dateMeasure!)"
         }
-        
-        
-        
-        
         
         return cell
     }
@@ -308,7 +299,6 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
         
     }
     
-   
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         
         let sortDescriptor = NSSortDescriptor(key: "dateMeasure", ascending: false)
@@ -336,7 +326,6 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
        
         print("класс MeasurementsListViewController деинициализируется")
     }
-    
     
 }
 

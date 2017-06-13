@@ -70,6 +70,7 @@
 		2ADCF34D1E8323440080DCF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2ADCF35B1E8324A20080DCF5 /* Classes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Classes.swift; sourceTree = "<group>"; };
 		2ADCF3601E832A470080DCF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2AF869421EEAA2310046C545 /* Example.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Example.playground; sourceTree = "<group>"; };
 		2AFA73AA1EAFE0FF0018B907 /* Traverse_CoreData(AllToMany).xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Traverse_CoreData(AllToMany).xcdatamodel"; sourceTree = "<group>"; };
 		2AFE6FA71EB0A8C800DFA94F /* Station+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Station+CoreDataProperties.swift"; path = "Classes Core Data/Station+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2AFE6FA91EB0A8C800DFA94F /* MeasurementsToStationForwardSide+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MeasurementsToStationForwardSide+CoreDataProperties.swift"; path = "Classes Core Data/MeasurementsToStationForwardSide+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -131,6 +132,7 @@
 		2ADCF3321E8323440080DCF5 = {
 			isa = PBXGroup;
 			children = (
+				2AF869421EEAA2310046C545 /* Example.playground */,
 				2A732BCF1EBB749E000EFFF6 /* CustomPickerView */,
 				2A0564DC1E9AD27C001997A5 /* Custom Keyboard */,
 				2ADCF33D1E8323440080DCF5 /* Traverse.CoreData */,

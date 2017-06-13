@@ -93,7 +93,6 @@ class PickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSource {
         
         //        MARK: - настройка textField:
         textField.inputView = self
-        textField.clearButtonMode = .whileEditing
         textField.inputAccessoryView = toolBar
         
         
@@ -155,9 +154,8 @@ class PickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSource {
    
     deinit {
         
-        print("экземпляр класса PickerView удален")
+        print("Экземпляр класса PickerView удален из оперативной памяти")
     }
-    
 }
 
 

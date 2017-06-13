@@ -1,11 +1,18 @@
 //: Playground - noun: a place where people can play
 
 import UIKit
-var separate = NumberFormatter().currencyDecimalSeparator
-var textDecimal = "3.312"
+
+var textDecimal: String?
 
 
 
 
-var prob = NSDecimalNumber(string: textDecimal).stringValue
-var prob1 = NumberFormatter().number(from: textDecimal)
+
+
+NumberFormatter().currencyDecimalSeparator = ","
+var local = Locale(identifier: "ru_Ru")
+local.localizedString(forIdentifier: "ru")
+local.localizedString(forRegionCode: "ru")
+local.decimalSeparator
+var prob = NSDecimalNumber(string: textDecimal).decimalValue
+

@@ -20,6 +20,10 @@ class PickerViewModel: NSObject {
         self.seconds = seconds
         
     }
+    
+    deinit {
+        print("Экземпляр класса PickerViewModel удален из оперативной памяти")
+    }
 }
 
 

@@ -62,7 +62,7 @@ class DetailStationViewController: UIViewController, NSFetchedResultsControllerD
 
 
     
-    @IBOutlet weak var nameStation: UILabel!
+
 
     @IBOutlet weak var nameStationTextField: UITextField!
     
@@ -113,7 +113,7 @@ class DetailStationViewController: UIViewController, NSFetchedResultsControllerD
         super.viewDidLoad()
 
 // настройка отображения названия редактируемой станции:
-        nameStation.text = editableStation!.nameStation!
+        navigationItem.title = editableStation!.nameStation!
 
 //        настройка текстового поля для редактирования имени станции:
         nameStationTextField.text = editableStation!.nameStation!

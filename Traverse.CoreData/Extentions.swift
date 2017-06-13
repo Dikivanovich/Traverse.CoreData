@@ -250,4 +250,79 @@ extension DetailPointMeasureViewController {
         
     }
     
+    
+    func returnAngleFromTextField(textField: UITextField?) -> (degree: Int16, minutes: Int16, seconds: Int16)? {
+        
+        if textField?.text != nil  {
+            var textAngle = textField?.text!
+            let replacingText: [String] = ["˚", "'", "\""]
+            for item in replacingText {
+                textAngle = textAngle?.replacingOccurrences(of: item, with: "")
+            }
+            let splityngText: [String.CharacterView] = textAngle!.characters.split(separator: " ")
+            
+            let degreeText = String(splityngText[0])
+            let minutesText = String(splityngText[1])
+            let secondsText = String(splityngText[2])
+            
+            let angle = (degree: Int16(degreeText)!, minutes: Int16(minutesText)!, seconds: Int16(secondsText)!)
+            
+            return angle
+        } else {
+            return nil
+        }
+    }
+
+    
+    func returnTextAsDecimalNumber(textField: UITextField) -> NSDecimalNumber? {
+        
+        
+        var textFieldValue: String? {
+            
+            get{
+                
+                if textField.text?.contains(",") == true {
+                   return textField.text?.replacingOccurrences(of: ",", with: ".")
+                }
+                
+                return textField.text
+                
+            }
+            
+        }
+        print("Преобразованное значение текстового поля: \(textFieldValue!)")
+        return NSDecimalNumber(string: textFieldValue)
+        
+    }
+    
+    func returnCurrencyDecimalSeparatorText(value: NSDecimalNumber?) -> String? {
+        
+        let decimalSeparate = NumberFormatter().currencyDecimalSeparator
+
+        var textValueWithDecimalSeparate: String? {
+            
+            get{
+                
+                var nSDecimalStringValue = value?.stringValue
+                
+                if nSDecimalStringValue?.contains(",") == true {
+                    
+                    nSDecimalStringValue = nSDecimalStringValue?.replacingOccurrences(of: ",", with: decimalSeparate!)
+                    
+                } else if value?.stringValue.contains(".") == true {
+                    
+                 nSDecimalStringValue = nSDecimalStringValue?.replacingOccurrences(of: ".", with: decimalSeparate!)
+                    
+                }
+                
+                return nSDecimalStringValue
+                
+            }
+            
+        }
+        
+        return textValueWithDecimalSeparate
+    }
+    
+    
 }

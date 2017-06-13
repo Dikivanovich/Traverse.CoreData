@@ -10,5 +10,11 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "DetailPointMeasureViewController.yText.getter:DetailPointMeasureViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DetailPointMeasureViewController.viewDidLoad() -&gt; ():DetailPointMeasureViewController.swift">
+      </ContextState>
    </ContextStates>
 </VariablesViewState>
