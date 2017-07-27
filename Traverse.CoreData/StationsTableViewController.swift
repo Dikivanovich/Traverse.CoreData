@@ -9,9 +9,6 @@
 import UIKit
 import CoreData
 
-
-
-
 class StationsTableViewController: UITableViewController, NSFetchedResultsControllerDelegate    {
     
     var station: Station?
@@ -190,21 +187,25 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
         
     }
     
+    @IBAction func resultButtonAction(_ sender: Any) {
+        
+        print("Кнопка вычисления ведомости координат теодолитного хода работает…")
+        
+    }
+    
+        @IBOutlet weak var resultButton: UIBarButtonItem!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        
-        //        Делегат
+//        Делегат
         
         fetchedResultController.delegate = self
         
         
         
         
-        // MARK: - Настройка вида TableView
-        
+// MARK: - Настройка вида TableView
         
         title = "Станции"
         
@@ -243,8 +244,20 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         guard let stations = fetchedResultController.fetchedObjects else {
+            
             return 0
         }
+        
+        if stations.count == 0 {
+            
+            resultButton.isEnabled = false
+            
+        } else {
+            
+            resultButton.isEnabled = true
+            
+        }
+        
         return stations.count
         
     }
@@ -255,25 +268,26 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomCell
         cell.detailTextLabel?.numberOfLines = 3
+        cell.selectionStyle = .blue
         let detailButton = UITableViewCellAccessoryType.detailButton
         cell.accessoryType = detailButton
         
         
-        let station = fetchedResultController.object(at: indexPath)
+        let fetchedStation = fetchedResultController.object(at: indexPath)
         
         
-        cell.textLabel?.text = station.nameStation
+        cell.textLabel?.text = fetchedStation.nameStation
         
         
         
-        if station.fixed == true {
+        if fetchedStation.fixed == true {
             cell.backgroundColor = UIColor.orange
-            cell.detailTextLabel?.text = "Дата установки станции: " + station.dateInitStation! + "\nФиксированная"
+            cell.detailTextLabel?.text = "Дата установки станции: " + fetchedStation.dateInitStation! + "\nФиксированная"
             
         } else {
             
             cell.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-            cell.detailTextLabel?.text = "Дата установки станции: " + station.dateInitStation! + "\nВычисляемая"
+            cell.detailTextLabel?.text = "Дата установки станции: " + fetchedStation.dateInitStation! + "\nВычисляемая"
             
             
         }

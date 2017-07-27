@@ -28,6 +28,8 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
         
     }
     
+    @IBOutlet weak var addMeasureButton: UIBarButtonItem!
+    
     @IBAction func addNewMeasure(_ sender: Any) {
         
 //        MARK: - создание основного контроллера для запроса ввода имени пункта наблюдения:
@@ -53,7 +55,7 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
                     
                     alertInsertCoordinateController.addTextField(configurationHandler: {  (textFieldX)  in
                         
-                        self.customozationTextField(textField: textFieldX, placeholder: "x")
+                        Customisation.instance.customozationTextField(textField: textFieldX, placeholder: "x", backgroundColor: UIColor.clear)
                         
                         
                         
@@ -61,31 +63,31 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
                     
                     alertInsertCoordinateController.addTextField(configurationHandler: {  (textFieldY) in
                         
-                        self.customozationTextField(textField: textFieldY, placeholder: "y")
+                        Customisation.instance.customozationTextField(textField: textFieldY, placeholder: "y", backgroundColor: UIColor.clear)
                         
                         
                     })
                     
                     alertInsertCoordinateController.addTextField(configurationHandler: {  (textFieldZ) in
                         
-                        self.customozationTextField(textField: textFieldZ, placeholder: "z")
+                        Customisation.instance.customozationTextField(textField: textFieldZ, placeholder: "z", backgroundColor: UIColor.clear)
                         
                     })
                     
                     alertInsertCoordinateController.addTextField(configurationHandler: {   (textFieldHorizontalAngle) in
                         
-                        self.customozationTextFieldForPicker(textField: textFieldHorizontalAngle, placeholder: "горизонтальный лимб", showSideCircle: true)
+                        Customisation.instance.customozationTextFieldForPicker(textField: textFieldHorizontalAngle, placeholder: "горизонтальный лимб", showSideCircle: true)
                         
                         
                     })
                     
                     alertInsertCoordinateController.addTextField(configurationHandler: {   (textFieldVerticalAngle) in
                         
-                        self.customozationTextFieldForPicker(textField: textFieldVerticalAngle, placeholder: "вертикальный круг", showSideCircle: false)
+                        Customisation.instance.customozationTextFieldForPicker(textField: textFieldVerticalAngle, placeholder: "вертикальный круг", showSideCircle: false)
                     })
                     
                     alertInsertCoordinateController.addTextField(configurationHandler: {  (distanceTextField) in
-                        self.customozationTextField(textField: distanceTextField, placeholder: nil)
+                        Customisation.instance.customozationTextField(textField: distanceTextField, placeholder: nil, backgroundColor: UIColor.clear)
                     })
                     
                     
@@ -94,8 +96,8 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
                         if  alertInsertCoordinateController.textFields?[0].text! != "" && alertInsertCoordinateController.textFields?[1].text! != "" && alertInsertCoordinateController.textFields?[2].text! != "" && alertInsertCoordinateController.textFields?[3].text! != "" && alertInsertCoordinateController.textFields?[4].text! != "" &&
                             alertInsertCoordinateController.textFields?[5].text! != "" {
                             
-                            let angleHz = self.returnAngleFromTextField(textField: alertInsertCoordinateController.textFields?[3])
-                            let angleVz = self.returnAngleFromTextField(textField: alertInsertCoordinateController.textFields?[4])
+                            let angleHz = MeasurementAngle(textField: (alertInsertCoordinateController.textFields?[3])!)
+                            let angleVz = MeasurementAngle(textField: (alertInsertCoordinateController.textFields?[4])!)
                             
                             CoreDataManager.instance.addNewMeasure(name: alert.textFields!.first!.text!, x: alertInsertCoordinateController.textFields![0].text! , y: alertInsertCoordinateController.textFields![1].text!, z: alertInsertCoordinateController.textFields![2].text!, fromStation: self.didSelectedStation!,distance: alertInsertCoordinateController.textFields![5].text!, hzAngle: angleHz, vAngle: angleVz)
                             self.tableView.reloadData()
@@ -128,7 +130,7 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
                     
                 })
                 
-//                MARK: - реализация ввода данных вычисляемой точки:
+//                действие при вычисляемом положении измерения (когда координаты неизвестны):
                 
                 let alertActionNo = UIAlertAction.init(title: "Нет", style: .default, handler: { (alertAction) in
                     
@@ -136,19 +138,19 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
                     
                     alertInsertMeasureController.addTextField(configurationHandler: { (textFieldHorizontalAngle) in
                         
-                        self.customozationTextFieldForPicker(textField: textFieldHorizontalAngle, placeholder: "горизонтальный лимб", showSideCircle: true)
+                        Customisation.instance.customozationTextFieldForPicker(textField: textFieldHorizontalAngle, placeholder: "горизонтальный лимб", showSideCircle: true)
                         
                     })
                     
                     alertInsertMeasureController.addTextField(configurationHandler: { (textFieldVerticalAngle) in
                         
-                        self.customozationTextFieldForPicker(textField: textFieldVerticalAngle, placeholder: "вертикальный угол", showSideCircle: false)
+                        Customisation.instance.customozationTextFieldForPicker(textField: textFieldVerticalAngle, placeholder: "вертикальный угол", showSideCircle: false)
                         
                     })
                     
                     alertInsertMeasureController.addTextField(configurationHandler: { (distanceTextField) in
                         
-                        self.customozationTextField(textField: distanceTextField, placeholder: nil)
+                        Customisation.instance.customozationTextField(textField: distanceTextField, placeholder: nil, backgroundColor: UIColor.clear)
                         
                     })
                     
@@ -156,16 +158,16 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
                         
                         if alertInsertMeasureController.textFields?[0].text != "" && alertInsertMeasureController.textFields?[1].text != "" && alertInsertMeasureController.textFields?[2].text != ""  {
                             
-                            let hzAngle = self.returnAngleFromTextField(textField: alertInsertMeasureController.textFields?[0])
-                            let vAngle = self.returnAngleFromTextField(textField: (alertInsertMeasureController.textFields?[1]))
+                            let hzAngle = MeasurementAngle(textField: (alertInsertMeasureController.textFields?[0])!)
+                            let vAngle = MeasurementAngle(textField: (alertInsertMeasureController.textFields?[1])!)
                             
                             CoreDataManager.instance.addNewMeasure(name: alert.textFields!.first!.text!, fromStation: self.didSelectedStation!,distance: alertInsertMeasureController.textFields![2].text! , hzAngle: hzAngle, vAngle: vAngle)
                             self.tableView.reloadData()
                             self.alertControllerWillDisappear(textFields: alertInsertMeasureController.textFields)
                         } else if alertInsertMeasureController.textFields?[0].text != "" && alertInsertMeasureController.textFields?[1].text == "" && alertInsertMeasureController.textFields?[2].text != "" {
                             
-                            let hzAngle = self.returnAngleFromTextField(textField: alertInsertMeasureController.textFields?[0])
-                            CoreDataManager.instance.addNewMeasure(name: alert.textFields!.first!.text!, fromStation: self.didSelectedStation!, distance: alertInsertMeasureController.textFields![2].text!, hzAngle: hzAngle, vAngle: nil)
+                            let hzAngle = MeasurementAngle(textField: (alertInsertMeasureController.textFields?[0])!)
+                            CoreDataManager.instance.addNewMeasure(name: alert.textFields!.first!.text!, fromStation: self.didSelectedStation!, distance: alertInsertMeasureController.textFields![2].text!, hzAngle: hzAngle, vAngle: MeasurementAngle.init(textField: nil))
                             self.tableView.reloadData()
                             self.alertControllerWillDisappear(textFields: alertInsertMeasureController.textFields)
                             
@@ -201,8 +203,6 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
                 
             }
             
-            
-            
         }
         
         let alertActionCancel = UIAlertAction.init(title: "Отмена", style: UIAlertActionStyle.cancel) { (alertAction) in
@@ -212,8 +212,6 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
         alert.addAction(alertActionOK)
         alert.addAction(alertActionCancel)
         self.present(alert, animated: true, completion: nil)
-        
-      
         
     }
     
@@ -252,7 +250,9 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
         let points = didSelectedStation?.point?.sortedArray(using: [sortDescriptor])
         
         if points?.count == 0 {
-            addNewMeasure((Any).self)
+            
+            
+
         }
         
         return points!.count

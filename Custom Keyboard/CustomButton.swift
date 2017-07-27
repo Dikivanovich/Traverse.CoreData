@@ -8,15 +8,17 @@
 
 import UIKit
 
-  class CustomButton: UIButton {
+
+class CustomButton: UIButton {
     
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         setTitle(NumberFormatter().currencyDecimalSeparator, for: UIControlState())
-        layer.cornerRadius = 10
-        layer.borderWidth = 5
+        layer.cornerRadius = 5
+        layer.borderWidth = 2
+        backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         clipsToBounds = true
     }
     
@@ -24,12 +26,13 @@ import UIKit
 }
 
 
- class AllButton: UIButton {
+class AllButton: UIButton {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.layer.cornerRadius = 10
-        self.layer.borderWidth = 5
+        self.layer.cornerRadius = 5
+        self.layer.borderWidth = 2
+        backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         self.clipsToBounds = true
         
     }

@@ -17,7 +17,7 @@ class DetailStationViewController: UIViewController, NSFetchedResultsControllerD
         
         get{
             if editableStation?.x != nil {
-                return String(describing: editableStation!.x!)
+                return Customisation.instance.returnCurrencyDecimalSeparatorText(value: editableStation!.x!)
             } else {
                 
                 return ""
@@ -32,7 +32,7 @@ class DetailStationViewController: UIViewController, NSFetchedResultsControllerD
         
         get{
             if editableStation?.y != nil {
-                return String(describing: editableStation!.y!)
+                return Customisation.instance.returnCurrencyDecimalSeparatorText(value: editableStation!.y!)
             } else {
                 
                 return ""
@@ -47,8 +47,8 @@ class DetailStationViewController: UIViewController, NSFetchedResultsControllerD
         
         get{
             if editableStation?.z != nil {
-                return String(describing: editableStation!.z!)
                 
+                return Customisation.instance.returnCurrencyDecimalSeparatorText(value: editableStation!.z!)
                 
             } else {
                 
@@ -59,10 +59,6 @@ class DetailStationViewController: UIViewController, NSFetchedResultsControllerD
         }
         
     }
-
-
-    
-
 
     @IBOutlet weak var nameStationTextField: UITextField!
     
@@ -86,7 +82,7 @@ class DetailStationViewController: UIViewController, NSFetchedResultsControllerD
             
         } else {
             
-            editableStation?.x = NumberFormatter().number(from: textFieldStationX.text!)?.decimalValue as NSDecimalNumber?
+            editableStation?.x = Customisation.instance.returnTextAsDecimalNumber(textField: textFieldStationX)
             CoreDataManager.instance.saveContext()
         }
         
@@ -94,7 +90,7 @@ class DetailStationViewController: UIViewController, NSFetchedResultsControllerD
             
         } else {
             
-            editableStation?.y = NumberFormatter().number(from: textFieldStationY.text!)?.decimalValue as NSDecimalNumber?
+            editableStation?.y = Customisation.instance.returnTextAsDecimalNumber(textField: textFieldStationY)
             CoreDataManager.instance.saveContext()
         }
         
@@ -102,7 +98,7 @@ class DetailStationViewController: UIViewController, NSFetchedResultsControllerD
             
         } else {
             
-            editableStation?.z = NumberFormatter().number(from: textFieldStationZ.text!)?.decimalValue as NSDecimalNumber?
+            editableStation?.z = Customisation.instance.returnTextAsDecimalNumber(textField: textFieldStationZ)
             CoreDataManager.instance.saveContext()
         }
       
@@ -124,30 +120,11 @@ class DetailStationViewController: UIViewController, NSFetchedResultsControllerD
         textFieldStationY.text = yText
         textFieldStationZ.text = zText
         
-        
-        
-        
 //     MARK: -   настройка текстовых полей для редактирования координат станции (опциаонально):
         
-        let coordinateTextFields = [textFieldStationX, textFieldStationY, textFieldStationZ]
-        
-        for field in coordinateTextFields {
-            
-//            подгрузка кастомной клавиатуры:
-            
-            field?.inputView = MyCustomKeyboard.init().loadFromNib()
-            
-//            заполнение placeholder'ов, если текстовое поле пустое:
-            
-            if field?.text == "" {
-                field?.placeholder = "Вычисляемое значение"
-            }
-
-            
-                    }
-        
-        
-        
+        Customisation.instance.customozationTextField(textField: textFieldStationX, placeholder: "x", backgroundColor: UIColor.clear)
+        Customisation.instance.customozationTextField(textField: textFieldStationY, placeholder: "y", backgroundColor: UIColor.clear)
+        Customisation.instance.customozationTextField(textField: textFieldStationZ, placeholder: "z", backgroundColor: UIColor.clear)
         
         
         // Do any additional setup after loading the view.
@@ -158,16 +135,17 @@ class DetailStationViewController: UIViewController, NSFetchedResultsControllerD
         // Dispose of any resources that can be recreated.
     }
     
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        let textFields = [textFieldStationX, textFieldStationY, textFieldStationZ]
+        
+        for textField in textFields {
+            textField?.inputView = nil
+        }
+        
+        print("Функция viewWillDisappear DetailStationViewController выполнена")
+        
     }
-    */
+
 
 }

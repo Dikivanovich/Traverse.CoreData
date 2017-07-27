@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UITextField"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="6bJ-rS-WBv">
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="6bJ-rS-WBv">
             <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k54-ju-wcc" customClass="AllButton" customModule="Traverse_CoreData" customModuleProvider="target">
+                <button opaque="NO" contentMode="center" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k54-ju-wcc" customClass="AllButton" customModule="Traverse_CoreData" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="74" height="79"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" red="0.80887420171794877" green="0.80887420171794877" blue="0.80887420171794877" alpha="1" colorSpace="calibratedRGB"/>
@@ -26,7 +26,7 @@
                         <action selector="pressOne:" destination="-1" eventType="touchUpInside" id="3cI-9w-kt2"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vak-lJ-Q2K" customClass="AllButton" customModule="Traverse_CoreData" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vak-lJ-Q2K" customClass="AllButton" customModule="Traverse_CoreData" customModuleProvider="target">
                     <rect key="frame" x="75" y="0.0" width="74" height="79"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" red="0.80887420171794877" green="0.80887420171794877" blue="0.80887420171794877" alpha="1" colorSpace="calibratedRGB"/>
@@ -39,7 +39,7 @@
                         <action selector="pressTwo:" destination="-1" eventType="touchUpInside" id="Mkc-eC-NBX"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1zg-Ym-uFH" customClass="AllButton" customModule="Traverse_CoreData" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1zg-Ym-uFH" customClass="AllButton" customModule="Traverse_CoreData" customModuleProvider="target">
                     <rect key="frame" x="150" y="0.0" width="74" height="79"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" red="0.80887420171794877" green="0.80887420171794877" blue="0.80887420171794877" alpha="1" colorSpace="calibratedRGB"/>
@@ -52,7 +52,7 @@
                         <action selector="pressThree:" destination="-1" eventType="touchUpInside" id="0tR-15-pja"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P1z-v5-tKc" customClass="AllButton" customModule="Traverse_CoreData" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P1z-v5-tKc" customClass="AllButton" customModule="Traverse_CoreData" customModuleProvider="target">
                     <rect key="frame" x="225" y="0.0" width="74" height="79"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" red="0.80887420171794877" green="0.80887420171794877" blue="0.80887420171794877" alpha="1" colorSpace="calibratedRGB"/>
@@ -65,7 +65,7 @@
                         <action selector="pressFour:" destination="-1" eventType="touchUpInside" id="7Qr-BB-QXS"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xqq-Y5-PJe" customClass="AllButton" customModule="Traverse_CoreData" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xqq-Y5-PJe" customClass="AllButton" customModule="Traverse_CoreData" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="80" width="74" height="79"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" red="0.80887420171794877" green="0.80887420171794877" blue="0.80887420171794877" alpha="1" colorSpace="calibratedRGB"/>
@@ -76,7 +76,7 @@
                         <action selector="pressFive:" destination="-1" eventType="touchUpInside" id="LPz-sC-GCs"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5qI-hc-9sN" customClass="AllButton" customModule="Traverse_CoreData" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5qI-hc-9sN" customClass="AllButton" customModule="Traverse_CoreData" customModuleProvider="target">
                     <rect key="frame" x="150" y="80" width="74" height="79"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" red="0.80887420171794877" green="0.80887420171794877" blue="0.80887420171794877" alpha="1" colorSpace="calibratedRGB"/>
@@ -89,7 +89,7 @@
                         <action selector="pressSeven:" destination="-1" eventType="touchUpInside" id="G2O-a2-aMw"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AjS-gi-16U" customClass="AllButton" customModule="Traverse_CoreData" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AjS-gi-16U" customClass="AllButton" customModule="Traverse_CoreData" customModuleProvider="target">
                     <rect key="frame" x="225" y="80" width="74" height="79"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" red="0.80887420171794877" green="0.80887420171794877" blue="0.80887420171794877" alpha="1" colorSpace="calibratedRGB"/>
@@ -102,7 +102,7 @@
                         <action selector="pressEight:" destination="-1" eventType="touchUpInside" id="RA4-yF-GpN"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WsX-UI-baN" customClass="AllButton" customModule="Traverse_CoreData" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WsX-UI-baN" customClass="AllButton" customModule="Traverse_CoreData" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="160" width="74" height="80"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" red="0.80887420171794877" green="0.80887420171794877" blue="0.80887420171794877" alpha="1" colorSpace="calibratedRGB"/>
@@ -115,7 +115,7 @@
                         <action selector="pressNine:" destination="-1" eventType="touchUpInside" id="kkX-k8-b78"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F0u-Y5-nep" customClass="AllButton" customModule="Traverse_CoreData" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F0u-Y5-nep" customClass="AllButton" customModule="Traverse_CoreData" customModuleProvider="target">
                     <rect key="frame" x="75" y="160" width="74" height="80"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" red="0.80887420171794877" green="0.80887420171794877" blue="0.80887420171794877" alpha="1" colorSpace="calibratedRGB"/>
@@ -128,7 +128,7 @@
                         <action selector="pressZero:" destination="-1" eventType="touchUpInside" id="Mf2-nC-Uh6"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KE0-Ww-qpn" customClass="AllButton" customModule="Traverse_CoreData" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KE0-Ww-qpn" customClass="AllButton" customModule="Traverse_CoreData" customModuleProvider="target">
                     <rect key="frame" x="225" y="160" width="74" height="80"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" red="0.80887420171794877" green="0.80887420171794877" blue="0.80887420171794877" alpha="1" colorSpace="calibratedRGB"/>
@@ -141,7 +141,7 @@
                         <action selector="pressMinus:" destination="-1" eventType="touchUpInside" id="OGs-WH-aaJ"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKp-PW-91y" userLabel="CommaButton" customClass="CustomButton" customModule="Traverse_CoreData" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKp-PW-91y" userLabel="CommaButton" customClass="CustomButton" customModule="Traverse_CoreData" customModuleProvider="target">
                     <rect key="frame" x="150" y="160" width="74" height="80"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" red="0.80887420171794877" green="0.80887420171794877" blue="0.80887420171794877" alpha="1" colorSpace="calibratedRGB"/>
@@ -152,20 +152,20 @@
                         <action selector="pressComma:" destination="-1" eventType="touchUpInside" id="aCw-CS-i4J"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KYz-uf-edc" customClass="AllButton" customModule="Traverse_CoreData" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KYz-uf-edc" customClass="AllButton" customModule="Traverse_CoreData" customModuleProvider="target">
                     <rect key="frame" x="300" y="80" width="75" height="160"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="23"/>
+                    <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="40"/>
                     <color key="tintColor" red="0.58412856543624159" green="0.0" blue="0.67491610738255037" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="Enter">
+                    <state key="normal" title="↵">
                         <color key="titleShadowColor" red="1" green="0.438773368" blue="0.29837788900000001" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="pressEnter:" destination="-1" eventType="touchUpInside" id="EF4-xe-kVp"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dry-CB-KkU" customClass="AllButton" customModule="Traverse_CoreData" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dry-CB-KkU" customClass="AllButton" customModule="Traverse_CoreData" customModuleProvider="target">
                     <rect key="frame" x="300" y="0.0" width="75" height="79"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" red="0.80887420170000002" green="0.80887420170000002" blue="0.80887420170000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -178,7 +178,7 @@
                         <action selector="pressBackSpace:" destination="-1" eventType="touchUpInside" id="JEC-C0-o8z"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bF3-Se-ehD" customClass="AllButton" customModule="Traverse_CoreData" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bF3-Se-ehD" customClass="AllButton" customModule="Traverse_CoreData" customModuleProvider="target">
                     <rect key="frame" x="75" y="80" width="74" height="79"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" red="0.80887420171794877" green="0.80887420171794877" blue="0.80887420171794877" alpha="1" colorSpace="calibratedRGB"/>
@@ -192,7 +192,6 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-272.5" y="220"/>

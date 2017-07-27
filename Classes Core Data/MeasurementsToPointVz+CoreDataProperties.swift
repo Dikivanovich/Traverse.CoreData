@@ -2,7 +2,7 @@
 //  MeasurementsToPointVz+CoreDataProperties.swift
 //  Traverse.CoreData
 //
-//  Created by Dik on 31.05.17.
+//  Created by Dik on 24.07.17.
 //  Copyright © 2017 Kantulaev Ruslan. All rights reserved.
 //
 
@@ -16,9 +16,9 @@ extension MeasurementsToPointVz {
         return NSFetchRequest<MeasurementsToPointVz>(entityName: "MeasurementsToPointVz")
     }
 
-    @NSManaged public var degree: Int16
-    @NSManaged public var minutes: Int16
-    @NSManaged public var seconds: Int16
+    @NSManaged public var degree: NSObject?
+    @NSManaged public var minutes: NSObject?
+    @NSManaged public var seconds: NSObject?
     @NSManaged public var point: Points?
     @NSManaged public var station: Station?
 

@@ -26,7 +26,7 @@ import Foundation
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
        
-        layer.backgroundColor = UIColor.clear.cgColor
+        
         setup()
         
    
@@ -36,15 +36,14 @@ import Foundation
         
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: nibName, bundle: bundle)
-        let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
-        return view
+        let viewNib = nib.instantiate(withOwner: self, options: nil).first as! UIView
+        return viewNib
        
     }
     func setup() {
         
         view = loadFromNib()
         view.frame = bounds
-        view.layer.backgroundColor = UIColor.clear.cgColor
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(view)
         
@@ -54,5 +53,6 @@ import Foundation
         print("экземпляр класса MyCustomKeyboard удален")
     }
     
+
     
 }

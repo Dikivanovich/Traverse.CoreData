@@ -2,7 +2,7 @@
 //  MeasurementsToPointHz+CoreDataProperties.swift
 //  Traverse.CoreData
 //
-//  Created by Dik on 06.06.17.
+//  Created by Dik on 20.07.17.
 //  Copyright © 2017 Kantulaev Ruslan. All rights reserved.
 //
 
@@ -17,10 +17,10 @@ extension MeasurementsToPointHz {
     }
 
     @NSManaged public var degree: Int16
+    @NSManaged public var distance: NSDecimalNumber?
     @NSManaged public var leftSide: Bool
     @NSManaged public var minutes: Int16
     @NSManaged public var seconds: Int16
-    @NSManaged public var distance: NSDecimalNumber?
     @NSManaged public var point: Points?
     @NSManaged public var station: Station?
 

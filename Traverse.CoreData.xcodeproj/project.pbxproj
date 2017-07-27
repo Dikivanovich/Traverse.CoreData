@@ -48,6 +48,7 @@
 		2A30C0DA1EDE1EFF0012DA72 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Data.swift; path = MyCustomPickerView/Data.swift; sourceTree = "<group>"; };
 		2A30C0DB1EDE1EFF0012DA72 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PickerView.swift; path = MyCustomPickerView/PickerView.swift; sourceTree = "<group>"; };
 		2A30C0DC1EDE1EFF0012DA72 /* PickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PickerViewModel.swift; path = MyCustomPickerView/PickerViewModel.swift; sourceTree = "<group>"; };
+		2A4C4D401F2A2A5600AD62C6 /* Result.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Result.playground; sourceTree = "<group>"; };
 		2A613B8E1ECF9FEE0003E48A /* MeasurementsToPointHz+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MeasurementsToPointHz+CoreDataClass.swift"; path = "Classes Core Data/MeasurementsToPointHz+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2A613B8F1ECF9FEE0003E48A /* MeasurementsToPointHz+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MeasurementsToPointHz+CoreDataProperties.swift"; path = "Classes Core Data/MeasurementsToPointHz+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2A68E0311E8BBFCA005F5699 /* Traverse_CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Traverse_CoreData.xcdatamodel; sourceTree = "<group>"; };
@@ -132,6 +133,7 @@
 		2ADCF3321E8323440080DCF5 = {
 			isa = PBXGroup;
 			children = (
+				2A4C4D401F2A2A5600AD62C6 /* Result.playground */,
 				2AF869421EEAA2310046C545 /* Example.playground */,
 				2A732BCF1EBB749E000EFFF6 /* CustomPickerView */,
 				2A0564DC1E9AD27C001997A5 /* Custom Keyboard */,
