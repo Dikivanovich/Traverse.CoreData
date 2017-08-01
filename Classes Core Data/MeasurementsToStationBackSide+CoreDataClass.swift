@@ -12,4 +12,8 @@ import CoreData
 @objc(MeasurementsToStationBackSide)
 public class MeasurementsToStationBackSide: NSManagedObject {
 
+    convenience init() {
+        
+        self.init(entity: CoreDataManager.instance.entityForNAme(entityName: "MeasurementsToStationBackSide"), insertInto: CoreDataManager.instance.persistentContainer.viewContext)
+    }
 }

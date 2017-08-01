@@ -3,6 +3,61 @@
 import UIKit
 import CoreData
 
+class MeasurementAngle {
+    
+    private var textField: UITextField?
+    var degree: Int16?
+    var minutes: Int16?
+    var seconds: Int16?
+    var textValue: String?
+    var radianValue: NSDecimalNumber?
+    
+    private func setup() {
+        
+        if textField?.text != "" && textField?.text != nil {
+            var textAngle = textField?.text!
+            let replacingText: [String] = ["˚", "'", "\""]
+            for item in replacingText {
+                textAngle = textAngle?.replacingOccurrences(of: item, with: "")
+            }
+            let splityngText: [String.CharacterView] = textAngle!.characters.split(separator: " ")
+            let degreeText = String(splityngText[0])
+            let minutesText = String(splityngText[1])
+            let secondsText = String(splityngText[2])
+            
+            degree = Int16(degreeText)!
+            minutes = Int16(minutesText)!
+            seconds = Int16(secondsText)!
+            textValue = "\(degree!)˚ " + "\(minutes!)' " + "\(seconds!)\""
+            radianValue = NSDecimalNumber(value: Double(degree!) + Double(minutes!)/60 + Double(seconds!)/60)
+            
+            
+            
+            print("Текстовое поле не пустое, выполнена установка значений измеренного угла")
+        } else {
+            
+            print("Текстовое поле пустое")
+            degree = nil
+            minutes = nil
+            seconds = nil
+            textValue = nil
+            radianValue = nil
+        }
+        
+        
+    }
+    init(textField: UITextField?) {
+        self.textField = textField
+        setup()
+    }
+    
+    deinit {
+        print("Класс MeasurementAngle выгружен из оператвной памяти")
+    }
+    
+}
+
+
 class CurrentData {
     
     static let instance = CurrentData()
@@ -555,9 +610,8 @@ class CoreDataManager {
         
         CoreDataManager.instance.saveContext()
         
-        
-        
     }
     
 }
+
 

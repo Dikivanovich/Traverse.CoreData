@@ -15,6 +15,9 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
     
     var selectedAtIndexPath: IndexPath?
     
+    var indexPathForResult: IndexPath?
+    
+    
     let fetchedResultController = CoreDataManager.instance.returnFetchedResultsControllerStation()
     
     func customozationTextField(textField: UITextField, placeholder: String) {
@@ -189,11 +192,11 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
     
     @IBAction func resultButtonAction(_ sender: Any) {
         
-        print("Кнопка вычисления ведомости координат теодолитного хода работает…")
+        _ = ResultMeasure(fetchedResultsControllerStation: fetchedResultController, indexPath: indexPathForResult!)
         
     }
     
-        @IBOutlet weak var resultButton: UIBarButtonItem!
+    @IBOutlet weak var resultButton: UIBarButtonItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -263,6 +266,9 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        indexPathForResult = indexPath
+        
         //     Configure the cell...
         
         

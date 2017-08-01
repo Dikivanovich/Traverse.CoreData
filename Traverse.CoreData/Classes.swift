@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class CurrentData {
     
@@ -26,7 +27,7 @@ class CurrentData {
     private init() {}
 }
 
- class CustomCell: UITableViewCell {
+class CustomCell: UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -164,7 +165,7 @@ class Customisation {
     deinit {
         print("Экземпляр класса Customisation удален из оперативной памяти")
     }
-
+    
     
     
 }
@@ -196,7 +197,7 @@ class MeasurementAngle {
             seconds = Int16(secondsText)!
             textValue = "\(degree!)˚ " + "\(minutes!)' " + "\(seconds!)\""
             radianValue = NSDecimalNumber(value: Double(degree!) + Double(minutes!)/60 + Double(seconds!)/60)
-           
+            
             
             
             print("Текстовое поле не пустое, выполнена установка значений измеренного угла")
@@ -210,7 +211,7 @@ class MeasurementAngle {
             radianValue = nil
         }
         
-    
+        
     }
     init(textField: UITextField?) {
         self.textField = textField
@@ -218,13 +219,46 @@ class MeasurementAngle {
     }
     
     deinit {
-       print("Класс MeasurementAngle выгружен из оператвной памяти")
+        print("Класс MeasurementAngle выгружен из оператвной памяти")
     }
     
 }
 
 
+class ResultMeasure {
+    
+    var fetchedResultsControllerStation: NSFetchedResultsController<Station>
+    
+    var indexPath: IndexPath?
+    
+    var stations: [Station]?
+    
+    var forwardSideMeasures: [MeasurementsToStationForwardSide]?
+    
+    
+    func setup() {
+        
+        stations = fetchedResultsControllerStation.fetchedObjects
+        
+        for item in stations! {
+            
+            forwardSideMeasures = item.measurementsToStationForwardSide?.allObjects as? [MeasurementsToStationForwardSide]
+            
+        }
 
+        print("Кнопка вычисления ведомости координат теодолитного хода работает… \nКолличество станций: \(String(describing: stations!.count)) \nКолличество прямых измерений: \(String(describing: forwardSideMeasures!.count))")
+    }
+    
+    
+    init(fetchedResultsControllerStation: NSFetchedResultsController<Station>, indexPath: IndexPath) {
+        
+        self.fetchedResultsControllerStation = fetchedResultsControllerStation
+        self.indexPath = indexPath
+        setup()
+        print("Колиичество строк в таблице станций: \(self.indexPath!.row + 1)")
+    }
+    
+}
 
 
 

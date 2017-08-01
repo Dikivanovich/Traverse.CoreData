@@ -12,4 +12,15 @@ import CoreData
 @objc(MeasurementsToPointHz)
 public class MeasurementsToPointHz: NSManagedObject {
 
+    convenience init() {
+        
+        
+        self.init(entity: CoreDataManager.instance.entityForNAme(entityName: "MeasurementsToPointHz"), insertInto: CoreDataManager.instance.persistentContainer.viewContext)
+        
+        
+    }
+    
+
+    
+    
 }

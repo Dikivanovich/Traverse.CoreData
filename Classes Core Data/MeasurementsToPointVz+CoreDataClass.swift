@@ -12,4 +12,15 @@ import CoreData
 @objc(MeasurementsToPointVz)
 public class MeasurementsToPointVz: NSManagedObject {
 
+    convenience init() {
+        
+        
+        self.init(entity: CoreDataManager.instance.entityForNAme(entityName: "MeasurementsToPointVz"), insertInto: CoreDataManager.instance.persistentContainer.viewContext)
+        
+        
+    }
+
+    
+    
+    
 }
