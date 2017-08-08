@@ -155,18 +155,14 @@ class Customisation {
             }
             
         }
-        print("Преобразованное значение текстового поля: \(textFieldValue!)")
+        print("\nПреобразованное значение текстового поля: \(textFieldValue!)")
         return NSDecimalNumber(string: textFieldValue)
         
     }
     
-    
-    
     deinit {
-        print("Экземпляр класса Customisation удален из оперативной памяти")
+        print("\n\(self)Экземпляр класса удален из оперативной памяти")
     }
-    
-    
     
 }
 
@@ -198,19 +194,18 @@ class MeasurementAngle {
             textValue = "\(degree!)˚ " + "\(minutes!)' " + "\(seconds!)\""
             radianValue = NSDecimalNumber(value: Double(degree!) + Double(minutes!)/60 + Double(seconds!)/60)
             
+            print("\n\(self)Текстовое поле не пустое, выполнена установка значений измеренного угла")
             
-            
-            print("Текстовое поле не пустое, выполнена установка значений измеренного угла")
         } else {
             
-            print("Текстовое поле пустое")
+            print("\n\(self)Текстовое поле пустое")
             degree = nil
             minutes = nil
             seconds = nil
             textValue = nil
             radianValue = nil
+            
         }
-        
         
     }
     init(textField: UITextField?) {
@@ -219,43 +214,128 @@ class MeasurementAngle {
     }
     
     deinit {
-        print("Класс MeasurementAngle выгружен из оператвной памяти")
+        print("\n\(self)Экземпляр класса удален из оператвной памяти")
     }
     
 }
 
-
-class ResultMeasure {
+class Angle: MeasurementAngle {
     
-    var fetchedResultsControllerStation: NSFetchedResultsController<Station>
-    
-    var indexPath: IndexPath?
-    
-    var stations: [Station]?
-    
-    var forwardSideMeasures: [MeasurementsToStationForwardSide]?
-    
+    var backSideMeasure = (nameStation: [String](), measure: [[MeasurementsToStationBackSide]]())
+    var backSideMeasureHorizontalAngle = [HorizontalAngle]()
+    var forwardMeasure = (nameStation: [String](), measure: [[MeasurementsToStationForwardSide]]())
     
     func setup() {
         
-        stations = fetchedResultsControllerStation.fetchedObjects
+        let backSideMeasureHorizontalAngles = backSideMeasure.measure
         
-        for item in stations! {
+        for item in backSideMeasureHorizontalAngles {
+            var count = Int()
+            backSideMeasureHorizontalAngle = item[count].horizontalAngle?.allObjects as! [HorizontalAngle]
+            count += 1
             
-            forwardSideMeasures = item.measurementsToStationForwardSide?.allObjects as? [MeasurementsToStationForwardSide]
             
         }
-
-        print("Кнопка вычисления ведомости координат теодолитного хода работает… \nКолличество станций: \(String(describing: stations!.count)) \nКолличество прямых измерений: \(String(describing: forwardSideMeasures!.count))")
+        
+        print("Колличество измеренных обратных горизонтальных углов \(backSideMeasureHorizontalAngles.count)")
+        
+    }
+    
+    init(backSideMeasure: (nameStation: [String], measure: [[MeasurementsToStationBackSide]]), forwardMeasure: (nameStation: [String], measure: [[MeasurementsToStationForwardSide]])) {
+        
+        
+        self.backSideMeasure = backSideMeasure
+        self.forwardMeasure = forwardMeasure
+        
+        super.init(textField: nil)
+        setup()
     }
     
     
-    init(fetchedResultsControllerStation: NSFetchedResultsController<Station>, indexPath: IndexPath) {
+    
+    
+    
+    
+    
+}
+
+class ResultMeasure {
+    
+    var indexPath: IndexPath?
+  
+    var stations: [Station]?
+    
+    var forwardSideMeasures = (nameStation: [String](), measure: [[MeasurementsToStationForwardSide]]())
+    
+    var backSideMeasure = (nameStation: [String](), measure: [[MeasurementsToStationBackSide]]())
+    
+    func setup() {
         
-        self.fetchedResultsControllerStation = fetchedResultsControllerStation
+       
+        
+        let fetchRequest: NSFetchRequest = Station.fetchRequest()
+        
+        do {
+            
+            stations = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequest)
+            
+            for item in stations! {
+                
+                forwardSideMeasures.nameStation.append(item.nameStation!)
+                forwardSideMeasures.measure.append(item.measurementsToStationForwardSide?.allObjects as! [MeasurementsToStationForwardSide])
+                backSideMeasure.nameStation.append(item.nameStation!)
+                backSideMeasure.measure.append(item.measurementsToStationBackSide?.allObjects as! [MeasurementsToStationBackSide])
+                
+            }
+        
+        } catch  {
+            
+            print(error)
+            
+        }
+        
+       
+        
+        /// Функция для проверки работоспособнсти свойств и методов класса, заполнения переменных данными.
+        func check() {
+            
+            var itemForForwardMeasure = Int()
+            var itemForBackSideMeasure = Int()
+            
+            print(" ")
+            
+            for name in forwardSideMeasures.nameStation {
+                
+                print("Станция: \(name), колличество передних измерений: \(forwardSideMeasures.measure[itemForForwardMeasure].count)")
+                
+                itemForForwardMeasure += 1
+                
+            }
+            
+            print(" ")
+            
+            for name in backSideMeasure.nameStation {
+                
+                
+                print("Станция: \(name), колличество задних измерений: \(backSideMeasure.measure[itemForBackSideMeasure].count)")
+                
+                itemForBackSideMeasure += 1
+                
+            }
+            
+        }
+        
+        _ = Angle(backSideMeasure: backSideMeasure, forwardMeasure: forwardSideMeasures)
+    
+        check()
+    }
+    
+    init(indexPath: IndexPath) {
+        
         self.indexPath = indexPath
+        
         setup()
-        print("Колиичество строк в таблице станций: \(self.indexPath!.row + 1)")
+        
     }
     
 }

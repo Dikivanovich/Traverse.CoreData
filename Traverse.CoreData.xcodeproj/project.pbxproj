@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2A025E631F30850000D7F7A9 /* HorizontalAngle+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A025E5F1F30850000D7F7A9 /* HorizontalAngle+CoreDataClass.swift */; };
-		2A025E641F30850000D7F7A9 /* HorizontalAngle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A025E601F30850000D7F7A9 /* HorizontalAngle+CoreDataProperties.swift */; };
-		2A025E651F30850000D7F7A9 /* VerticalAngle+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A025E611F30850000D7F7A9 /* VerticalAngle+CoreDataClass.swift */; };
-		2A025E661F30850000D7F7A9 /* VerticalAngle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A025E621F30850000D7F7A9 /* VerticalAngle+CoreDataProperties.swift */; };
 		2A0564E01E9AD27C001997A5 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0564DD1E9AD27C001997A5 /* CustomButton.swift */; };
 		2A0564E11E9AD27C001997A5 /* MyCustomKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0564DE1E9AD27C001997A5 /* MyCustomKeyboard.swift */; };
 		2A0564E21E9AD27C001997A5 /* MyCustomKeyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A0564DF1E9AD27C001997A5 /* MyCustomKeyboard.xib */; };
@@ -30,6 +26,10 @@
 		2A8410A41EB8CCD3006685B1 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8410A31EB8CCD3006685B1 /* CoreDataManager.swift */; };
 		2A8410A61EB8CE2D006685B1 /* MeasurementsToStationForwardSide+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8410A51EB8CE2D006685B1 /* MeasurementsToStationForwardSide+CoreDataClass.swift */; };
 		2A9B68281EE15742004A970D /* DetailPointMeasureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9B68271EE15742004A970D /* DetailPointMeasureViewController.swift */; };
+		2AA5FAC11F308A56005C8AFE /* HorizontalAngle+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA5FABD1F308A56005C8AFE /* HorizontalAngle+CoreDataClass.swift */; };
+		2AA5FAC21F308A56005C8AFE /* HorizontalAngle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA5FABE1F308A56005C8AFE /* HorizontalAngle+CoreDataProperties.swift */; };
+		2AA5FAC31F308A56005C8AFE /* VerticalAngle+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA5FABF1F308A56005C8AFE /* VerticalAngle+CoreDataClass.swift */; };
+		2AA5FAC41F308A56005C8AFE /* VerticalAngle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA5FAC01F308A56005C8AFE /* VerticalAngle+CoreDataProperties.swift */; };
 		2AACADFC1EDF544C0022F772 /* MeasurementsToPointVz+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACADFA1EDF544C0022F772 /* MeasurementsToPointVz+CoreDataClass.swift */; };
 		2AACADFD1EDF544C0022F772 /* MeasurementsToPointVz+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACADFB1EDF544C0022F772 /* MeasurementsToPointVz+CoreDataProperties.swift */; };
 		2AACADFF1EDF58E90022F772 /* Points+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACADFE1EDF58E90022F772 /* Points+CoreDataProperties.swift */; };
@@ -44,10 +44,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2A025E5F1F30850000D7F7A9 /* HorizontalAngle+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "HorizontalAngle+CoreDataClass.swift"; path = "Classes Core Data/HorizontalAngle+CoreDataClass.swift"; sourceTree = "<group>"; };
-		2A025E601F30850000D7F7A9 /* HorizontalAngle+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "HorizontalAngle+CoreDataProperties.swift"; path = "Classes Core Data/HorizontalAngle+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		2A025E611F30850000D7F7A9 /* VerticalAngle+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "VerticalAngle+CoreDataClass.swift"; path = "Classes Core Data/VerticalAngle+CoreDataClass.swift"; sourceTree = "<group>"; };
-		2A025E621F30850000D7F7A9 /* VerticalAngle+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "VerticalAngle+CoreDataProperties.swift"; path = "Classes Core Data/VerticalAngle+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2A0564DD1E9AD27C001997A5 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		2A0564DE1E9AD27C001997A5 /* MyCustomKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCustomKeyboard.swift; sourceTree = "<group>"; };
 		2A0564DF1E9AD27C001997A5 /* MyCustomKeyboard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCustomKeyboard.xib; sourceTree = "<group>"; };
@@ -69,9 +65,14 @@
 		2A8410A31EB8CCD3006685B1 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataManager.swift; path = "Classes Core Data/CoreDataManager.swift"; sourceTree = "<group>"; };
 		2A8410A51EB8CE2D006685B1 /* MeasurementsToStationForwardSide+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MeasurementsToStationForwardSide+CoreDataClass.swift"; path = "Classes Core Data/MeasurementsToStationForwardSide+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2A9B68271EE15742004A970D /* DetailPointMeasureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailPointMeasureViewController.swift; sourceTree = "<group>"; };
+		2AA5FABD1F308A56005C8AFE /* HorizontalAngle+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "HorizontalAngle+CoreDataClass.swift"; path = "Classes Core Data/HorizontalAngle+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2AA5FABE1F308A56005C8AFE /* HorizontalAngle+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "HorizontalAngle+CoreDataProperties.swift"; path = "Classes Core Data/HorizontalAngle+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2AA5FABF1F308A56005C8AFE /* VerticalAngle+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "VerticalAngle+CoreDataClass.swift"; path = "Classes Core Data/VerticalAngle+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2AA5FAC01F308A56005C8AFE /* VerticalAngle+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "VerticalAngle+CoreDataProperties.swift"; path = "Classes Core Data/VerticalAngle+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2AACADFA1EDF544C0022F772 /* MeasurementsToPointVz+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MeasurementsToPointVz+CoreDataClass.swift"; path = "Classes Core Data/MeasurementsToPointVz+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2AACADFB1EDF544C0022F772 /* MeasurementsToPointVz+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MeasurementsToPointVz+CoreDataProperties.swift"; path = "Classes Core Data/MeasurementsToPointVz+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2AACADFE1EDF58E90022F772 /* Points+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Points+CoreDataProperties.swift"; path = "Classes Core Data/Points+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2AD9184A1F3A2BE90009D52E /* Traverse_CoreDataNewModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Traverse_CoreDataNewModel.xcdatamodel; sourceTree = "<group>"; };
 		2ADCF33B1E8323440080DCF5 /* Traverse.CoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Traverse.CoreData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ADCF33E1E8323440080DCF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2ADCF3481E8323440080DCF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -110,10 +111,10 @@
 		2A70CB6D1E983BEA00285CB3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2A025E5F1F30850000D7F7A9 /* HorizontalAngle+CoreDataClass.swift */,
-				2A025E601F30850000D7F7A9 /* HorizontalAngle+CoreDataProperties.swift */,
-				2A025E611F30850000D7F7A9 /* VerticalAngle+CoreDataClass.swift */,
-				2A025E621F30850000D7F7A9 /* VerticalAngle+CoreDataProperties.swift */,
+				2AA5FABD1F308A56005C8AFE /* HorizontalAngle+CoreDataClass.swift */,
+				2AA5FABE1F308A56005C8AFE /* HorizontalAngle+CoreDataProperties.swift */,
+				2AA5FABF1F308A56005C8AFE /* VerticalAngle+CoreDataClass.swift */,
+				2AA5FAC01F308A56005C8AFE /* VerticalAngle+CoreDataProperties.swift */,
 				2AACADFA1EDF544C0022F772 /* MeasurementsToPointVz+CoreDataClass.swift */,
 				2AACADFB1EDF544C0022F772 /* MeasurementsToPointVz+CoreDataProperties.swift */,
 				2A613B8E1ECF9FEE0003E48A /* MeasurementsToPointHz+CoreDataClass.swift */,
@@ -257,8 +258,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A8410A21EB8CC84006685B1 /* MeasurementsToStationBackSide+CoreDataClass.swift in Sources */,
-				2A025E661F30850000D7F7A9 /* VerticalAngle+CoreDataProperties.swift in Sources */,
-				2A025E651F30850000D7F7A9 /* VerticalAngle+CoreDataClass.swift in Sources */,
+				2AA5FAC41F308A56005C8AFE /* VerticalAngle+CoreDataProperties.swift in Sources */,
+				2AA5FAC31F308A56005C8AFE /* VerticalAngle+CoreDataClass.swift in Sources */,
 				2A613B901ECF9FEE0003E48A /* MeasurementsToPointHz+CoreDataClass.swift in Sources */,
 				2A84109A1EB8CB22006685B1 /* StationsTableViewController.swift in Sources */,
 				2A613B911ECF9FEE0003E48A /* MeasurementsToPointHz+CoreDataProperties.swift in Sources */,
@@ -269,13 +270,13 @@
 				2A108EFE1EE6FCC200EE07AE /* Extentions.swift in Sources */,
 				2A70CB6F1E983F2900285CB3 /* MeasurementsListViewController.swift in Sources */,
 				2ADCF35D1E8324A20080DCF5 /* Classes.swift in Sources */,
-				2A025E641F30850000D7F7A9 /* HorizontalAngle+CoreDataProperties.swift in Sources */,
+				2AA5FAC21F308A56005C8AFE /* HorizontalAngle+CoreDataProperties.swift in Sources */,
 				2A30C0DF1EDE1EFF0012DA72 /* PickerViewModel.swift in Sources */,
 				2AFE6FB11EB0A8C800DFA94F /* Station+CoreDataProperties.swift in Sources */,
 				2A30C0DD1EDE1EFF0012DA72 /* Data.swift in Sources */,
 				2AACADFC1EDF544C0022F772 /* MeasurementsToPointVz+CoreDataClass.swift in Sources */,
 				2AFE6FB51EB0A8C800DFA94F /* MeasurementsToStationBackSide+CoreDataProperties.swift in Sources */,
-				2A025E631F30850000D7F7A9 /* HorizontalAngle+CoreDataClass.swift in Sources */,
+				2AA5FAC11F308A56005C8AFE /* HorizontalAngle+CoreDataClass.swift in Sources */,
 				2A0564E11E9AD27C001997A5 /* MyCustomKeyboard.swift in Sources */,
 				2A84109E1EB8CC28006685B1 /* Station+CoreDataClass.swift in Sources */,
 				2AACADFD1EDF544C0022F772 /* MeasurementsToPointVz+CoreDataProperties.swift in Sources */,
@@ -463,6 +464,7 @@
 		2A68E0301E8BBFCA005F5699 /* Traverse_CoreData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				2AD9184A1F3A2BE90009D52E /* Traverse_CoreDataNewModel.xcdatamodel */,
 				2AFA73AA1EAFE0FF0018B907 /* Traverse_CoreData(AllToMany).xcdatamodel */,
 				2A7EFA5D1EAE99A100F7CAD6 /* Traverse_CoreData 2.xcdatamodel */,
 				2A68E0311E8BBFCA005F5699 /* Traverse_CoreData.xcdatamodel */,

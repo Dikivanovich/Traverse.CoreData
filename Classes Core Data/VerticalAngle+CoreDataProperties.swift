@@ -19,6 +19,7 @@ extension VerticalAngle {
     @NSManaged public var degree: Int16
     @NSManaged public var minutes: Int16
     @NSManaged public var seconds: Int16
-    @NSManaged public var station: Station?
+    @NSManaged public var measurementsToStationBackSide: MeasurementsToStationBackSide?
+    @NSManaged public var measurementsToStationForwardSide: MeasurementsToStationForwardSide?
 
 }

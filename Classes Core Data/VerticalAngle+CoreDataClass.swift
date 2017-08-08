@@ -11,17 +11,5 @@ import CoreData
 
 @objc(VerticalAngle)
 public class VerticalAngle: NSManagedObject {
-    
-    
-    convenience init() {
-        
-        
-        self.init(entity: CoreDataManager.instance.entityForNAme(entityName: "VerticalAngle"), insertInto: CoreDataManager.instance.persistentContainer.viewContext)
-        
-        
-    }
-
-    
-    
 
 }

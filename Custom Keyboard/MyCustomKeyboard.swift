@@ -50,7 +50,7 @@ import Foundation
     }
     
     deinit {
-        print("экземпляр класса MyCustomKeyboard удален")
+        print("\n\(self.debugDescription)экземпляр класса удален из оперативной памяти")
     }
     
 

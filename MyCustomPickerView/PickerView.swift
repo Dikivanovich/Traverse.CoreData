@@ -154,7 +154,7 @@ class PickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSource {
    
     deinit {
         
-        print("Экземпляр класса PickerView удален из оперативной памяти")
+        print("\n\(self.debugDescription)Экземпляр класса удален из оперативной памяти")
     }
 }
 

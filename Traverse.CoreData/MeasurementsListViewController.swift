@@ -222,7 +222,7 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
         //      MARK: - Настройка navigationItem
         
         guard let textProb = didSelectedStation?.nameStation else {
-            print("ошибка в назначении имени станции")
+            print("\nошибка в назначении имени станции")
             return
         }
         
@@ -324,7 +324,7 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
     
     deinit {
        
-        print("класс MeasurementsListViewController деинициализируется")
+        print("\n\(self.debugDescription)Экземпляр класса удален из оперативной памяти")
     }
     
 }

@@ -39,9 +39,6 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
     }
     
     @IBAction func unwindToDetailStationVC (sender: UIStoryboardSegue) {
-        
-        print("unwind")
-        
     }
     
     @IBAction func addNewStationAction(_ sender: Any) {
@@ -192,7 +189,7 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
     
     @IBAction func resultButtonAction(_ sender: Any) {
         
-        _ = ResultMeasure(fetchedResultsControllerStation: fetchedResultController, indexPath: indexPathForResult!)
+        _ = ResultMeasure(indexPath: indexPathForResult!)
         
     }
     
@@ -343,7 +340,7 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath)  -> IndexPath? {
         
-        print("выбрана строка №: \(indexPath.row + 1)")
+        print("\nвыбрана строка №: \(indexPath.row + 1)")
         
         station = fetchedResultController.object(at: indexPath)
         selectedAtIndexPath = indexPath

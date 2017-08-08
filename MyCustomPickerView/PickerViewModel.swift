@@ -22,7 +22,7 @@ class PickerViewModel: NSObject {
     }
     
     deinit {
-        print("Экземпляр класса PickerViewModel удален из оперативной памяти")
+        print("\n\(self.debugDescription)Экземпляр класса удален из оперативной памяти")
     }
 }
 

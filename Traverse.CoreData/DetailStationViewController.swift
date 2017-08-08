@@ -143,7 +143,7 @@ class DetailStationViewController: UIViewController, NSFetchedResultsControllerD
             textField?.inputView = nil
         }
         
-        print("Функция viewWillDisappear DetailStationViewController выполнена")
+        print("\n\(self.debugDescription)Функция viewWillDisappear выполнена")
         
     }
 

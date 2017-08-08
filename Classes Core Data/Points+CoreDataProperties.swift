@@ -2,7 +2,7 @@
 //  Points+CoreDataProperties.swift
 //  Traverse.CoreData
 //
-//  Created by Dik on 19.07.17.
+//  Created by Dik on 01.08.17.
 //  Copyright © 2017 Kantulaev Ruslan. All rights reserved.
 //
 
@@ -19,10 +19,10 @@ extension Points {
     @NSManaged public var dateMeasure: String?
     @NSManaged public var fixed: Bool
     @NSManaged public var namePoint: String?
+    @NSManaged public var nextPicket: Bool
     @NSManaged public var x: NSDecimalNumber?
     @NSManaged public var y: NSDecimalNumber?
     @NSManaged public var z: NSDecimalNumber?
-    @NSManaged public var nextPicket: Bool
     @NSManaged public var mesureFromStationHz: NSSet?
     @NSManaged public var mesureFromStationVz: NSSet?
     @NSManaged public var station: Station?

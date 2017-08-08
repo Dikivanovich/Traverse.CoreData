@@ -10,8 +10,6 @@ import Foundation
 
 class DataModel {
     
-    
-    
     class func getData() -> (PickerViewModel) {
         
         var itemForDegree = [Int]()
@@ -32,6 +30,8 @@ class DataModel {
         return dataPickerView
     }
     
-    
+    deinit {
+        print("\n\(self)Экземпляр класса удален из оперативной памяти")
+    }
     
 }
