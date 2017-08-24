@@ -2,7 +2,7 @@
 //  VerticalAngle+CoreDataProperties.swift
 //  Traverse.CoreData
 //
-//  Created by Dik on 01.08.17.
+//  Created by Dik on 18.08.17.
 //  Copyright © 2017 Kantulaev Ruslan. All rights reserved.
 //
 
@@ -18,8 +18,9 @@ extension VerticalAngle {
 
     @NSManaged public var degree: Int16
     @NSManaged public var minutes: Int16
+    @NSManaged public var radianValue: Double
     @NSManaged public var seconds: Int16
-    @NSManaged public var measurementsToStationBackSide: MeasurementsToStationBackSide?
-    @NSManaged public var measurementsToStationForwardSide: MeasurementsToStationForwardSide?
+    @NSManaged public var textValue: String?
+    @NSManaged public var measure: Measurement?
 
 }

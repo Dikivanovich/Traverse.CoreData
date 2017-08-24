@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0Ac-eQ-Obv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0Ac-eQ-Obv">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -110,26 +113,26 @@
         <scene sceneID="78W-5Q-71E">
             <objects>
                 <tableViewController id="twe-TE-l6D" customClass="StationsTableViewController" customModule="Traverse_CoreData" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="28" sectionFooterHeight="28" id="QVp-ru-V3F">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="55" sectionHeaderHeight="28" sectionFooterHeight="28" id="QVp-ru-V3F">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="Wor-l3-gGS" detailTextLabel="oIB-ys-FWf" rowHeight="55" style="IBUITableViewCellStyleSubtitle" id="v6J-yz-tfI" customClass="CustomCell" customModule="Traverse_CoreData" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="UI2-w1-iIe" detailTextLabel="2cy-ul-gmC" rowHeight="55" style="IBUITableViewCellStyleSubtitle" id="v6J-yz-tfI" customClass="CustomCell" customModule="Traverse_CoreData" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="v6J-yz-tfI" id="pfy-0H-7Tl">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wor-l3-gGS">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UI2-w1-iIe">
                                             <rect key="frame" x="15" y="10" width="33.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oIB-ys-FWf">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2cy-ul-gmC">
                                             <rect key="frame" x="15" y="30.5" width="44" height="14.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -180,30 +183,97 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="CellPoints" textLabel="Dt9-Cj-C8a" detailTextLabel="wKJ-1d-ZO7" rowHeight="80" style="IBUITableViewCellStyleSubtitle" id="Zdl-2o-tPD" customClass="CustomCell" customModule="Traverse_CoreData" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="CellPoints" rowHeight="80" id="Zdl-2o-tPD" customClass="CustomCell" customModule="Traverse_CoreData" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zdl-2o-tPD" id="dtA-zx-zah">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="Zdl-2o-tPD" id="dtA-zx-zah">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Dt9-Cj-C8a">
-                                            <rect key="frame" x="15" y="23" width="33.5" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j87-Un-Ebm">
+                                            <rect key="frame" x="316" y="27" width="32" height="24"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="32" id="PyR-Oc-x1b"/>
+                                            </constraints>
+                                            <attributedString key="attributedText">
+                                                <fragment content="КЛ">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.22869851178268119" green="1" blue="0.25785514754268546" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" size="20" name="MarkerFelt-Thin"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wKJ-1d-ZO7">
-                                            <rect key="frame" x="15" y="43.5" width="44" height="14.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <nil key="textColor"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя пункта" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPq-0F-kJr">
+                                            <rect key="frame" x="133" y="10" width="108" height="26"/>
+                                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="21"/>
+                                            <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ln8-02-lIf">
+                                            <rect key="frame" x="133" y="33" width="108" height="21"/>
+                                            <attributedString key="attributedText">
+                                                <fragment content="Fixed">
+                                                    <attributes>
+                                                        <font key="NSFont" size="12" name="ChalkboardSE-Light"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FdZ-Op-c8n">
+                                            <rect key="frame" x="8" y="13" width="100" height="21"/>
+                                            <attributedString key="attributedText">
+                                                <fragment content="Дата измерения:">
+                                                    <attributes>
+                                                        <font key="NSFont" size="12" name="ChalkboardSE-Regular"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4EL-1F-ngt">
+                                            <rect key="frame" x="44.5" y="42" width="27" height="21"/>
+                                            <attributedString key="attributedText">
+                                                <fragment content="Label">
+                                                    <attributes>
+                                                        <font key="NSFont" size="11" name="ChalkboardSE-Regular"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="FdZ-Op-c8n" firstAttribute="centerY" secondItem="GPq-0F-kJr" secondAttribute="centerY" id="318-kE-gMr"/>
+                                        <constraint firstItem="Ln8-02-lIf" firstAttribute="centerX" secondItem="dtA-zx-zah" secondAttribute="centerX" id="F5M-3P-jxY"/>
+                                        <constraint firstItem="j87-Un-Ebm" firstAttribute="top" secondItem="dtA-zx-zah" secondAttribute="topMargin" constant="19" id="HsT-LT-Ik0"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="FdZ-Op-c8n" secondAttribute="bottom" constant="37.5" id="Hyr-gk-whh"/>
+                                        <constraint firstItem="4EL-1F-ngt" firstAttribute="top" secondItem="FdZ-Op-c8n" secondAttribute="bottom" constant="8" id="LpJ-ny-OzY"/>
+                                        <constraint firstItem="GPq-0F-kJr" firstAttribute="leading" secondItem="Ln8-02-lIf" secondAttribute="leading" id="NWP-RT-xH2"/>
+                                        <constraint firstItem="j87-Un-Ebm" firstAttribute="leading" secondItem="Ln8-02-lIf" secondAttribute="trailing" constant="75" id="Orv-4n-99U"/>
+                                        <constraint firstItem="j87-Un-Ebm" firstAttribute="baseline" secondItem="Ln8-02-lIf" secondAttribute="firstBaseline" id="RAL-kP-MT5"/>
+                                        <constraint firstItem="4EL-1F-ngt" firstAttribute="centerX" secondItem="FdZ-Op-c8n" secondAttribute="centerX" id="Wev-OQ-4L1"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="4EL-1F-ngt" secondAttribute="bottom" constant="8.5" id="Xf0-Th-TJV"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Ln8-02-lIf" secondAttribute="bottom" constant="17.5" id="dP7-wc-4Dc"/>
+                                        <constraint firstItem="Ln8-02-lIf" firstAttribute="top" secondItem="GPq-0F-kJr" secondAttribute="bottom" constant="-3" id="eaZ-sg-saY"/>
+                                        <constraint firstItem="GPq-0F-kJr" firstAttribute="centerX" secondItem="dtA-zx-zah" secondAttribute="centerX" id="ghy-cf-crR"/>
+                                        <constraint firstItem="FdZ-Op-c8n" firstAttribute="leading" secondItem="dtA-zx-zah" secondAttribute="leadingMargin" id="pW1-6X-HLo"/>
+                                        <constraint firstItem="GPq-0F-kJr" firstAttribute="leading" secondItem="FdZ-Op-c8n" secondAttribute="trailing" constant="25" id="qVp-1C-Lyi"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="j87-Un-Ebm" secondAttribute="trailing" constant="19" id="rOd-S1-cpo"/>
+                                        <constraint firstItem="j87-Un-Ebm" firstAttribute="centerY" secondItem="dtA-zx-zah" secondAttribute="centerY" id="vzH-AP-Zgo"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="dataInitLabel" destination="4EL-1F-ngt" id="OlH-G5-tiF"/>
+                                    <outlet property="fixedPositionLabel" destination="Ln8-02-lIf" id="7RP-QE-TqI"/>
+                                    <outlet property="namePointLabel" destination="GPq-0F-kJr" id="ijD-9J-rR7"/>
+                                    <outlet property="verticalCirclePositionLabel" destination="j87-Un-Ebm" id="2Bx-RX-1fl"/>
                                     <segue destination="kiN-XP-0fw" kind="show" identifier="DetailPointMeasure" id="KGe-JD-942"/>
                                 </connections>
                             </tableViewCell>
@@ -224,7 +294,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DdB-JR-R4q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1496.8" y="187.55622188905548"/>
+            <point key="canvasLocation" x="1352.8" y="202.84857571214394"/>
         </scene>
         <!--Title-->
         <scene sceneID="a5t-OC-hBW">

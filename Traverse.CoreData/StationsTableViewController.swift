@@ -15,7 +15,7 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
     
     var selectedAtIndexPath: IndexPath?
     
-    var indexPathForResult: IndexPath?
+    var indexPathForResultAction: IndexPath?
     
     
     let fetchedResultController = CoreDataManager.instance.returnFetchedResultsControllerStation()
@@ -24,17 +24,33 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
         
         textField.inputView = MyCustomKeyboard.init().loadFromNib()
         textField.placeholder = "координата \(placeholder)"
+        textField.textAlignment = .center
         textField.borderStyle = UITextBorderStyle.roundedRect
         textField.layer.borderColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1).cgColor
         textField.layer.borderWidth = 1
         textField.layer.repeatCount = 1
-        textField.backgroundColor = #colorLiteral(red: 0.8642458376, green: 1, blue: 0.8972792964, alpha: 1)
+        textField.backgroundColor = UIColor.clear
         textField.layer.cornerRadius = 5
+        textField.leftViewMode = UITextFieldViewMode.always
         
-        let label = UILabel(frame: .init(x: -18, y: -11, width: 50, height: 50))
-        label.textColor = #colorLiteral(red: 0.4691409734, green: 0.6283831361, blue: 0.9686274529, alpha: 1)
-        label.text = "\(placeholder):"
-        textField.addSubview(label)
+        let leftImageView = UIImageView()
+        leftImageView.layer.cornerRadius = 5
+        leftImageView.clipsToBounds = true
+        
+        switch placeholder {
+        case "x":
+            leftImageView.image = #imageLiteral(resourceName: "Xcopy.png")
+        case "y":
+            leftImageView.image = #imageLiteral(resourceName: "Ycopy.png")
+        case "z":
+            leftImageView.image = #imageLiteral(resourceName: "Zcopy.png")
+        default:
+            break
+        }
+        leftImageView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        
+        
+        textField.leftView = leftImageView
         
     }
     
@@ -73,13 +89,13 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
                     
                     
                     
+                    
+                    
                     //  MARK: -  Настройка текстовых полей для ввода координат:
                     
                     alertInputCoordinateController.addTextField(configurationHandler: {  (textFieldX)  in
                         
                         self.customozationTextField(textField: textFieldX, placeholder: "x")
-                        
-                        
                     })
                     
                     
@@ -120,16 +136,12 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
                             
                         }
                         
-                        
-                        
                     })
+                    
+                    
                     
                     let alertActionCancel = UIAlertAction.init(title: "Cancel", style: UIAlertActionStyle.cancel) { (alertAction) in
                         print("push cancel")
-                        
-                        
-                        
-                        
                         
                     }
                     
@@ -138,19 +150,27 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
                     self.present(alertInputCoordinateController, animated: true, completion: nil)
                     
                     
+                    for textField in alertInputCoordinateController.textFields! {
+                        
+                        let container = textField.superview
+                        let effectView = container?.superview?.subviews[0]
+                        if (effectView != nil) {
+                            
+                            container?.backgroundColor = UIColor.clear
+                            effectView?.removeFromSuperview()
+                            
+                        }
+                        
+                        
+                    }
                     
                     
                     
                 })
                 
-                
-                
-                
-                
-                
                 let alertActionNotFixedStation = UIAlertAction.init(title: "Нет", style: UIAlertActionStyle.default, handler: { (alertAction) in
                     
-                    CoreDataManager.instance.addNewStation(name: alert.textFields!.first!.text!)
+                    CoreDataManager.instance.addNewStation(name: alert.textFields!.first!.text!, x: "", y: "", z: "")
                     self.tableView.reloadData()
                     
                 })
@@ -187,25 +207,20 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
         
     }
     
-    @IBAction func resultButtonAction(_ sender: Any) {
-        
-        _ = ResultMeasure(indexPath: indexPathForResult!)
-        
-    }
     
     @IBOutlet weak var resultButton: UIBarButtonItem!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        Делегат
+        //        Делегат
         
         fetchedResultController.delegate = self
         
         
         
         
-// MARK: - Настройка вида TableView
+        // MARK: - Настройка вида TableView
         
         title = "Станции"
         
@@ -264,33 +279,33 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        indexPathForResult = indexPath
+        indexPathForResultAction = indexPath
         
         //     Configure the cell...
         
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)/* as! CustomCell */
         cell.detailTextLabel?.numberOfLines = 3
         cell.selectionStyle = .blue
-        let detailButton = UITableViewCellAccessoryType.detailButton
-        cell.accessoryType = detailButton
-        
-        
-        let fetchedStation = fetchedResultController.object(at: indexPath)
-        
-        
-        cell.textLabel?.text = fetchedStation.nameStation
         
         
         
-        if fetchedStation.fixed == true {
+        
+        let station = fetchedResultController.object(at: indexPath)
+        
+        
+        cell.textLabel?.text = station.nameStation
+        cell.textLabel?.textAlignment = .center
+        
+        
+        if station.fixed == true {
             cell.backgroundColor = UIColor.orange
-            cell.detailTextLabel?.text = "Дата установки станции: " + fetchedStation.dateInitStation! + "\nФиксированная"
+            cell.detailTextLabel?.text = "Дата установки станции: \(station.returnStringDate())\nФиксированная"
             
         } else {
             
             cell.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-            cell.detailTextLabel?.text = "Дата установки станции: " + fetchedStation.dateInitStation! + "\nВычисляемая"
+            cell.detailTextLabel?.text = "Дата установки станции: \(station.returnStringDate())\nВычисляемая"
             
             
         }
@@ -298,17 +313,14 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
         return cell
     }
     
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    // Реализация swipe для доступа к дополнительным опциям:
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        
-        switch editingStyle {
-            
-        case .delete:
-            
+        let deleteAction = UITableViewRowAction.init(style: .destructive, title: "Удалить") { (_, indexPath) in
             // Delete the row from the data source
             
-            let station = fetchedResultController.object(at: indexPath)
+            let station = self.fetchedResultController.object(at: indexPath)
             CoreDataManager.instance.persistentContainer.viewContext.delete(station)
             
             CoreDataManager.instance.saveContext()
@@ -317,26 +329,29 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
             
             tableView.reloadData()
             
-        default:
+        }
+        
+        let viewInfoAction = UITableViewRowAction.init(style: .normal, title: "info") { (action, indexPath) in
             
-            return
+            
+            
+            self.station = self.fetchedResultController.object(at: indexPath)
+            
+            self.performSegue(withIdentifier: "ShowDetailStation", sender: self.station)
             
             
         }
+        
+        viewInfoAction.backgroundColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
+        
+        
+        return [deleteAction, viewInfoAction]
         
         
     }
     
     // MARK: - Navigation
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        
-        let station = fetchedResultController.object(at: indexPath)
-        
-        performSegue(withIdentifier: "ShowDetailStation", sender: station)
-        
-    }
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath)  -> IndexPath? {
         
@@ -364,6 +379,7 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
             (segue.destination as! DetailStationViewController).editableStation = sender as? Station
             
         }
+        
         
     }
     
@@ -409,17 +425,16 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
                 let cell = tableView.cellForRow(at: indexPath)! as! CustomCell
                 
                 cell.detailTextLabel?.numberOfLines = 3
-                let detailButton = UITableViewCellAccessoryType.detailButton
-                cell.accessoryType = detailButton
                 cell.textLabel?.text = station.nameStation
+                
                 if station.fixed == true {
                     cell.backgroundColor = UIColor.orange
-                    cell.detailTextLabel?.text = "Дата установки станции: " + station.dateInitStation! + "\nФиксированная"
+                    cell.detailTextLabel?.text = "Дата установки станции: \(station.returnStringDate())\nФиксированная"
                     
                 } else {
                     
                     cell.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-                    cell.detailTextLabel?.text = "Дата установки станции: " + station.dateInitStation! + "\nВычисляемая"
+                    cell.detailTextLabel?.text = "Дата установки станции: \(station.returnStringDate())\nВычисляемая"
                     
                 }
             }
@@ -449,6 +464,13 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
         tableView.endUpdates()
         
     }
+    
+    @IBAction func resultButtonAction(_ sender: Any) {
+        
+        _ = ResultMeasure(indexPath: indexPathForResultAction!, viewController: self)
+        
+    }
+    
     
 }
 

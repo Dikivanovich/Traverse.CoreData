@@ -11,17 +11,15 @@ import CoreData
 
 class DetailPointMeasureViewController: UIViewController {
     
-    var willSelectedPoint: Points?
-    
-    var hZAngle:MeasurementsToPointHz? {
-        return willSelectedPoint?.mesureFromStationHz?.anyObject() as? MeasurementsToPointHz
-    }
-    
-    var vAngle: MeasurementsToPointVz? {
-        return willSelectedPoint?.mesureFromStationVz?.anyObject() as? MeasurementsToPointVz
-    }
-    
     let fetchRequest: NSFetchRequest<Station> = Station.fetchRequest()
+    
+    var pointAsStation = Bool()
+    
+    var willSelectedStation: Station?
+    
+    var willSelectedPoint: Point?
+    
+    var indexPathSelectedPoint: IndexPath?
     
     var xText: String? {
         
@@ -81,9 +79,9 @@ class DetailPointMeasureViewController: UIViewController {
         
         get {
             
-            if hZAngle?.distance != kCFNumberNaN && hZAngle?.distance != nil {
+            if willSelectedPoint?.measurement?.horizontalDistance != kCFNumberNaN && willSelectedPoint?.measurement?.horizontalDistance != nil {
                 
-                return Customisation.instance.returnCurrencyDecimalSeparatorText(value: hZAngle?.distance)
+                return Customisation.instance.returnCurrencyDecimalSeparatorText(value: willSelectedPoint?.measurement?.horizontalDistance)
                 
             } else {
                 
@@ -95,43 +93,6 @@ class DetailPointMeasureViewController: UIViewController {
         
     }
     
-    var hZText: String? {
-        
-        get {
-            
-            if hZAngle?.degree != nil{
-                
-                return "\(hZAngle!.degree)˚ " + "\(hZAngle!.minutes)' " + "\(hZAngle!.seconds)\""
-                
-            } else {
-                
-                return ""
-            }
-            
-            
-        }
-        
-        
-    }
-    
-    var vAText: String? {
-        
-        get {
-            
-            if vAngle?.degree != nil{
-                
-                return "\(vAngle!.degree!)˚ " + "\(vAngle!.minutes!)' " + "\(vAngle!.seconds!)\""
-                
-            } else {
-                
-                return ""
-            }
-            
-            
-        }
-        
-        
-    }
     
     func registerForKeyboardNotification() {
         
@@ -212,12 +173,11 @@ class DetailPointMeasureViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       
         //MARK:-        Настройка inputView для текстовых полей:
         
-        Customisation.instance.customozationTextFieldForPicker(textField: hZTextField, placeholder: "Горизонтальный лимб", showSideCircle: true)
+        _ = Customisation.instance.customozationTextFieldForPicker(textField: hZTextField, placeholder: "Горизонтальный лимб", showSideCircle: true)
         
-        Customisation.instance.customozationTextFieldForPicker(textField: vATextField, placeholder: "Вертикальный круг", showSideCircle: false)
+        _ = Customisation.instance.customozationTextFieldForPicker(textField: vATextField, placeholder: "Вертикальный круг", showSideCircle: false)
         
         Customisation.instance.customozationTextField(textField: xTextField, placeholder: "x", backgroundColor: #colorLiteral(red: 1, green: 0.9776745904, blue: 0.6210460147, alpha: 1))
         
@@ -230,6 +190,7 @@ class DetailPointMeasureViewController: UIViewController {
         //MARK:-        Настройка названия navigationItem:
         
         navigationItem.title = "Данные визира"
+        
         navigationItem.prompt = willSelectedPoint?.namePoint
         
         
@@ -237,9 +198,9 @@ class DetailPointMeasureViewController: UIViewController {
         
         namePointTextField.text = willSelectedPoint?.namePoint
         
-        hZTextField.text = hZText
+        hZTextField.text = willSelectedPoint?.measurement?.horizontalAngle?.textValue
         
-        vATextField.text = vAText
+        vATextField.text = willSelectedPoint?.measurement?.verticalAngle?.textValue
         
         xTextField.text = xText
         
@@ -252,31 +213,22 @@ class DetailPointMeasureViewController: UIViewController {
         registerForKeyboardNotification()
         
         
-        do {
-            let stations = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequest)
-            for station in stations {
-                if station.nameStation == willSelectedPoint?.namePoint {
-                    
-                    print("\n\(self.description) Точка используетя, как станция")
-                    stationOrPointLabel.text = "Станция"
-                    stationOrPointLabel.textColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
-                    willSelectedPoint?.nextPicket = true
-                    switchStationOrPoint.isOn = true
-                    CoreDataManager.instance.saveContext()
-                } else {
-                    
-                    print("\n\(self.description) Точка не используетя, как станция")
-                    stationOrPointLabel.text = "Измеренная точка"
-                    stationOrPointLabel.textColor = #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
-                    willSelectedPoint?.nextPicket = false
-                    switchStationOrPoint.isOn = false
-                    CoreDataManager.instance.saveContext()
-                    
-                }
-            }
+        if willSelectedPoint?.isStation == true {
             
-        } catch  {
-            print(error)
+            print("\n\(self.description) Точка используетя, как станция\n")
+            stationOrPointLabel.text = "Станция"
+            stationOrPointLabel.textColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
+            switchStationOrPoint.isOn = true
+            
+            
+        } else {
+            
+            print("\n\(self.description) Точка не используетя, как станция\n")
+            stationOrPointLabel.text = "Измеренная точка"
+            stationOrPointLabel.textColor = #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
+            switchStationOrPoint.isOn = false
+            
+            
         }
         
         
@@ -301,10 +253,10 @@ class DetailPointMeasureViewController: UIViewController {
         
     }
     
-//MARK: Реализация нажатия кнопки "Save":
+    //MARK: Реализация нажатия кнопки "Save":
     override func unwind(for unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
         
-//MARK: -        • Проверка изменения имени точки:
+        //MARK: -        • Проверка изменения имени точки:
         
         if namePointTextField.text == willSelectedPoint?.namePoint {
             
@@ -316,7 +268,7 @@ class DetailPointMeasureViewController: UIViewController {
             
         }
         
-//MARK: -        • Проверка координаты "x"
+        //MARK: -        • Проверка координаты "x":
         if xTextField.text == xText {
             
             print("\n\(self.description) Блок кода сохранения x-координаты не выполняется")
@@ -327,7 +279,7 @@ class DetailPointMeasureViewController: UIViewController {
             print("\n\(self.description) Блок сохранения x-координаты точки работает")
         }
         
-//MARK: -        •  Проверка координаты "y"
+        //MARK: -        •  Проверка координаты "y":
         if yTextField.text == yText {
             
             print("\n\(self.description) Блок кода сохранения y-координаты не выполняется")
@@ -339,7 +291,7 @@ class DetailPointMeasureViewController: UIViewController {
             print("\n\(self.description) Блок сохранения y-координаты точки работает")
         }
         
-//MARK: -        •  Проверка координаты "z"
+        //MARK: -        •  Проверка координаты "z":
         if zTextField.text == zText  {
             
             print("\n\(self.description) Блок кода сохранения z-координаты не выполняется")
@@ -351,40 +303,48 @@ class DetailPointMeasureViewController: UIViewController {
             print("\n\(self.description) Блок сохранения z-координаты точки работает")
         }
         
-
-//MARK: -        • Проверка горизонтального и вертикального угла:
+        
+        //MARK: -        • Проверка горизонтального и вертикального угла:
+        
         let hZAngleFromTextField = MeasurementAngle(textField: hZTextField)
         let vAngleFromTextField = MeasurementAngle(textField: vATextField)
         
         
-        if hZTextField.text == hZText  {
+        if hZTextField.text! == willSelectedPoint?.measurement?.horizontalAngle?.textValue!  {
             
             print("\n\(self.description) Блок кода сохранениня горизонтального круга не выполняется")
             
         } else {
             
-            hZAngle?.degree = hZAngleFromTextField.degree!
-            hZAngle?.minutes = hZAngleFromTextField.minutes!
-            hZAngle?.seconds = hZAngleFromTextField.seconds!
+            willSelectedPoint?.measurement?.horizontalAngle?.degree = hZAngleFromTextField.degree!
+            willSelectedPoint?.measurement?.horizontalAngle?.minutes = hZAngleFromTextField.minutes!
+            willSelectedPoint?.measurement?.horizontalAngle?.seconds = hZAngleFromTextField.seconds!
+            willSelectedPoint?.measurement?.horizontalAngle?.textValue = hZAngleFromTextField.textValue
+            willSelectedPoint?.measurement?.horizontalAngle?.radianValue = hZAngleFromTextField.radianValue!
             
-            print("\n\(self.description) Показания горизонтального круга сохранены")
+            
+            
+            print("\n\(self.description) Показания горизонтального круга сохранены, угол равен: \(willSelectedPoint!.measurement!.horizontalAngle!.textValue!)")
         }
         
-        if vATextField.text! == vAText {
+        if vATextField.text! == willSelectedPoint?.measurement?.verticalAngle?.textValue! {
             
             print("\n\(self.description) Блок кода сохранениня вертикального круга не выполняется")
             
         } else {
             
-            vAngle?.degree = vAngleFromTextField.degree as NSObject?
-            vAngle?.minutes = vAngleFromTextField.minutes as NSObject?
-            vAngle?.seconds = vAngleFromTextField.seconds as NSObject?
+            willSelectedPoint?.measurement?.verticalAngle?.degree = vAngleFromTextField.degree!
+            willSelectedPoint?.measurement?.verticalAngle?.minutes = vAngleFromTextField.minutes!
+            willSelectedPoint?.measurement?.verticalAngle?.seconds = vAngleFromTextField.seconds!
+            willSelectedPoint?.measurement?.verticalAngle?.textValue = vAngleFromTextField.textValue
+            willSelectedPoint?.measurement?.verticalAngle?.radianValue = vAngleFromTextField.radianValue!
+            
             
             print("\n\(self.description) Показания вертикального круга сохранены")
             
         }
         
-//MARK: -        • Проверка горизонтального проложения:
+        //MARK: -        • Проверка горизонтального проложения:
         
         if distanceTextField.text == distanceText {
             
@@ -392,22 +352,80 @@ class DetailPointMeasureViewController: UIViewController {
             
         } else {
             
-            hZAngle?.distance = Customisation.instance.returnTextAsDecimalNumber(textField: distanceTextField)
+            willSelectedPoint?.measurement?.horizontalDistance = Customisation.instance.returnTextAsDecimalNumber(textField: distanceTextField)
             
             print("\n\(self.description) Блок сохранения горизонтального проложения работает")
         }
         
-//MARK: -        • Проверка является ли точка следующей станцией:
+        //MARK: -        • Проверка является ли точка следующей станцией:
         
-        willSelectedPoint?.nextPicket = switchStationOrPoint.isOn
-
         
-        if switchStationOrPoint.isOn == true {
+        
+        do {
             
-            CoreDataManager.instance.addNewStationFromMeasureList(point: willSelectedPoint!, x: xText, y: yText, z: zText, fromStation: (willSelectedPoint?.station)!, distance: distanceText!, hzAngle: MeasurementAngle.init(textField: hZTextField), vAngle: MeasurementAngle.init(textField: vATextField), backSide: false)
+            let stations = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequest)
+            
+            for station in stations {
+                
+                if station.nameStation! == willSelectedPoint?.namePoint! {
+                    
+                    print("\n\(self.description)Точка есть в списке станций")
+                    
+                    pointAsStation = true
+                    
+                } else {
+                    
+                    print("\n\(self.description)Точки нет в списке станций")
+                    
+                    pointAsStation = false
+                    
+                }
+                
+            }
+            
+            if pointAsStation == false { // если точка не обнаружена в списке станций
+                
+                if switchStationOrPoint.isOn == true { // …и свитч в положении вкл.
+                    
+                    //MARK:-        • Запись точки в список станций:
+                    
+                    CoreDataManager.instance.addNewStationFromMeasureList(point: willSelectedPoint!, fromStation: willSelectedStation!)
+                    willSelectedPoint?.isStation = true
+                    
+                }
+                
+            } else { // если точка обнаружена в списке станций
+                
+                //MARK:-       • Удаление точки из списка станций:
+                if switchStationOrPoint.isOn == false { // …но положение свитча "выкл."
+                    willSelectedPoint?.isStation = false
+                    let fetchRequestForDelete: NSFetchRequest<Station> = Station.fetchRequest()
+                    let predicate = NSPredicate(format: "nameStation == %@", "\(willSelectedPoint!.namePoint!)")
+                    fetchRequestForDelete.predicate = predicate
+                    
+                    do {
+                        
+                        let stationForDelete = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequestForDelete)
+                        
+                        CoreDataManager.instance.persistentContainer.viewContext.delete(stationForDelete[0])
+                        
+                        
+                    } catch  {
+                        
+                        print(error)
+                        
+                    }
+                    
+                }
+                
+            }
+            
+        } catch {
+            
+            print(error)
             
         }
-    
+        
         CoreDataManager.instance.saveContext()
         
     }
@@ -415,6 +433,7 @@ class DetailPointMeasureViewController: UIViewController {
     deinit {
         
         removeKeyboardNotifications()
+        
         print("\n\(self.debugDescription)Экземпляр класса удален из оперативной памяти")
         
     }

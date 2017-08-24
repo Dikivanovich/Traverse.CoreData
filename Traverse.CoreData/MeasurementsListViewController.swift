@@ -13,18 +13,30 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
     
     var didSelectedStation: Station?
     
-    var selectedPoint: Points?
+    var selectedPoint: Point?
     
-    func alertControllerWillDisappear(textFields: [UITextField]?) {
+    var indexPathSelectedPoint: IndexPath?
+    
+    var leftCircle = Bool()
+    
+    let formater = DateFormatter()
+    
+    func leftCircleTrue() {
         
-        for textField in textFields! {
-            textField.inputView = nil
-        }
+        leftCircle = true
+        print("\nОтчет по горизонтальному лимбу при КЛ")
+        
+    }
+    
+    func leftCircleFalse() {
+        
+        leftCircle = false
+        print("\nОтчет по горизонтальному лимбу при КП")
     }
     
     @IBAction func unwindFromDetailPointVC (sender: UIStoryboardSegue) {
         
-       tableView.reloadData()
+        tableView.reloadData()
         
     }
     
@@ -32,7 +44,13 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
     
     @IBAction func addNewMeasure(_ sender: Any) {
         
-//        MARK: - создание основного контроллера для запроса ввода имени пункта наблюдения:
+        leftCircle = true
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(leftCircleTrue), name: NSNotification.Name.init(rawValue: "leftCircleTrue"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(leftCircleFalse), name: NSNotification.Name.init(rawValue: "leftCircleFalse"), object: nil)
+        
+        //        MARK: - инициализация основного контроллера для запроса ввода имени пункта наблюдения:
         
         let alert = UIAlertController.init(title: "Добавьте наблюдение", message: "Введите имя пункта наблюдения", preferredStyle: .alert)
         
@@ -43,28 +61,27 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
         let alertActionOK = UIAlertAction.init(title: "Сохранить", style: .default) { (alertAction) in
             if alert.textFields?.first?.text != "" {
                 
-//          MARK: - создание запроса положения измерения (фиксированное или вычисляемое):
+                //MARK:- •  инициализация запроса положения измерения (фиксированное или вычисляемое):
                 
                 let alertFixedOrNotPoint = UIAlertController.init(title: "Категория положения цели", message: "Является ли положение цели фиксированным", preferredStyle: .actionSheet)
                 
-//                действие при фиксированном положении измерения (когда известны координаты):
+                //MARK:•  инициализация действия кнопки да:
                 
-               let alertActionYes = UIAlertAction.init(title: "Да", style: .default, handler: { (alertAction) in
+                let alertActionYes = UIAlertAction.init(title: "Да", style: .default, handler: { (alertAction) in
                     
+                    
+                    //MARK:-  • инициализация контроллера с полями для ввода данных измеряемой точки:
                     let alertInsertCoordinateController = UIAlertController.init(title: "Координаты цели", message: "Введите координаты цели", preferredStyle: .alert)
                     
                     alertInsertCoordinateController.addTextField(configurationHandler: {  (textFieldX)  in
                         
                         Customisation.instance.customozationTextField(textField: textFieldX, placeholder: "x", backgroundColor: UIColor.clear)
                         
-                        
-                        
                     })
                     
                     alertInsertCoordinateController.addTextField(configurationHandler: {  (textFieldY) in
                         
                         Customisation.instance.customozationTextField(textField: textFieldY, placeholder: "y", backgroundColor: UIColor.clear)
-                        
                         
                     })
                     
@@ -77,7 +94,6 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
                     alertInsertCoordinateController.addTextField(configurationHandler: {   (textFieldHorizontalAngle) in
                         
                         Customisation.instance.customozationTextFieldForPicker(textField: textFieldHorizontalAngle, placeholder: "горизонтальный лимб", showSideCircle: true)
-                        
                         
                     })
                     
@@ -93,29 +109,7 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
                     
                     let alertAddCoordinatAction = UIAlertAction.init(title: "Сохранить", style: UIAlertActionStyle.default, handler: {  (alertAction) in
                         
-                        if  alertInsertCoordinateController.textFields?[0].text! != "" && alertInsertCoordinateController.textFields?[1].text! != "" && alertInsertCoordinateController.textFields?[2].text! != "" && alertInsertCoordinateController.textFields?[3].text! != "" && alertInsertCoordinateController.textFields?[4].text! != "" &&
-                            alertInsertCoordinateController.textFields?[5].text! != "" {
-                            
-                            let angleHz = MeasurementAngle(textField: (alertInsertCoordinateController.textFields?[3])!)
-                            let angleVz = MeasurementAngle(textField: (alertInsertCoordinateController.textFields?[4])!)
-                            
-                            CoreDataManager.instance.addNewMeasure(name: alert.textFields!.first!.text!, x: alertInsertCoordinateController.textFields![0].text! , y: alertInsertCoordinateController.textFields![1].text!, z: alertInsertCoordinateController.textFields![2].text!, fromStation: self.didSelectedStation!,distance: alertInsertCoordinateController.textFields![5].text!, hzAngle: angleHz, vAngle: angleVz)
-                            self.tableView.reloadData()
-                            self.alertControllerWillDisappear(textFields: alertInsertCoordinateController.textFields)
-                        } else {
-                            
-                            
-                            let alertError = UIAlertController.init(title: "Ошибка!", message: "Введите координаты пункта наблюдения!", preferredStyle: UIAlertControllerStyle.alert)
-                            
-                            let alertErrorAction = UIAlertAction.init(title: "Ok", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
-                                self.present(alertInsertCoordinateController, animated: true, completion: nil)
-                            })
-                            
-                            alertError.addAction(alertErrorAction)
-                            
-                            self.present(alertError, animated: true, completion: nil)
-                            
-                        }
+                        self.savePoint(alertNamePoint: alert, alertController: alertInsertCoordinateController) // сохранение точки в базу данных.
                         
                     })
                     
@@ -127,10 +121,22 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
                     alertInsertCoordinateController.addAction(alertAddCoordinatCancelAction)
                     self.present(alertInsertCoordinateController, animated: true, completion: nil)
                     
+                    for textField in alertInsertCoordinateController.textFields! {
+                        
+                        let container = textField.superview
+                        let effectView = container?.superview?.subviews[0]
+                        if (effectView != nil) {
+                            
+                            container?.backgroundColor = UIColor.clear
+                            effectView?.removeFromSuperview()
+                            
+                        }
+                        
+                    }
                     
                 })
                 
-//                действие при вычисляемом положении измерения (когда координаты неизвестны):
+                //MARK:- •  действие при вычисляемом положении измерения (когда координаты неизвестны):
                 
                 let alertActionNo = UIAlertAction.init(title: "Нет", style: .default, handler: { (alertAction) in
                     
@@ -156,34 +162,7 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
                     
                     let alertAddMeasureAction = UIAlertAction(title: "Сохранить", style: .default, handler: { (alertAction) in
                         
-                        if alertInsertMeasureController.textFields?[0].text != "" && alertInsertMeasureController.textFields?[1].text != "" && alertInsertMeasureController.textFields?[2].text != ""  {
-                            
-                            let hzAngle = MeasurementAngle(textField: (alertInsertMeasureController.textFields?[0])!)
-                            let vAngle = MeasurementAngle(textField: (alertInsertMeasureController.textFields?[1])!)
-                            
-                            CoreDataManager.instance.addNewMeasure(name: alert.textFields!.first!.text!, fromStation: self.didSelectedStation!,distance: alertInsertMeasureController.textFields![2].text! , hzAngle: hzAngle, vAngle: vAngle)
-                            self.tableView.reloadData()
-                            self.alertControllerWillDisappear(textFields: alertInsertMeasureController.textFields)
-                        } else if alertInsertMeasureController.textFields?[0].text != "" && alertInsertMeasureController.textFields?[1].text == "" && alertInsertMeasureController.textFields?[2].text != "" {
-                            
-                            let hzAngle = MeasurementAngle(textField: (alertInsertMeasureController.textFields?[0])!)
-                            CoreDataManager.instance.addNewMeasure(name: alert.textFields!.first!.text!, fromStation: self.didSelectedStation!, distance: alertInsertMeasureController.textFields![2].text!, hzAngle: hzAngle, vAngle: MeasurementAngle.init(textField: nil))
-                            self.tableView.reloadData()
-                            self.alertControllerWillDisappear(textFields: alertInsertMeasureController.textFields)
-                            
-                        } else {
-                            
-                            let alertError = UIAlertController.init(title: "Ошибка!", message: "Поле отчета по горизонтальному лимбу должно быть обязательно заполнено!", preferredStyle: UIAlertControllerStyle.alert)
-                            
-                            let alertErrorAction = UIAlertAction.init(title: "Ok", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
-                                self.present(alertInsertMeasureController, animated: true, completion: nil)
-                            })
-                            
-                            alertError.addAction(alertErrorAction)
-                            
-                            self.present(alertError, animated: true, completion: nil)
-
-                        }
+                        self.savePoint(generalAlertController: alert , alertController: alertInsertMeasureController) // сохранение точки в базу данных
                         
                     })
                     
@@ -194,6 +173,19 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
                     alertInsertMeasureController.addAction(alertAddMeasureAction)
                     alertInsertMeasureController.addAction(alertAddMeasureCancelAction)
                     self.present(alertInsertMeasureController, animated: true, completion: nil)
+                    
+                    for textField in alertInsertMeasureController.textFields! {
+                        
+                        let container = textField.superview
+                        let effectView = container?.superview?.subviews[0]
+                        if (effectView != nil) {
+                            
+                            container?.backgroundColor = UIColor.clear
+                            effectView?.removeFromSuperview()
+                            
+                        }
+                        
+                    }
                     
                 })
                 
@@ -218,16 +210,14 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        formater.dateFormat = "dd-MM-yy HH:mm"
+        
+        leftCircle = true
         
         //      MARK: - Настройка navigationItem
         
-        guard let textProb = didSelectedStation?.nameStation else {
-            print("\nошибка в назначении имени станции")
-            return
-        }
-        
-        navigationItem.title = "Измерения"
-        navigationItem.prompt = "Станция: \(String(describing: textProb))"
+        navigationItem.title = "Наблюдения"
+        navigationItem.prompt = "Станция: \(didSelectedStation!.nameStation!)"
         
         //      MARK: - Настройка визуализации TableViewController
         tableView.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
@@ -235,8 +225,6 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
         tableView.separatorColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         
         
-        
-        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
@@ -246,13 +234,11 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        let sortDescriptor = NSSortDescriptor(key: "dateMeasure", ascending: false)
+        let sortDescriptor = NSSortDescriptor(key: "dateInit", ascending: false)
         let points = didSelectedStation?.point?.sortedArray(using: [sortDescriptor])
         
         if points?.count == 0 {
             
-            
-
         }
         
         return points!.count
@@ -262,69 +248,100 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellPoints", for: indexPath) as! CustomCell
-        cell.detailTextLabel?.numberOfLines = 6
         
-        let sortDescriptor = NSSortDescriptor(key: "dateMeasure", ascending: false)
-        let points = didSelectedStation?.point?.sortedArray(using: [sortDescriptor]) as! [Points]
+        let sortDescriptor = NSSortDescriptor(key: "dateInit", ascending: false)
+        let points = didSelectedStation?.point?.sortedArray(using: [sortDescriptor]) as! [Point]
         let point = points[indexPath.row]
         
-        cell.textLabel?.text = point.namePoint
+        checkingStatusPoint(points: points)
+        
+        cell.namePointLabel.text = point.namePoint
+        cell.dataInitLabel.text = formater.string(from: point.dateInit! as Date)
+        
+        
+        
+        if point.measurement?.horizontalAngle?.leftCircle == true {
+            
+            cell.verticalCirclePositionLabel.text! = "КЛ"
+            
+            
+        } else {
+            
+            cell.verticalCirclePositionLabel.text! = "КП"
+            
+        }
         
         if points[indexPath.row].fixed == true {
             
             cell.backgroundColor = UIColor.orange
-            cell.detailTextLabel?.text = "Фиксированная" + "\nПункт измерения: \(didSelectedStation!.nameStation!)" + "\nДата наблюдения: \(point.dateMeasure!)"
+            cell.fixedPositionLabel.text = "Фиксированная"
+            cell.detailTextLabel?.text = "\nПункт измерения: \(didSelectedStation!.nameStation!)" + "\nДата наблюдения: \(point.returnStringDate())"
             
         } else {
             
-            cell.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-            cell.detailTextLabel?.text = "Вычисляемая" + "\nПункт измерения: \(didSelectedStation!.nameStation!)" + "\nДата создания наблюдения: \(point.dateMeasure!)"
+            cell.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+            cell.fixedPositionLabel.text = "Вычисляемая"
+            cell.detailTextLabel?.text = "Вычисляемая" + "\nПункт измерения: \(didSelectedStation!.nameStation!)" + "\nДата создания наблюдения: \(point.returnStringDate())"
         }
         
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        if editingStyle == .delete {
+        let deletAction = UITableViewRowAction.init(style: .default, title: "Удалить") { (alertAction, indexPath) in
             // Delete the row from the data source
             
-            let point = didSelectedStation?.point?.allObjects[indexPath.row] as! Points
-            
+            let point = self.didSelectedStation?.point?.allObjects[indexPath.row] as! Point
             CoreDataManager.instance.persistentContainer.viewContext.delete(point)
+            
             CoreDataManager.instance.saveContext()
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.reloadData()
+            
         }
         
+        return [deletAction]
     }
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         
-        let sortDescriptor = NSSortDescriptor(key: "dateMeasure", ascending: false)
-        let points = didSelectedStation?.point?.sortedArray(using: [sortDescriptor]) as! [Points]
-         selectedPoint = points[indexPath.row]
-        
-        
+        let sortDescriptor = NSSortDescriptor(key: "dateInit", ascending: false)
+        let points = didSelectedStation?.point?.sortedArray(using: [sortDescriptor]) as! [Point]
+        selectedPoint = points[indexPath.row]
+        indexPathSelectedPoint = indexPath
         
         return indexPath
         
-        
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "DetailPointMeasure" {
             
             (segue.destination as! DetailPointMeasureViewController).willSelectedPoint = selectedPoint
+            
+        }
+        
+        
+        if segue.identifier == "DetailPointMesure" {
+            
+            (segue.destination as! DetailPointMeasureViewController).indexPathSelectedPoint = indexPathSelectedPoint
+            
+        }
+        
+        if segue.identifier == "DetailPointMeasure" {
+            
+            (segue.destination as! DetailPointMeasureViewController).willSelectedStation = didSelectedStation
+            
+        }
         
     }
     
-}
-    
     deinit {
-       
+        
         print("\n\(self.debugDescription)Экземпляр класса удален из оперативной памяти")
+        
     }
     
 }

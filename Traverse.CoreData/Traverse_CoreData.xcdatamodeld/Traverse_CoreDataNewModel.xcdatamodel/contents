@@ -1,43 +1,56 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="MeasurementsToPoint" representedClassName="MeasurementsToPoint" syncable="YES" codeGenerationType="class">
-        <attribute name="degree" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="leftSide" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="minutes" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="seconds" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="HorizontalAngle" representedClassName="HorizontalAngle" syncable="YES">
+        <attribute name="degree" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="leftCircle" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="minutes" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="radianValue" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="seconds" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="textValue" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="measure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Measurement" inverseName="horizontalAngle" inverseEntity="Measurement" syncable="YES"/>
     </entity>
-    <entity name="MeasurementsToStationBackSide" representedClassName="MeasurementsToStationBackSide" syncable="YES" codeGenerationType="class">
-        <attribute name="degree" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="leftSide" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="minutes" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="seconds" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+    <entity name="Measurement" representedClassName="Measurement" syncable="YES">
+        <attribute name="forwardMeasure" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="horizontalDistance" attributeType="Decimal" syncable="YES"/>
+        <relationship name="horizontalAngle" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="HorizontalAngle" inverseName="measure" inverseEntity="HorizontalAngle" syncable="YES"/>
+        <relationship name="point" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Point" inverseName="measurement" inverseEntity="Point" syncable="YES"/>
+        <relationship name="station" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Station" inverseName="measurement" inverseEntity="Station" syncable="YES"/>
+        <relationship name="verticalAngle" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="VerticalAngle" inverseName="measure" inverseEntity="VerticalAngle" syncable="YES"/>
     </entity>
-    <entity name="MeasurementsToStationForwardSide" representedClassName="MeasurementsToStationForwardSide" syncable="YES" codeGenerationType="class">
-        <attribute name="degree" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="leftSide" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="minutes" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="seconds" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-    </entity>
-    <entity name="Points" representedClassName="Points" syncable="YES" codeGenerationType="class">
+    <entity name="Point" representedClassName="Point" syncable="YES">
+        <attribute name="dateInit" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="fixed" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isStation" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="namePoint" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="x" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="y" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="z" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="x" optional="YES" attributeType="Decimal" syncable="YES"/>
+        <attribute name="y" optional="YES" attributeType="Decimal" syncable="YES"/>
+        <attribute name="z" optional="YES" attributeType="Decimal" syncable="YES"/>
+        <relationship name="measurement" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Measurement" inverseName="point" inverseEntity="Measurement" syncable="YES"/>
+        <relationship name="station" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Station" inverseName="point" inverseEntity="Station" syncable="YES"/>
     </entity>
     <entity name="Station" representedClassName="Station" syncable="YES">
-        <attribute name="dateInitStation" attributeType="String" storedInTruthFile="YES" syncable="YES"/>
-        <attribute name="fixed" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="dateInitStation" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="fixed" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="nameStation" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="x" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="y" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="z" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="x" optional="YES" attributeType="Decimal" syncable="YES"/>
+        <attribute name="y" optional="YES" attributeType="Decimal" syncable="YES"/>
+        <attribute name="z" optional="YES" attributeType="Decimal" syncable="YES"/>
+        <relationship name="measurement" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Measurement" inverseName="station" inverseEntity="Measurement" syncable="YES"/>
+        <relationship name="point" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Point" inverseName="station" inverseEntity="Point" syncable="YES"/>
+    </entity>
+    <entity name="VerticalAngle" representedClassName="VerticalAngle" syncable="YES">
+        <attribute name="degree" optional="YES" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="minutes" optional="YES" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="radianValue" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="seconds" optional="YES" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="textValue" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="measure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Measurement" inverseName="verticalAngle" inverseEntity="Measurement" syncable="YES"/>
     </entity>
     <elements>
-        <element name="MeasurementsToPoint" positionX="-162" positionY="-153" width="153" height="103"/>
-        <element name="MeasurementsToStationBackSide" positionX="-279" positionY="45" width="128" height="103"/>
-        <element name="MeasurementsToStationForwardSide" positionX="-288" positionY="36" width="128" height="105"/>
-        <element name="Points" positionX="-423" positionY="-153" width="128" height="120"/>
-        <element name="Station" positionX="-774" positionY="102" width="128" height="135"/>
+        <element name="HorizontalAngle" positionX="-873" positionY="-288" width="128" height="150"/>
+        <element name="Measurement" positionX="-576" positionY="-423" width="128" height="135"/>
+        <element name="Point" positionX="-929" positionY="-597" width="128" height="180"/>
+        <element name="Station" positionX="-603" positionY="-669" width="171" height="163"/>
+        <element name="VerticalAngle" positionX="-351" positionY="-288" width="128" height="135"/>
     </elements>
 </model>

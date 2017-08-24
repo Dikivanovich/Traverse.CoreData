@@ -8,9 +8,6 @@
 
 import UIKit
 
-
-
-
 class PickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSource {
     
    weak var pickerTextField: UITextField?
@@ -20,25 +17,24 @@ class PickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSource {
     var degreeAtRow: Int!
     var minutesAtRow: Int!
     var secondsAtRow: Int!
+private var leftCircle: Bool?
     
-
-    
-    func checkingSwitchPosition() -> Void {
+    func checkingSwitchPosition() {
         
         if switchButton.isOn {
             
             sideCircleLabel.text = "Круг право"
             sideCircleLabel.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "leftCircleFalse"), object: self)
 
                     } else {
             
             sideCircleLabel.text = "Круг лево"
             sideCircleLabel.backgroundColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "leftCircleTrue"), object: self)
 
-            
         }
 
-        
     }
     
     func pickerDoneAction() {
@@ -52,12 +48,12 @@ class PickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSource {
         
     }
     
-    func configPickerView(textField: UITextField, dataForPicker: PickerViewModel, showSideCircle: Bool) -> Void {
+    func configPickerView(textField: UITextField, dataForPicker: PickerViewModel, showSideCircle: Bool) {
+        
         
         
 //        MARK: - настройка кнопки "Готово":
         let doneButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self , action: #selector(pickerDoneAction))
-        
         
 //        MARK: - настройка панели инструментов над PickerView:
         let toolBar = UIToolbar()
@@ -67,12 +63,15 @@ class PickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSource {
         toolBar.backgroundColor = #colorLiteral(red: 0.7893511048, green: 0.5545151219, blue: 0.9658150404, alpha: 1)
         toolBar.setItems([doneButtonItem], animated: true)
         toolBar.isUserInteractionEnabled = true
+        
 
 //        MARK: - настройка Switch и UIButton для панели иснструментов:
         if showSideCircle == true {
         switchButton = UISwitch()
         switchButton.frame = .init(x: toolBar.bounds.maxX - UISwitch().frame.maxX - 6, y: toolBar.bounds.minY + 6, width: UISwitch().frame.width, height: UISwitch().frame.height)
         switchButton.addTarget(self, action: #selector(checkingSwitchPosition), for: UIControlEvents.allEvents)
+       
+            
         sideCircleLabel = UILabel()
         sideCircleLabel.text = "Круг лево"
         sideCircleLabel.backgroundColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
@@ -94,7 +93,6 @@ class PickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSource {
         //        MARK: - настройка textField:
         textField.inputView = self
         textField.inputAccessoryView = toolBar
-        
         
         pickerTextField = textField
 
@@ -122,8 +120,8 @@ class PickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSource {
             return dataPicker.seconds.count
         default:
             return 0
+            
         }
-        
         
     }
     

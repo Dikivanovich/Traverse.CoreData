@@ -29,6 +29,15 @@ class CurrentData {
 
 class CustomCell: UITableViewCell {
     
+    @IBOutlet weak var namePointLabel: UILabel!
+    
+    @IBOutlet weak var verticalCirclePositionLabel: UILabel!
+    
+    @IBOutlet weak var fixedPositionLabel: UILabel!
+    
+    @IBOutlet weak var dataInitLabel: UILabel!
+    
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -40,7 +49,6 @@ class CustomCell: UITableViewCell {
         
     }
     
-    
 }
 
 /// Класс для настройки, кастомизации InputView текстовых полей, а так же преобразования значений типов
@@ -51,7 +59,6 @@ class Customisation {
     
     private init() {}
     
-    
     /// Данная функция реализует кастомную клавиатуру для указанного в аргументе текстового поля.
     ///
     /// - Parameters:
@@ -60,26 +67,51 @@ class Customisation {
     func customozationTextField(textField: UITextField, placeholder: String?, backgroundColor: UIColor) {
         let myCustomKeyboard = MyCustomKeyboard.init().loadFromNib()
         myCustomKeyboard.backgroundColor = backgroundColor
+        
         textField.inputView = myCustomKeyboard
-        if placeholder != nil {
-            textField.placeholder = "координата \(placeholder!)"
-        } else {
-            
-            textField.placeholder = "Горизонтальное проложение"
-        }
+        textField.textAlignment = .center
+        textField.leftViewMode = UITextFieldViewMode.always
         textField.borderStyle = UITextBorderStyle.roundedRect
         textField.layer.borderColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1).cgColor
         textField.layer.borderWidth = 1
         textField.backgroundColor = #colorLiteral(red: 0.8642458376, green: 1, blue: 0.8972792964, alpha: 1)
         textField.layer.cornerRadius = 5
-        let label = UILabel(frame: .init(x: -18, y: -11, width: 50, height: 50))
-        label.textColor = #colorLiteral(red: 0.4691409734, green: 0.6283831361, blue: 0.9686274529, alpha: 1)
-        if placeholder != nil { label.text = "\(placeholder!):"}
-        textField.addSubview(label)
+        
+        
+        
+        if placeholder != nil {
+            textField.placeholder = "координата \(placeholder!)"
+            let leftImageView = UIImageView()
+            leftImageView.layer.cornerRadius = 5
+            leftImageView.clipsToBounds = true
+            
+            
+            switch placeholder! {
+            case "x":
+                leftImageView.image = #imageLiteral(resourceName: "Xcopy.png")
+            case "y":
+                leftImageView.image = #imageLiteral(resourceName: "Ycopy.png")
+            case "z":
+                leftImageView.image = #imageLiteral(resourceName: "Zcopy.png")
+            default:
+                break
+            }
+            
+            leftImageView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            
+            
+            textField.leftView = leftImageView
+            
+        } else {
+            
+            textField.placeholder = "Горизонтальное проложение"
+        }
+        
+        
         
     }
     
-    /// Данная функция реализует Custom Picker View для указанного в аргументе текстового поля.
+    /// Данная функция реализует Custom Picker View, вместо стандартной клавиатуры, для указанного в аргументе текстового поля.
     ///
     /// - Parameters:
     ///   - textField: Текстовое поле, над которым будет выполнена процедура настройки.
@@ -99,7 +131,9 @@ class Customisation {
         textField.font = UIFont(name: UIFontTextStyle.title1.rawValue, size: 20)
         
         
+        
     }
+    
     
     /// Данная функция преобразовывает значение типа NSDecimalNumber в текст с текущим региональным разделителем десятичной дроби
     ///
@@ -173,7 +207,7 @@ class MeasurementAngle {
     var minutes: Int16?
     var seconds: Int16?
     var textValue: String?
-    var radianValue: NSDecimalNumber?
+    var radianValue: Double?
     
     private func setup() {
         
@@ -192,7 +226,7 @@ class MeasurementAngle {
             minutes = Int16(minutesText)!
             seconds = Int16(secondsText)!
             textValue = "\(degree!)˚ " + "\(minutes!)' " + "\(seconds!)\""
-            radianValue = NSDecimalNumber(value: Double(degree!) + Double(minutes!)/60 + Double(seconds!)/60)
+            radianValue = Double(degree!) + Double(minutes!)/60 + Double(seconds!)/60
             
             print("\n\(self)Текстовое поле не пустое, выполнена установка значений измеренного угла")
             
@@ -219,120 +253,144 @@ class MeasurementAngle {
     
 }
 
-class Angle: MeasurementAngle {
-    
-    var backSideMeasure = (nameStation: [String](), measure: [[MeasurementsToStationBackSide]]())
-    var backSideMeasureHorizontalAngle = [HorizontalAngle]()
-    var forwardMeasure = (nameStation: [String](), measure: [[MeasurementsToStationForwardSide]]())
-    
-    func setup() {
-        
-        let backSideMeasureHorizontalAngles = backSideMeasure.measure
-        
-        for item in backSideMeasureHorizontalAngles {
-            var count = Int()
-            backSideMeasureHorizontalAngle = item[count].horizontalAngle?.allObjects as! [HorizontalAngle]
-            count += 1
-            
-            
-        }
-        
-        print("Колличество измеренных обратных горизонтальных углов \(backSideMeasureHorizontalAngles.count)")
-        
-    }
-    
-    init(backSideMeasure: (nameStation: [String], measure: [[MeasurementsToStationBackSide]]), forwardMeasure: (nameStation: [String], measure: [[MeasurementsToStationForwardSide]])) {
-        
-        
-        self.backSideMeasure = backSideMeasure
-        self.forwardMeasure = forwardMeasure
-        
-        super.init(textField: nil)
-        setup()
-    }
-    
-    
-    
-    
-    
-    
-    
-}
-
 class ResultMeasure {
     
+    var viewController: UIViewController!
+    
     var indexPath: IndexPath?
-  
-    var stations: [Station]?
     
-    var forwardSideMeasures = (nameStation: [String](), measure: [[MeasurementsToStationForwardSide]]())
+    var stations = [Station]()
     
-    var backSideMeasure = (nameStation: [String](), measure: [[MeasurementsToStationBackSide]]())
+    var measurements = [Measurement]()
+    
+    var points = [Point]()
+    
+    var horizontalAngles = [HorizontalAngle]()
+    
+    var verticalAngles = [VerticalAngle]()
+    
+    var angles = (left: [Double](), right: [Double]())
+    
+    var distances = (left: [NSNumber](), right: [NSNumber]())
+    
+    var forwardMeasures = (leftCircle: [Double](), rightCircle: [Double]())
+    
+    var backSideMeasures = (leftCircle: [Double](), rightCircle: [Double]())
     
     func setup() {
         
-       
+        let fetchRequestPoints:NSFetchRequest<Point> = Point.fetchRequest()
+        let predicate = NSPredicate(format: "isStation == %@", "1")
+        fetchRequestPoints.returnsObjectsAsFaults = false
+        fetchRequestPoints.predicate = predicate
+        
+        do {
+            points = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequestPoints)
+            
+        } catch  {
+            print(error)
+        }
         
         let fetchRequest: NSFetchRequest = Station.fetchRequest()
+        fetchRequest.returnsObjectsAsFaults = false
+        let dateDescription = NSSortDescriptor(key: "dateInitStation", ascending: true)
         
         do {
             
             stations = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequest)
             
-            for item in stations! {
+            for station in stations {
                 
-                forwardSideMeasures.nameStation.append(item.nameStation!)
-                forwardSideMeasures.measure.append(item.measurementsToStationForwardSide?.allObjects as! [MeasurementsToStationForwardSide])
-                backSideMeasure.nameStation.append(item.nameStation!)
-                backSideMeasure.measure.append(item.measurementsToStationBackSide?.allObjects as! [MeasurementsToStationBackSide])
+                let pts = station.point?.allObjects as! [Point]
+                
+                for point in pts {
+                    
+                    if point.isStation == true { // точка является станцией
+                        
+                        if point.measurement?.horizontalAngle?.leftCircle == true { //измерение при КЛ
+                            
+                            angles.left.append(point.measurement!.horizontalAngle!.radianValue)
+                            
+                            distances.left.append(point.measurement!.horizontalDistance!)
+                            
+                        } else { // измерение при КП
+                            
+                            angles.right.append(point.measurement!.horizontalAngle!.radianValue)
+                            
+                            distances.right.append(point.measurement!.horizontalDistance!)
+                            
+                        }
+                        
+                    }
+                    
+                }
                 
             }
-        
+            
         } catch  {
             
             print(error)
             
         }
         
-       
+        differenceAngle(forAngles: &angles.left, viewController: viewController)
+        differenceAngle(forAngles: &angles.right, viewController: viewController)
+        
+        let fetchRequestMeasure: NSFetchRequest<Measurement> = Measurement.fetchRequest()
+        fetchRequestMeasure.returnsObjectsAsFaults = false
+        do {
+            measurements = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequestMeasure)
+            
+        } catch  {
+            print(error)
+        }
+        
+        
+        let fetchRequestHorizontalAngle: NSFetchRequest<HorizontalAngle> = HorizontalAngle.fetchRequest()
+        fetchRequestHorizontalAngle.returnsObjectsAsFaults = false
+        
+        do {
+            
+            horizontalAngles = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequestHorizontalAngle)
+            
+        } catch  {
+            
+            print(error)
+            
+        }
+        
+        let fetchRequestVerticalAngle: NSFetchRequest<VerticalAngle> = VerticalAngle.fetchRequest()
+        fetchRequestVerticalAngle.returnsObjectsAsFaults = false
+        
+        do {
+            verticalAngles = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequestVerticalAngle)
+        } catch  {
+            print(error)
+        }
+        
+        
+        
         
         /// Функция для проверки работоспособнсти свойств и методов класса, заполнения переменных данными.
         func check() {
             
-            var itemForForwardMeasure = Int()
-            var itemForBackSideMeasure = Int()
-            
-            print(" ")
-            
-            for name in forwardSideMeasures.nameStation {
-                
-                print("Станция: \(name), колличество передних измерений: \(forwardSideMeasures.measure[itemForForwardMeasure].count)")
-                
-                itemForForwardMeasure += 1
-                
-            }
-            
-            print(" ")
-            
-            for name in backSideMeasure.nameStation {
-                
-                
-                print("Станция: \(name), колличество задних измерений: \(backSideMeasure.measure[itemForBackSideMeasure].count)")
-                
-                itemForBackSideMeasure += 1
-                
-            }
+            print("\nСписок станций:\(stations)")
+            print("\nСписок измерений: \(measurements)")
+            print("\nСписок точек: \(points)")
+            print("\nСписок горизонтальрых углов: \(horizontalAngles)")
+            print("\nСписок вертикальных углов: \(verticalAngles)")
+            print("\nСписок прямых измерений: \(forwardMeasures) \nСписок обратных измерений: \(backSideMeasures)")
+            print("\nСписок левых и правых углов: \(angles)")
             
         }
         
-        _ = Angle(backSideMeasure: backSideMeasure, forwardMeasure: forwardSideMeasures)
-    
         check()
     }
     
-    init(indexPath: IndexPath) {
+    init(indexPath: IndexPath, viewController: UIViewController) {
         
         self.indexPath = indexPath
+        self.viewController = viewController
         
         setup()
         
