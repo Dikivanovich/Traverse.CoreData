@@ -213,7 +213,7 @@ class DetailPointMeasureViewController: UIViewController {
         registerForKeyboardNotification()
         
         
-        if willSelectedPoint?.isStation == true {
+        if willSelectedPoint!.isStation == true {
             
             print("\n\(self.description) Точка используетя, как станция\n")
             stationOrPointLabel.text = "Станция"
@@ -258,15 +258,55 @@ class DetailPointMeasureViewController: UIViewController {
         
         //MARK: -        • Проверка изменения имени точки:
         
-        if namePointTextField.text == willSelectedPoint?.namePoint {
+        
+        switch namePointTextField.text {
+        case willSelectedPoint!.namePoint!?:
+            return
+        case willSelectedStation?.nameStation!?:
+            let alert = UIAlertController.init(title: "Внимание!", message: "Станция не может иметь измерения самой себя ⚠️", preferredStyle: .alert)
             
-        } else {
+            alert.addTextField(configurationHandler: { (textFieldNamePoint) in
+                
+                Customisation.instance.customozationTextField(textField: textFieldNamePoint, placeholder: nil, backgroundColor: UIColor.clear)
+                textFieldNamePoint.placeholder = "Имя пункта наблюдения"
+                
+            })
             
+            let actionSave = UIAlertAction.init(title: "Сохранить", style: .default, handler: { (alertAction) in
+                
+                if alert.textFields?[0].text != "" {
+                    
+                    self.willSelectedPoint?.namePoint = alert.textFields![0].text!
+                    
+                    CoreDataManager.instance.saveContext()
+                    
+                    
+                    
+                } else {
+                    
+                    
+                    
+                }
+                
+            })
+            
+            let actionCancel = UIAlertAction.init(title: "Отмена", style: .cancel, handler: nil)
+            
+            alert.addAction(actionSave)
+            alert.addAction(actionCancel)
+            
+            present(alert, animated: true, completion: nil)
+            
+            
+            
+        default:
             willSelectedPoint?.namePoint = namePointTextField.text
             
             print("\n\(self.description) Блок сохранения имени точки работает")
             
         }
+        
+        
         
         //MARK: -        • Проверка координаты "x":
         if xTextField.text == xText {

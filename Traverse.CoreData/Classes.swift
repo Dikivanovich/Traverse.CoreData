@@ -105,8 +105,7 @@ class Customisation {
         } else {
             
             textField.placeholder = "Горизонтальное проложение"
-        }
-        
+        }        
         
         
     }

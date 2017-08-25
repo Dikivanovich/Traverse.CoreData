@@ -13,37 +13,69 @@ import UIKit
 
 extension MeasurementsListViewController {
     
-    func checkingStatusPoint(points: [Point]) {
+    func checkingStatusPoint() {
+        
+        var points = [Point]()
+        
+        var stations = [Station]()
+        
+        let fetchRequestPoint: NSFetchRequest<Point> = Point.fetchRequest()
+        
+        do {
+            
+            points = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequestPoint)
+            
+        } catch  {
+            
+            print(error)
+            
+        }
         
         let fetchRequestStation: NSFetchRequest<Station> = Station.fetchRequest()
         
         do {
-           let stations = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequestStation)
             
+            stations = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequestStation)
+            
+        } catch  {
+            
+            print(error)
+            
+        }
+        
+        for point in points {
+
             for station in stations {
                 
-                for point in points {
+                if point.namePoint == station.nameStation {
                     
-                    if point.namePoint == station.nameStation {
+                    if point.isStation == false {
                         
-                        if point.isStation == false {
-                            
-                            point.isStation = true
-                            
-                            CoreDataManager.instance.saveContext()
-                        }
+                        point.isStation = true
+                        
+                        CoreDataManager.instance.saveContext()
+                        
+                        break
+                        
+                    }
+                    
+                } else {
+                    
+                    if point.isStation == true {
+                        
+                        point.isStation = false
+                        
+                        CoreDataManager.instance.saveContext()
                         
                     }
                     
                 }
                 
+                
             }
             
-        } catch  {
-            print(error)
+            
         }
-        
-        
         
     }
     

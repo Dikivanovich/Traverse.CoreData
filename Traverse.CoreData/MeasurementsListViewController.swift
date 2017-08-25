@@ -210,6 +210,8 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        checkingStatusPoint()
+        
         formater.dateFormat = "dd-MM-yy HH:mm"
         
         leftCircle = true
@@ -250,10 +252,8 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellPoints", for: indexPath) as! CustomCell
         
         let sortDescriptor = NSSortDescriptor(key: "dateInit", ascending: false)
-        let points = didSelectedStation?.point?.sortedArray(using: [sortDescriptor]) as! [Point]
+        let points = didSelectedStation?.point?.sortedArray(using: [sortDescriptor]) as! [Point] 
         let point = points[indexPath.row]
-        
-        checkingStatusPoint(points: points)
         
         cell.namePointLabel.text = point.namePoint
         cell.dataInitLabel.text = formater.string(from: point.dateInit! as Date)
