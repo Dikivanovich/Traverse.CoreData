@@ -36,6 +36,8 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
     
     @IBAction func unwindFromDetailPointVC (sender: UIStoryboardSegue) {
         
+        
+        
         tableView.reloadData()
         
     }

@@ -471,7 +471,7 @@
                     <navigationItem key="navigationItem" title="Title" id="cwZ-67-lN1">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="Vai-Gh-5t5">
                             <connections>
-                                <segue destination="4Tq-Eg-fO6" kind="unwind" unwindAction="unwindFromDetailPointVCWithSender:" id="bzJ-aF-q5z"/>
+                                <action selector="saveChangesAction:" destination="kiN-XP-0fw" id="bHk-cA-bMJ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -486,6 +486,7 @@
                         <outlet property="xTextField" destination="Ivh-61-VWb" id="XRC-SK-x4V"/>
                         <outlet property="yTextField" destination="RZy-qz-WR2" id="w9F-zM-5gX"/>
                         <outlet property="zTextField" destination="wje-fr-E58" id="DKr-WF-fZ5"/>
+                        <segue destination="4Tq-Eg-fO6" kind="unwind" identifier="unwindFromDetailPointVC" unwindAction="unwindFromDetailPointVCWithSender:" id="CuX-6k-CLk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wxm-AX-uXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
