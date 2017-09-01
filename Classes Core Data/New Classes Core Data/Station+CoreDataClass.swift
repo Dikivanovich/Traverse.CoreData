@@ -15,7 +15,7 @@ public class Station: NSManagedObject {
     func returnStringDate() -> String {
         
         let dateFormater = DateFormatter() //инициализация формата даты
-        dateFormater.dateFormat = "MM-dd-yyyy HH:mm" //установка формата даты
+        dateFormater.dateFormat = "dd-MM-yyyy HH:mm" //установка формата даты
         
         return dateFormater.string(from: self.dateInitStation! as Date)
         

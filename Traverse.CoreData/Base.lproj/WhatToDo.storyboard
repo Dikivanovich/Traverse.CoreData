@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zJm-Di-5fq">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--What To Do View Controller-->
+        <scene sceneID="7vh-1p-mR3">
+            <objects>
+                <viewController id="zJm-Di-5fq" customClass="WhatToDoViewController" customModule="Traverse_CoreData" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9z0-yV-0aq"/>
+                        <viewControllerLayoutGuide type="bottom" id="uRL-YV-K7p"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mzv-0c-Yty">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RcU-df-n9C">
+                                <rect key="frame" x="120" y="55" width="134" height="30"/>
+                                <state key="normal" title="Менеджер файлов"/>
+                                <connections>
+                                    <segue destination="Yut-js-9tX" kind="presentation" modalPresentationStyle="currentContext" modalTransitionStyle="flipHorizontal" id="exv-5G-pAg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mYq-1o-mme">
+                                <rect key="frame" x="132" y="318" width="111" height="30"/>
+                                <state key="normal" title="Перейти к ходу"/>
+                                <connections>
+                                    <segue destination="DgO-BP-vby" kind="showDetail" action="showViewController:sender:" id="yMa-YG-SYq"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mYq-1o-mme" firstAttribute="top" secondItem="RcU-df-n9C" secondAttribute="bottom" constant="233" id="6AM-M1-bQG"/>
+                            <constraint firstItem="mYq-1o-mme" firstAttribute="centerY" secondItem="mzv-0c-Yty" secondAttribute="centerY" id="80R-jq-qHO"/>
+                            <constraint firstItem="mYq-1o-mme" firstAttribute="centerX" secondItem="mzv-0c-Yty" secondAttribute="centerX" id="83e-NT-xMz"/>
+                            <constraint firstItem="RcU-df-n9C" firstAttribute="centerX" secondItem="mzv-0c-Yty" secondAttribute="centerX" id="Qei-rO-5BT"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XCa-v4-0zb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="121" y="111"/>
+        </scene>
+        <!--FileManager-->
+        <scene sceneID="FUO-cJ-poV">
+            <objects>
+                <viewControllerPlaceholder storyboardName="FileManager" id="Yut-js-9tX" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HD2-f8-Xmz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="695" y="-97"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="aeU-FP-Oae">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="DgO-BP-vby" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dx1-Hg-dZE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="678" y="235"/>
+        </scene>
+    </scenes>
+</document>

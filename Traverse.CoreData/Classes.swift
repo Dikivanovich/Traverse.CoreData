@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 
+
 class CurrentData {
     
     static let instance = CurrentData()
@@ -256,39 +257,21 @@ class ResultMeasure {
     
     var viewController: UIViewController!
     
-    var indexPath: IndexPath?
-    
     var stations = [Station]()
-    
-    var measurements = [Measurement]()
     
     var points = [Point]()
     
-    var horizontalAngles = [HorizontalAngle]()
-    
-    var verticalAngles = [VerticalAngle]()
-    
-    var angles = (left: [Double](), right: [Double]())
+    var angles = (left: [Double](), right: [Double](), delta: [Double](), sumAngles: Double())
     
     var distances = (left: [NSNumber](), right: [NSNumber]())
     
-    var forwardMeasures = (leftCircle: [Double](), rightCircle: [Double]())
+    var theoreticSumAngles = Double()
     
-    var backSideMeasures = (leftCircle: [Double](), rightCircle: [Double]())
+    var index = 0
+
     
     func setup() {
         
-        let fetchRequestPoints:NSFetchRequest<Point> = Point.fetchRequest()
-        let predicate = NSPredicate(format: "isStation == %@", "1")
-        fetchRequestPoints.returnsObjectsAsFaults = false
-        fetchRequestPoints.predicate = predicate
-        
-        do {
-            points = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequestPoints)
-            
-        } catch  {
-            print(error)
-        }
         
         let fetchRequest: NSFetchRequest = Station.fetchRequest()
         fetchRequest.returnsObjectsAsFaults = false
@@ -298,27 +281,32 @@ class ResultMeasure {
             
             stations = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequest)
             
-            for station in stations {
+            
+        } catch  {
+            
+            print(error)
+            
+        }
+        
+        for station in stations {
+            
+            let pts = station.point?.allObjects as! [Point]
+            
+            for point in pts {
                 
-                let pts = station.point?.allObjects as! [Point]
-                
-                for point in pts {
+                if point.isStation == true { // точка является станцией
                     
-                    if point.isStation == true { // точка является станцией
+                    if point.measurement?.horizontalAngle?.leftCircle == true { //измерение при КЛ
                         
-                        if point.measurement?.horizontalAngle?.leftCircle == true { //измерение при КЛ
-                            
-                            angles.left.append(point.measurement!.horizontalAngle!.radianValue)
-                            
-                            distances.left.append(point.measurement!.horizontalDistance!)
-                            
-                        } else { // измерение при КП
-                            
-                            angles.right.append(point.measurement!.horizontalAngle!.radianValue)
-                            
-                            distances.right.append(point.measurement!.horizontalDistance!)
-                            
-                        }
+                        angles.left.append(point.measurement!.horizontalAngle!.radianValue)
+                        
+                        distances.left.append(point.measurement!.horizontalDistance!)
+                        
+                    } else { // измерение при КП
+                        
+                        angles.right.append(point.measurement!.horizontalAngle!.radianValue)
+                        
+                        distances.right.append(point.measurement!.horizontalDistance!)
                         
                     }
                     
@@ -326,60 +314,39 @@ class ResultMeasure {
                 
             }
             
-        } catch  {
-            
-            print(error)
-            
         }
+
         
         differenceAngle(forAngles: &angles.left, viewController: viewController)
         differenceAngle(forAngles: &angles.right, viewController: viewController)
         
-        let fetchRequestMeasure: NSFetchRequest<Measurement> = Measurement.fetchRequest()
-        fetchRequestMeasure.returnsObjectsAsFaults = false
-        do {
-            measurements = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequestMeasure)
-            
-        } catch  {
-            print(error)
-        }
+        theoreticSumAngles = Double(180*(stations.count - 2))
         
         
-        let fetchRequestHorizontalAngle: NSFetchRequest<HorizontalAngle> = HorizontalAngle.fetchRequest()
-        fetchRequestHorizontalAngle.returnsObjectsAsFaults = false
         
-        do {
+        for leftAngle in angles.left {
             
-            horizontalAngles = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequestHorizontalAngle)
+            angles.delta.append((leftAngle + angles.right[index])/2)
             
-        } catch  {
-            
-            print(error)
+            index += 1
             
         }
         
-        let fetchRequestVerticalAngle: NSFetchRequest<VerticalAngle> = VerticalAngle.fetchRequest()
-        fetchRequestVerticalAngle.returnsObjectsAsFaults = false
         
-        do {
-            verticalAngles = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequestVerticalAngle)
-        } catch  {
-            print(error)
+        for delta in angles.delta {
+            
+            angles.sumAngles += delta
+            
+            
         }
-        
-        
-        
         
         /// Функция для проверки работоспособнсти свойств и методов класса, заполнения переменных данными.
         func check() {
             
             print("\nСписок станций:\(stations)")
-            print("\nСписок измерений: \(measurements)")
             print("\nСписок точек: \(points)")
-            print("\nСписок горизонтальрых углов: \(horizontalAngles)")
-            print("\nСписок вертикальных углов: \(verticalAngles)")
-            print("\nСписок прямых измерений: \(forwardMeasures) \nСписок обратных измерений: \(backSideMeasures)")
             print("\nСписок левых и правых углов: \(angles)")
+            print("\nТеретическая сумма углов: \(theoreticSumAngles)")
             
         }
         
@@ -388,7 +355,6 @@ class ResultMeasure {
     
     init(indexPath: IndexPath, viewController: UIViewController) {
         
-        self.indexPath = indexPath
         self.viewController = viewController
         
         setup()

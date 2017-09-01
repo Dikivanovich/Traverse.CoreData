@@ -131,7 +131,7 @@ extension ResultMeasure {
      func  differenceAngle(forAngles: inout [Double], viewController: UIViewController) {
         
         //MARK:- Проверка на достаточность измерений для вычисления хода:
-         if forAngles.count % 2 != 0 {
+        if forAngles.count % 2 != 0 && forAngles.count == 0 { // количество измеренных углов нечетное и пустое:
             
             let alert = UIAlertController.init(title: "Ошибка", message: "Недостаточно измерений в точках хода при левом и/или правом круге! Проверьте журнал  измерений", preferredStyle: .alert)
             
@@ -140,34 +140,38 @@ extension ResultMeasure {
             alert.addAction(action)
             
             viewController.present(alert, animated: true, completion: nil)
+            
          } else {
         
         var doubleArray = [Double]()
-        var arr1 = [Double]()
-        var arr2 = [Double]()
+        var forwardMeasures = [Double]()
+        var backSideMeasures = [Double]()
+        /// Индекс распеределения измерений в массиве на прямое и обратное.
         var i = 0
         var n = 0
-        for leftAngle in forAngles {
+        for angle in forAngles {
             
             if i%2 == 0 {
                 
-                arr2.append(leftAngle)
+                backSideMeasures.append(angle)
                 
             } else {
                 
-                arr1.append(leftAngle)
+                forwardMeasures.append(angle)
                 
             }
             
             i += 1
             
-            if i == forAngles.count && (arr1.count + arr2.count)%2 == 0 { //  проверка количества измерений и их парность
+            }
+            
+            if i == forAngles.count && (forwardMeasures.count + backSideMeasures.count)%2 == 0 { //  проверка количества измерений и их парность
                 
-                for item in arr1 {
+                for item in forwardMeasures {
                     
-                    while n != arr1.count  {
+                    while n != forwardMeasures.count  {
                         
-                        var measurementAngle = item - arr2[n]
+                        var measurementAngle = item - backSideMeasures[n]
                         
                         if measurementAngle < 0 {
                             
@@ -184,8 +188,6 @@ extension ResultMeasure {
                 
             }
             
-        }
-        
         forAngles.removeAll()
         forAngles = doubleArray
         

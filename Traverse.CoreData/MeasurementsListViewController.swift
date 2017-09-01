@@ -42,7 +42,7 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
         
     }
     
-    @IBOutlet weak var addMeasureButton: UIBarButtonItem!
+    
     
     @IBAction func addNewMeasure(_ sender: Any) {
         

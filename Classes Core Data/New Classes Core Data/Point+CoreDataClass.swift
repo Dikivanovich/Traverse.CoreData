@@ -15,7 +15,7 @@ public class Point: NSManagedObject {
     func returnStringDate() -> String {
         
         let dateFormater = DateFormatter() //инициализация формата даты
-        dateFormater.dateFormat = "MM-dd-yyyy HH:mm" //установка формата даты
+        dateFormater.dateFormat = "dd-MM-yyyy HH:mm" //установка формата даты
         let stringDate = dateFormater.string(from: self.dateInit! as Date)
         
         return stringDate

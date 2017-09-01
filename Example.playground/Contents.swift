@@ -2,55 +2,22 @@
 
 import UIKit
 
-var arrray = [Int]()
-var arr1 = [Int]()
-var arr2 = [Int]()
+let url = URL(fileURLWithPath: "/Volumes/Data/Users/Dik/Desktop/30KAT.txt")
 
 
-for i in 1...10 {
-    
-    arrray.append(i)
-    
+let encoding = String.Encoding.utf8.rawValue
+
+do {
+
+    let text = try NSString(contentsOf: url, encoding: encoding)
+
+} catch  {
+    print(error)
 }
 
-arrray
 
-var integer = Int()
 
-for item in arrray {
-    
-    integer += 1
-    
-    if integer%2 == 0 {
-        
-        arr1.append(item)
-    } else {
-        
-        arr2.append(item)
-        
-    }
-    
-    
-}
 
-integer
-arr1
-arr2
 
-var indexSet = Int()
-arrray.removeAll()
-
-for i in arr1 {
-    
-
-    
-    
-    arrray.append(arr2[indexSet] - i)
-    indexSet += 1
-    
-    
-}
-
-arrray
 
 

@@ -112,9 +112,17 @@ extension DetailPointMeasureViewController {
             
             let stations = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequest)
             
+            var nameStations = [String]()
+            
             for station in stations {
                 
-                if station.nameStation! == willSelectedPoint?.namePoint! {
+                nameStations.append(station.nameStation!)
+                
+                continue
+                
+            }
+            
+                if nameStations.contains(willSelectedPoint!.namePoint!) {
                     
                     print("\n\(self.description)Точка есть в списке станций")
                     
@@ -128,7 +136,7 @@ extension DetailPointMeasureViewController {
                     
                 }
                 
-            }
+            
             
             if pointAsStation == false { // если точка не обнаружена в списке станций
                 

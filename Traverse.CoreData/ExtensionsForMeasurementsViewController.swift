@@ -19,6 +19,8 @@ extension MeasurementsListViewController {
         
         var stations = [Station]()
         
+        var nameStations = [String]()
+        
         let fetchRequestPoint: NSFetchRequest<Point> = Point.fetchRequest()
         
         do {
@@ -44,38 +46,30 @@ extension MeasurementsListViewController {
         }
         
         for point in points {
-
+            
             for station in stations {
                 
-                if point.namePoint == station.nameStation {
-                    
-                    if point.isStation == false {
-                        
-                        point.isStation = true
-                        
-                        CoreDataManager.instance.saveContext()
-                        
-                        break
-                        
-                    }
-                    
-                } else {
-                    
-                    if point.isStation == true {
-                        
-                        point.isStation = false
-                        
-                        CoreDataManager.instance.saveContext()
-                        
-                    }
-                    
-                }
+                nameStations.append(station.nameStation!)
                 
+                continue
                 
             }
             
+            if nameStations.contains(point.namePoint!) {
+                
+                point.isStation = true
+                
+            } else {
+                
+                point.isStation = false
+                
+            }
+
             
         }
+        
+ 
+        
         
     }
     

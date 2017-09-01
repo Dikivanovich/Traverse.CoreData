@@ -198,7 +198,7 @@
                                             <attributedString key="attributedText">
                                                 <fragment content="КЛ">
                                                     <attributes>
-                                                        <color key="NSColor" red="0.22869851178268119" green="1" blue="0.25785514754268546" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="NSColor" red="0.1341188434427962" green="0.57954177461139889" blue="0.15511713303719374" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <font key="NSFont" size="20" name="MarkerFelt-Thin"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
@@ -288,9 +288,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="addMeasureButton" destination="cQ2-90-DBU" id="5Xt-CA-WXz"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DdB-JR-R4q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
