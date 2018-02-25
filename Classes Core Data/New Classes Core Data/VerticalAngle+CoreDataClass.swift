@@ -10,6 +10,13 @@ import Foundation
 import CoreData
 
 @objc(VerticalAngle)
+
+/// Класс VerticalAngle является классом модели данных (CoreData).
+///
+/// Свойства:
+/// textValue: String - текстовое значение измеренного вертикального угла в формате гг˚ мм' сс".
+/// measure: Measure - данное свойство ссылается на станцию, с которой было выполнено измерение, и, соотвественно, имеет доступ ко всем ее свойствам.
+/// horizontalAngle: HorizontalAngle? - данное свойство ссылается на горизонтальный угол, при котором было выполенено измерение вертикального угла.
 public class VerticalAngle: NSManagedObject {
     
     convenience init() {

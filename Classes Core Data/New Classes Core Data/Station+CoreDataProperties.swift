@@ -2,7 +2,7 @@
 //  Station+CoreDataProperties.swift
 //  Traverse.CoreData
 //
-//  Created by Dik on 18.08.17.
+//  Created by Dik on 17.09.17.
 //  Copyright © 2017 Kantulaev Ruslan. All rights reserved.
 //
 
@@ -31,10 +31,10 @@ extension Station {
 extension Station {
 
     @objc(addMeasurementObject:)
-    @NSManaged public func addToMeasurement(_ value: Measurement)
+    @NSManaged public func addToMeasurement(_ value: Measure)
 
     @objc(removeMeasurementObject:)
-    @NSManaged public func removeFromMeasurement(_ value: Measurement)
+    @NSManaged public func removeFromMeasurement(_ value: Measure)
 
     @objc(addMeasurement:)
     @NSManaged public func addToMeasurement(_ values: NSSet)

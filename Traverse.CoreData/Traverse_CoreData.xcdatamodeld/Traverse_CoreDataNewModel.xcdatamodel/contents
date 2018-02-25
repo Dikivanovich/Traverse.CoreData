@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13533" systemVersion="16G1212" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="File" representedClassName="File" syncable="YES">
         <attribute name="file" optional="YES" attributeType="Binary" syncable="YES"/>
         <relationship name="fileName" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FileName" inverseName="file" inverseEntity="FileName" syncable="YES"/>
@@ -14,15 +14,11 @@
         <relationship name="files" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="File" inverseName="folder" inverseEntity="File" syncable="YES"/>
     </entity>
     <entity name="HorizontalAngle" representedClassName="HorizontalAngle" syncable="YES">
-        <attribute name="degree" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="leftCircle" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="minutes" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="radianValue" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="seconds" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="textValue" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="measure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Measurement" inverseName="horizontalAngle" inverseEntity="Measurement" syncable="YES"/>
+        <relationship name="measure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Measure" inverseName="horizontalAngle" inverseEntity="Measure" syncable="YES"/>
+        <relationship name="verticalAngle" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VerticalAngle" inverseName="horizontalAngle" inverseEntity="VerticalAngle" syncable="YES"/>
     </entity>
-    <entity name="Measurement" representedClassName="Measurement" syncable="YES">
+    <entity name="Measure" representedClassName="Measure" syncable="YES">
         <attribute name="forwardMeasure" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="horizontalDistance" attributeType="Decimal" syncable="YES"/>
         <relationship name="horizontalAngle" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="HorizontalAngle" inverseName="measure" inverseEntity="HorizontalAngle" syncable="YES"/>
@@ -33,12 +29,12 @@
     <entity name="Point" representedClassName="Point" syncable="YES">
         <attribute name="dateInit" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="fixed" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="isStation" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isStation" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="namePoint" attributeType="String" syncable="YES"/>
         <attribute name="x" optional="YES" attributeType="Decimal" syncable="YES"/>
         <attribute name="y" optional="YES" attributeType="Decimal" syncable="YES"/>
         <attribute name="z" optional="YES" attributeType="Decimal" syncable="YES"/>
-        <relationship name="measurement" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Measurement" inverseName="point" inverseEntity="Measurement" syncable="YES"/>
+        <relationship name="measurement" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Measure" inverseName="point" inverseEntity="Measure" syncable="YES"/>
         <relationship name="station" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Station" inverseName="point" inverseEntity="Station" syncable="YES"/>
     </entity>
     <entity name="Station" representedClassName="Station" syncable="YES">
@@ -48,25 +44,22 @@
         <attribute name="x" optional="YES" attributeType="Decimal" syncable="YES"/>
         <attribute name="y" optional="YES" attributeType="Decimal" syncable="YES"/>
         <attribute name="z" optional="YES" attributeType="Decimal" syncable="YES"/>
-        <relationship name="measurement" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Measurement" inverseName="station" inverseEntity="Measurement" syncable="YES"/>
+        <relationship name="measurement" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Measure" inverseName="station" inverseEntity="Measure" syncable="YES"/>
         <relationship name="point" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Point" inverseName="station" inverseEntity="Point" syncable="YES"/>
     </entity>
     <entity name="VerticalAngle" representedClassName="VerticalAngle" syncable="YES">
-        <attribute name="degree" optional="YES" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="minutes" optional="YES" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="radianValue" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="seconds" optional="YES" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="textValue" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="measure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Measurement" inverseName="verticalAngle" inverseEntity="Measurement" syncable="YES"/>
+        <relationship name="horizontalAngle" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HorizontalAngle" inverseName="verticalAngle" inverseEntity="HorizontalAngle" syncable="YES"/>
+        <relationship name="measure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Measure" inverseName="verticalAngle" inverseEntity="Measure" syncable="YES"/>
     </entity>
     <elements>
         <element name="File" positionX="-720" positionY="-513" width="128" height="90"/>
+        <element name="FileName" positionX="-720" positionY="-513" width="128" height="75"/>
         <element name="Folder" positionX="-729" positionY="-522" width="128" height="75"/>
-        <element name="HorizontalAngle" positionX="-873" positionY="-288" width="128" height="150"/>
-        <element name="Measurement" positionX="-576" positionY="-423" width="128" height="135"/>
+        <element name="HorizontalAngle" positionX="-873" positionY="-288" width="128" height="90"/>
+        <element name="Measure" positionX="-576" positionY="-423" width="128" height="135"/>
         <element name="Point" positionX="-929" positionY="-597" width="128" height="180"/>
         <element name="Station" positionX="-603" positionY="-669" width="171" height="163"/>
-        <element name="VerticalAngle" positionX="-351" positionY="-288" width="128" height="135"/>
-        <element name="FileName" positionX="-720" positionY="-513" width="128" height="75"/>
+        <element name="VerticalAngle" positionX="-351" positionY="-288" width="128" height="90"/>
     </elements>
 </model>

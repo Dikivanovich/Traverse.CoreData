@@ -9,6 +9,7 @@
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -159,18 +160,32 @@
                                 <action selector="resultButtonAction:" destination="twe-TE-l6D" id="NRI-M8-p3n"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Zos-06-NPc">
-                            <connections>
-                                <action selector="addNewStationAction:" destination="twe-TE-l6D" id="Xcl-Yr-M6r"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="Zos-06-NPc">
+                                <connections>
+                                    <action selector="addNewStationAction:" destination="twe-TE-l6D" id="Xcl-Yr-M6r"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Back" id="LfU-ww-Ljg">
+                                <connections>
+                                    <segue destination="fLm-Fi-hjx" kind="unwind" unwindAction="unwindFromFileManagerWithSender:" id="dJR-0J-QB1"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="trash" id="e9l-47-Z8T">
+                                <connections>
+                                    <action selector="removeAllButtonAction:" destination="twe-TE-l6D" id="c7C-K8-B8R"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="resultButton" destination="YKF-Dg-1vc" id="EpH-hG-RUp"/>
                         <segue destination="CsS-Pu-aA9" kind="show" identifier="ShowDetailStation" id="eBf-qH-BKX"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c67-OP-S9p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="fLm-Fi-hjx" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="352.80000000000001" y="187.55622188905548"/>
         </scene>

@@ -11,10 +11,13 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "DetailPointMeasureViewController.viewDidLoad() -&gt; ():DetailPointMeasureViewController.swift">
+      </ContextState>
+      <ContextState
          contextName = "DetailPointMeasureViewController.yText.getter:DetailPointMeasureViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "DetailPointMeasureViewController.viewDidLoad() -&gt; ():DetailPointMeasureViewController.swift">
+         contextName = "ViewFileViewController.(formatingText(textToFormat : NSString) -&gt; String).(roundDistance #1)(slopDistance : String, vAngle : String, prizmConst : String) -&gt; String:ExtentioonsForViewFileViewController.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
