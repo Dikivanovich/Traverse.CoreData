@@ -25,8 +25,9 @@ class ResultMeasure { /// #Переработать вычисление!!!
     /// Массив станций, с которых были выполнены измеения.
     var stations = [Station]()
     
+//    var
     
-    /// Кортеж с отчетами по горизонтальному, вертикальному кругу, массив с измеренными углами, а так же горизонтальное проложение между станциями.
+    /// Кортеж с отчетами по горизонтальному кругу при круге права и круге лево, массив с измеренными углами, а так же горизонтальное проложение между станциями.
     var angles = (left: [Double](), right: [Double](), delta: [Double](), sumAngles: Double())
     
     /// Горизонтальные проложения, выполненные при левом и правом круге.
@@ -54,9 +55,10 @@ class ResultMeasure { /// #Переработать вычисление!!!
         
     }
     
-    
     /// Функция для заполнения и вычисления свойств класса.
     func setup() {
+        
+        //        MARK:- Запрос станции из хранилища данных:
         
         let fetchRequest: NSFetchRequest = Station.fetchRequest()
         fetchRequest.returnsObjectsAsFaults = false
@@ -75,20 +77,23 @@ class ResultMeasure { /// #Переработать вычисление!!!
         
         for station in stations {
             
+            /// Сортировка точек по дате инициализации (записи) в безе данных.
             let sortDescriptorPoints = NSSortDescriptor(key: "dateInit", ascending: true)
             
+            /// Массив точек отсортированных по дате инициализации в базе данных Core Data.
             let pts = station.point?.sortedArray(using: [sortDescriptorPoints]) as! [Point]
             
             for point in pts {
                 
                 if point.isStation == true { // точка является станцией
                     
+                    /// Кортеж (пара) из вертикального и горизонтального измеренного угла на точку.
                     let anglesForMeasure = returnAngles(verticalAngle: (point.measurement?.verticalAngle)!, horizontalAngle: (point.measurement?.horizontalAngle)!)
                     
-                    if anglesForMeasure.0.leftCircle! == true { // измерение при КЛ
+                    // измерение при КЛ
+                    if anglesForMeasure.0.leftCircle! == true {
                         
                         angles.left.append(anglesForMeasure.1.angleInRadians!)
-                        
                         distances.left.append(point.measurement!.horizontalDistance!)
                         
                     } else { // измерение при КП
@@ -108,7 +113,8 @@ class ResultMeasure { /// #Переработать вычисление!!!
         differenceAngle(forAngles: &angles.left, viewController: viewController)
         differenceAngle(forAngles: &angles.right, viewController: viewController)
         
-        theoreticSumAngles = Double.pi * Double(stations.count - 2)
+//        theoreticSumAngles = Double.pi * Double(stations.count - 2)
+        theoreticSumAngles = 2 * Double.pi * Double(stations.count) - Double.pi * Double(stations.count - 2)
         
         for leftAngle in angles.left {
             

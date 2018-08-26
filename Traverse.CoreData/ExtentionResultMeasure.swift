@@ -37,6 +37,7 @@ extension ResultMeasure {
             var forwardMeasures = [Double]()
             var backSideMeasures = [Double]()
             
+            /// 360° в радианах
             let circleInRadians = Measurement(value: 360.0, unit: UnitAngle.degrees).converted(to: .radians).value
             
             /// Индекс распеределения измерений в массиве на прямое и обратное. Если индекс имеет четное значение, измерение добавляется в свойство измерения задней точки стояния.
@@ -45,7 +46,9 @@ extension ResultMeasure {
             
             for angle in forAngles {
                 
-                if i%2 == 0 { // если измерение в массиве имеет четный порядковый номер
+// если измерение в массиве имеет четный порядковый номер, значит это заднее измерение:
+                
+                if i%2 == 0 {
                     
                     backSideMeasures.append(angle)
                     
@@ -58,8 +61,8 @@ extension ResultMeasure {
                 i += 1
                 
             }
-            
-            if i == forAngles.count && (forwardMeasures.count + backSideMeasures.count)%2 == 0 { // проверка количества измерений и их парность
+            // проверка количества измерений и их парность:
+            if i == forAngles.count && (forwardMeasures.count + backSideMeasures.count)%2 == 0 {
                 
                 for item in forwardMeasures {
                     
@@ -69,8 +72,7 @@ extension ResultMeasure {
                         
                         if measurementAngle < 0 {
                             
-                            
-                            measurementAngle += circleInRadians
+                           measurementAngle += circleInRadians
                             
                         }
                         

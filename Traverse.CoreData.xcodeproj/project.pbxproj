@@ -10,13 +10,13 @@
 		2A0564E01E9AD27C001997A5 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0564DD1E9AD27C001997A5 /* CustomButton.swift */; };
 		2A0564E11E9AD27C001997A5 /* MyCustomKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0564DE1E9AD27C001997A5 /* MyCustomKeyboard.swift */; };
 		2A0564E21E9AD27C001997A5 /* MyCustomKeyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A0564DF1E9AD27C001997A5 /* MyCustomKeyboard.xib */; };
+		2A0D287520B8B0A500629D19 /* SumHorizontalAngles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0D287420B8B0A500629D19 /* SumHorizontalAngles.swift */; };
 		2A108EFE1EE6FCC200EE07AE /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A108EFD1EE6FCC200EE07AE /* Extentions.swift */; };
 		2A179D5C1EB38796002CA4D8 /* DetailStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A179D5B1EB38796002CA4D8 /* DetailStationViewController.swift */; };
 		2A30C0DD1EDE1EFF0012DA72 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A30C0DA1EDE1EFF0012DA72 /* Data.swift */; };
 		2A30C0DE1EDE1EFF0012DA72 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A30C0DB1EDE1EFF0012DA72 /* PickerView.swift */; };
 		2A30C0DF1EDE1EFF0012DA72 /* PickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A30C0DC1EDE1EFF0012DA72 /* PickerViewModel.swift */; };
-		2A40908E1F7D90C60073BBD4 /* +10hod.gre in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2A40908D1F7D90C60073BBD4 /* +10hod.gre */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		2A4109791F5C2ED800C6E9BE /* ExtentioonsForViewFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4109781F5C2ED800C6E9BE /* ExtentioonsForViewFileViewController.swift */; };
+		2A4109791F5C2ED800C6E9BE /* ExtentioonsForFileManagerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4109781F5C2ED800C6E9BE /* ExtentioonsForFileManagerTableViewController.swift */; };
 		2A42EBC91F5051E80078FC43 /* DetailPointMeasureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A42EBC81F5051E80078FC43 /* DetailPointMeasureViewController.swift */; };
 		2A42EBCB1F5065640078FC43 /* ExtensionsDetailPointMeasureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A42EBCA1F5065640078FC43 /* ExtensionsDetailPointMeasureViewController.swift */; };
 		2A55E6F6202DA5ED009042F2 /* HorAngle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A55E6F5202DA5ED009042F2 /* HorAngle.swift */; };
@@ -24,6 +24,7 @@
 		2A57153C1F59A5590046DBF3 /* File+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5715381F59A5590046DBF3 /* File+CoreDataProperties.swift */; };
 		2A57153D1F59A5590046DBF3 /* Folder+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5715391F59A5590046DBF3 /* Folder+CoreDataClass.swift */; };
 		2A57153E1F59A5590046DBF3 /* Folder+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A57153A1F59A5590046DBF3 /* Folder+CoreDataProperties.swift */; };
+		2A60573A204F367E001BE3DF /* +10hod.gre in Resources */ = {isa = PBXBuildFile; fileRef = 2A40908D1F7D90C60073BBD4 /* +10hod.gre */; };
 		2A68E0321E8BBFCA005F5699 /* Traverse_CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2A68E0301E8BBFCA005F5699 /* Traverse_CoreData.xcdatamodeld */; };
 		2A70CB6F1E983F2900285CB3 /* MeasurementsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A70CB6E1E983F2900285CB3 /* MeasurementsListViewController.swift */; };
 		2A84109A1EB8CB22006685B1 /* StationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8410961EB8CB22006685B1 /* StationsTableViewController.swift */; };
@@ -54,6 +55,7 @@
 		2AF510E91F3DD3C3009B6758 /* VerticalAngle+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF510DF1F3DD3C3009B6758 /* VerticalAngle+CoreDataClass.swift */; };
 		2AF510EB1F3DD3C3009B6758 /* Station+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF510E11F3DD3C3009B6758 /* Station+CoreDataClass.swift */; };
 		2AF510EC1F3DD3C3009B6758 /* Station+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF510E21F3DD3C3009B6758 /* Station+CoreDataProperties.swift */; };
+		2AFCBE9320527B8800344CB6 /* xhodt2-3.09.2015.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2AFCBE9220527B8800344CB6 /* xhodt2-3.09.2015.txt */; };
 		2AFF242A1F59947C00337C68 /* WhatToDo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AFF24281F59947C00337C68 /* WhatToDo.storyboard */; };
 		2AFF242F1F599B5700337C68 /* WhatToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFF242E1F599B5700337C68 /* WhatToDoViewController.swift */; };
 		2AFF24311F599BE500337C68 /* FileManagerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFF24301F599BE500337C68 /* FileManagerTableViewController.swift */; };
@@ -68,7 +70,6 @@
 			dstPath = "Volumes/Data/Users/Dik/Documents/SwiftTest/Traverse.CoreData/Traverse.CoreData/Assets.xcassets/MeasureFiles/+10hod.gre";
 			dstSubfolderSpec = 7;
 			files = (
-				2A40908E1F7D90C60073BBD4 /* +10hod.gre in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,13 +79,14 @@
 		2A0564DD1E9AD27C001997A5 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		2A0564DE1E9AD27C001997A5 /* MyCustomKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCustomKeyboard.swift; sourceTree = "<group>"; };
 		2A0564DF1E9AD27C001997A5 /* MyCustomKeyboard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCustomKeyboard.xib; sourceTree = "<group>"; };
+		2A0D287420B8B0A500629D19 /* SumHorizontalAngles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumHorizontalAngles.swift; sourceTree = "<group>"; };
 		2A108EFD1EE6FCC200EE07AE /* Extentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		2A179D5B1EB38796002CA4D8 /* DetailStationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailStationViewController.swift; sourceTree = "<group>"; };
 		2A30C0DA1EDE1EFF0012DA72 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Data.swift; path = MyCustomPickerView/Data.swift; sourceTree = "<group>"; };
 		2A30C0DB1EDE1EFF0012DA72 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PickerView.swift; path = MyCustomPickerView/PickerView.swift; sourceTree = "<group>"; };
 		2A30C0DC1EDE1EFF0012DA72 /* PickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PickerViewModel.swift; path = MyCustomPickerView/PickerViewModel.swift; sourceTree = "<group>"; };
 		2A40908D1F7D90C60073BBD4 /* +10hod.gre */ = {isa = PBXFileReference; lastKnownFileType = text; name = "+10hod.gre"; path = "Traverse.CoreData/Assets.xcassets/MeasureFiles/+10hod.gre"; sourceTree = "<group>"; };
-		2A4109781F5C2ED800C6E9BE /* ExtentioonsForViewFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtentioonsForViewFileViewController.swift; sourceTree = "<group>"; };
+		2A4109781F5C2ED800C6E9BE /* ExtentioonsForFileManagerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtentioonsForFileManagerTableViewController.swift; sourceTree = "<group>"; };
 		2A42EBC81F5051E80078FC43 /* DetailPointMeasureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailPointMeasureViewController.swift; sourceTree = "<group>"; };
 		2A42EBCA1F5065640078FC43 /* ExtensionsDetailPointMeasureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionsDetailPointMeasureViewController.swift; sourceTree = "<group>"; };
 		2A55E6F5202DA5ED009042F2 /* HorAngle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorAngle.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 		2AF510E21F3DD3C3009B6758 /* Station+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Station+CoreDataProperties.swift"; path = "Classes Core Data/New Classes Core Data/Station+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2AF869421EEAA2310046C545 /* Example.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Example.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		2AFA73AA1EAFE0FF0018B907 /* Traverse_CoreData(AllToMany).xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Traverse_CoreData(AllToMany).xcdatamodel"; sourceTree = "<group>"; };
+		2AFCBE9220527B8800344CB6 /* xhodt2-3.09.2015.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "xhodt2-3.09.2015.txt"; path = "Traverse.CoreData/Assets.xcassets/MeasureFiles/xhodt2-3.09.2015.txt"; sourceTree = "<group>"; };
 		2AFF24291F59947C00337C68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/WhatToDo.storyboard; sourceTree = "<group>"; };
 		2AFF242E1F599B5700337C68 /* WhatToDoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatToDoViewController.swift; sourceTree = "<group>"; };
 		2AFF24301F599BE500337C68 /* FileManagerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManagerTableViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +167,7 @@
 				2ABE46E2202A513500A70F90 /* VertAngle.swift */,
 				2ABE46DE202A4F9100A70F90 /* Angle.swift */,
 				2AD61B102043218B006D4B27 /* ResultMeasureClass.swift */,
+				2A0D287420B8B0A500629D19 /* SumHorizontalAngles.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -228,6 +232,7 @@
 		2ADCF3321E8323440080DCF5 = {
 			isa = PBXGroup;
 			children = (
+				2AFCBE9220527B8800344CB6 /* xhodt2-3.09.2015.txt */,
 				2A40908D1F7D90C60073BBD4 /* +10hod.gre */,
 				2AFF242B1F599A9200337C68 /* Storyboards */,
 				2AF869421EEAA2310046C545 /* Example.playground */,
@@ -289,7 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				2AFFB41C1F4F0B9F0015C5B1 /* ExtensionsForMeasurementsViewController.swift */,
-				2A4109781F5C2ED800C6E9BE /* ExtentioonsForViewFileViewController.swift */,
+				2A4109781F5C2ED800C6E9BE /* ExtentioonsForFileManagerTableViewController.swift */,
 				2A42EBCA1F5065640078FC43 /* ExtensionsDetailPointMeasureViewController.swift */,
 				2A108EFD1EE6FCC200EE07AE /* Extentions.swift */,
 				2AD61B12204326A5006D4B27 /* ExtentionResultMeasure.swift */,
@@ -358,6 +363,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AFCBE9320527B8800344CB6 /* xhodt2-3.09.2015.txt in Resources */,
+				2A60573A204F367E001BE3DF /* +10hod.gre in Resources */,
 				2ADCF3611E832A480080DCF5 /* Main.storyboard in Resources */,
 				2ADCF34C1E8323440080DCF5 /* LaunchScreen.storyboard in Resources */,
 				2ADCF3491E8323440080DCF5 /* Assets.xcassets in Resources */,
@@ -410,11 +417,12 @@
 				2AF510E71F3DD3C3009B6758 /* HorizontalAngle+CoreDataClass.swift in Sources */,
 				2AF510E91F3DD3C3009B6758 /* VerticalAngle+CoreDataClass.swift in Sources */,
 				2AEC4AEA1F559BFA008B60F2 /* Point+CoreDataProperties.swift in Sources */,
-				2A4109791F5C2ED800C6E9BE /* ExtentioonsForViewFileViewController.swift in Sources */,
+				2A4109791F5C2ED800C6E9BE /* ExtentioonsForFileManagerTableViewController.swift in Sources */,
 				2A179D5C1EB38796002CA4D8 /* DetailStationViewController.swift in Sources */,
 				2AFFB41D1F4F0B9F0015C5B1 /* ExtensionsForMeasurementsViewController.swift in Sources */,
 				2A42EBC91F5051E80078FC43 /* DetailPointMeasureViewController.swift in Sources */,
 				2AD9184D1F3B05780009D52E /* CoreDataManager.swift in Sources */,
+				2A0D287520B8B0A500629D19 /* SumHorizontalAngles.swift in Sources */,
 				2AFF24311F599BE500337C68 /* FileManagerTableViewController.swift in Sources */,
 				2A68E0321E8BBFCA005F5699 /* Traverse_CoreData.xcdatamodeld in Sources */,
 				2AE436981F59CC3800D5FFB7 /* FileName+CoreDataProperties.swift in Sources */,
@@ -583,7 +591,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 27C43TV93N;
 				INFOPLIST_FILE = Traverse.CoreData/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Kantulaev-Ruslan.Traverse-CoreData";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -601,7 +609,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 27C43TV93N;
 				INFOPLIST_FILE = Traverse.CoreData/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Kantulaev-Ruslan.Traverse-CoreData";
 				PRODUCT_NAME = "$(TARGET_NAME)";

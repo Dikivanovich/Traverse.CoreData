@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="16G1212" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="HorizontalAngle" representedClassName="HorizontalAngle" syncable="YES">
         <attribute name="degree" optional="YES" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="minutes" optional="YES" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
@@ -50,7 +50,7 @@
         <relationship name="station" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Station" inverseName="point" inverseEntity="Station" syncable="YES"/>
     </entity>
     <entity name="Station" representedClassName="Station" syncable="YES">
-        <attribute name="dateInitStation" attributeType="String" storedInTruthFile="YES" syncable="YES"/>
+        <attribute name="dateInitStation" attributeType="String" syncable="YES"/>
         <attribute name="fixed" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="nameStation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="x" optional="YES" attributeType="Decimal" syncable="YES"/>
