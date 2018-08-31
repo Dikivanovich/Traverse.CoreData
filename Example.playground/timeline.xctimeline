@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Timeline
+   version = "3.0">
+   <TimelineItems>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "file:///Volumes/Data/Users/Dik/Documents/SwiftTest/Traverse.CoreData/Example.playground#CharacterRangeLen=6197&amp;CharacterRangeLoc=0&amp;EndingColumnNumber=21&amp;EndingLineNumber=183&amp;StartingColumnNumber=0&amp;StartingLineNumber=0&amp;Timestamp=556995598.692444"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "file:///Volumes/Data/Users/Dik/Documents/SwiftTest/Traverse.CoreData/Example.playground#CharacterRangeLen=6197&amp;CharacterRangeLoc=0&amp;EndingColumnNumber=21&amp;EndingLineNumber=183&amp;StartingColumnNumber=0&amp;StartingLineNumber=0&amp;Timestamp=556995598.692654"
+         lockedSize = "{175, 2948}"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "file:///Volumes/Data/Users/Dik/Documents/SwiftTest/Traverse.CoreData/Example.playground#CharacterRangeLen=6197&amp;CharacterRangeLoc=0&amp;EndingColumnNumber=21&amp;EndingLineNumber=183&amp;StartingColumnNumber=0&amp;StartingLineNumber=0&amp;Timestamp=556995598.692773"
+         lockedSize = "{454, 134}"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "file:///Volumes/Data/Users/Dik/Documents/SwiftTest/Traverse.CoreData/Example.playground#CharacterRangeLen=6129&amp;CharacterRangeLoc=68&amp;EndingColumnNumber=21&amp;EndingLineNumber=183&amp;StartingColumnNumber=0&amp;StartingLineNumber=4&amp;Timestamp=556995598.692892"
+         lockedSize = "{363.3388671875, 50}"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "file:///Volumes/Data/Users/Dik/Documents/SwiftTest/Traverse.CoreData/Example.playground#CharacterRangeLen=6129&amp;CharacterRangeLoc=68&amp;EndingColumnNumber=21&amp;EndingLineNumber=183&amp;StartingColumnNumber=0&amp;StartingLineNumber=4&amp;Timestamp=556995598.693013"
+         lockedSize = "{266, 50}"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
+   </TimelineItems>
+</Timeline>
