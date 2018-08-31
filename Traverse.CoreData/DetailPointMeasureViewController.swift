@@ -21,7 +21,6 @@ class DetailPointMeasureViewController: UIViewController {
     
     var indexPathSelectedPoint: IndexPath?
 
-
     var xText: String? {
         
         get{
@@ -94,7 +93,6 @@ class DetailPointMeasureViewController: UIViewController {
         
     }
     
-    
     func registerForKeyboardNotification() {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -102,7 +100,7 @@ class DetailPointMeasureViewController: UIViewController {
         
     }
     
-    func keyboardWillShow(notification: Notification){
+    @objc func keyboardWillShow(notification: Notification){
         
         let userInfo = notification.userInfo
         let kbFrameSize = (userInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
@@ -116,7 +114,7 @@ class DetailPointMeasureViewController: UIViewController {
         }
     }
     
-    func keyboardWillHide(){
+    @objc func keyboardWillHide(){
         for textField in [hZTextField, vATextField, distanceTextField] {
             if textField?.isFirstResponder == true {
                 print("\n\(self.description) Текстовое поле неактивно")
@@ -176,9 +174,9 @@ class DetailPointMeasureViewController: UIViewController {
         
         //MARK:-        Настройка inputView для текстовых полей:
         
-        _ = Customisation.instance.customozationTextFieldForPicker(textField: hZTextField, placeholder: "Горизонтальный лимб", showSideCircle: true)
+        _ = Customisation.instance.customozationTextFieldForPicker(textField: hZTextField, placeholder: "Горизонтальный лимб")
         
-        _ = Customisation.instance.customozationTextFieldForPicker(textField: vATextField, placeholder: "Вертикальный круг", showSideCircle: false)
+        _ = Customisation.instance.customozationTextFieldForPicker(textField: vATextField, placeholder: "Вертикальный круг")
         
         Customisation.instance.customozationTextField(textField: xTextField, placeholder: "x", backgroundColor: #colorLiteral(red: 1, green: 0.9776745904, blue: 0.6210460147, alpha: 1))
         
@@ -378,18 +376,13 @@ class DetailPointMeasureViewController: UIViewController {
             self.performSegue(withIdentifier: "unwindFromDetailPointVC", sender: self)
         }
         
-        
-        
     }
-
 
     deinit {
         
         removeKeyboardNotifications()
         
         print("\n\(String(describing: self))Экземпляр класса удален из оперативной памяти")
-        
-        
         
     }
     

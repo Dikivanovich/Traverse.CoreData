@@ -13,6 +13,7 @@ import UIKit
 
 extension MeasurementsListViewController {
     
+    /// Функция выполняет проверку - является ли измеренная точка станцией.
     func checkingStatusPoint() {
         
         var points = [Point]()
@@ -58,22 +59,17 @@ extension MeasurementsListViewController {
             if nameStations.contains(point.namePoint!) {
                 
                 point.isStation = true
+                CoreDataManager.instance.saveContext()
                 
             } else {
                 
                 point.isStation = false
-                
+                CoreDataManager.instance.saveContext()
             }
-
             
         }
         
- 
-        
-        
     }
-    
-    
     
 }
 
@@ -112,8 +108,8 @@ extension MeasurementsListViewController {
         if  alertController.textFields?[0].text! != "" && alertController.textFields?[1].text! != "" && alertController.textFields?[2].text! != "" && alertController.textFields?[3].text! != "" && alertController.textFields?[4].text! != "" &&
             alertController.textFields?[5].text! != "" {
             
-            let angleHz = MeasurementAngle(textField: (alertController.textFields?[3])!)
-            let angleVz = MeasurementAngle(textField: (alertController.textFields?[4])!)
+            let angleHz = MeasurementAngle(textField: (alertController.textFields?[3])!, textDegree: nil)
+            let angleVz = MeasurementAngle(textField: (alertController.textFields?[4])!, textDegree: nil)
             
             CoreDataManager.instance.addNewMeasure(name: alertNamePoint.textFields!.first!.text!, x: alertController.textFields![0].text! , y: alertController.textFields![1].text!, z: alertController.textFields![2].text!, fromStation: self.didSelectedStation!,distance: alertController.textFields![5].text!, leftCircle: self.leftCircle, hzAngle: angleHz, vAngle: angleVz)
             self.tableView.reloadData()
@@ -149,15 +145,15 @@ extension MeasurementsListViewController {
         
         if alertController.textFields?[0].text != "" && alertController.textFields?[1].text != "" && alertController.textFields?[2].text != ""  {
             
-            let hzAngle = MeasurementAngle(textField: (alertController.textFields?[0])!)
-            let vAngle = MeasurementAngle(textField: (alertController.textFields?[1])!)
+            let hzAngle = MeasurementAngle(textField: (alertController.textFields?[0])!, textDegree: nil)
+            let vAngle = MeasurementAngle(textField: (alertController.textFields?[1])!, textDegree: nil)
             
             CoreDataManager.instance.addNewMeasure(name: generalAlertController.textFields!.first!.text!, x: nil, y: nil, z: nil, fromStation: self.didSelectedStation!,distance: alertController.textFields![2].text!, leftCircle: self.leftCircle , hzAngle: hzAngle, vAngle: vAngle)
             self.tableView.reloadData()
             self.alertControllerWillDisappear(textFields: alertController.textFields)
         } else if alertController.textFields?[0].text != "" && alertController.textFields?[1].text == "" && alertController.textFields?[2].text != "" {
             
-            let hzAngle = MeasurementAngle(textField: (alertController.textFields?[0])!)
+            let hzAngle = MeasurementAngle(textField: (alertController.textFields?[0])!, textDegree: nil)
             CoreDataManager.instance.addNewMeasure(name: generalAlertController.textFields!.first!.text!, x: nil, y: nil, z: nil, fromStation: self.didSelectedStation!, distance: alertController.textFields![2].text!, leftCircle: self.leftCircle, hzAngle: hzAngle, vAngle: nil)
             self.tableView.reloadData()
             self.alertControllerWillDisappear(textFields: alertController.textFields)

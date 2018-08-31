@@ -7,23 +7,46 @@
 //
 
 import UIKit
+import Foundation
 import CoreData
 
 class FileManagerTableViewController: UITableViewController {
     
-    let url = URL(fileURLWithPath: "/Volumes/Data/Users/Dik/Documents/SwiftTest/Traverse.CoreData/Traverse.CoreData/Assets.xcassets/MeasureFiles/30KAT.txt", isDirectory: true)
+    // MARK:-   Properties
+
+    let fileManager = FileManager()
+    
+    let tempDir = NSTemporaryDirectory()
+    
+    var measureJurnal = String()
+    
+//    let url = URL(fileURLWithPath: "/Volumes/Data/Users/Dik/Documents/SwiftTest/Traverse.CoreData/Traverse.CoreData/Assets.xcassets/MeasureFiles/xhodt2-3.09.2015.txt", isDirectory: true)
+    
+    var selectedFile: String?
+    
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     
     @IBAction func unwindFromViewFileController(sender: UIStoryboardSegue) {
         
+        if activityIndicator.isAnimating {
+            
+            activityIndicator.stopAnimating()
+            
+        }
         
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let data = NSData(contentsOf: url)
+        let url = NSURL(fileURLWithPath: Bundle.main.path(forResource: "xhodt2-3.09.2015", ofType: "txt")!) as URL
         
+       let data = NSData(contentsOf: url)
+        
+        
+       
         let fetchRequestFile: NSFetchRequest<File> = File.fetchRequest()
         
         do {
@@ -44,19 +67,43 @@ class FileManagerTableViewController: UITableViewController {
               
             CoreDataManager.instance.saveContext()
                 
+                print("Файл добавлен в модель данных")
+                
             }
-     
+ 
+            
         } catch  {
             print(error)
         }
+ 
         
+        let componentsToDisplay = fileManager.componentsToDisplay(forPath: tempDir) ?? []
         
+        print(componentsToDisplay)
+        
+        if componentsToDisplay.contains(url.pathComponents.last!) == false && componentsToDisplay.count != 0 {
+            
+                let path = (tempDir as NSString).appendingPathComponent(url.pathComponents.last!)
+
+                do {
+                    
+            let textData = try NSString(contentsOf: url, encoding: String.Encoding.utf8.rawValue)
+                    
+             try textData.write(toFile: path, atomically: true, encoding: String.Encoding.utf8.rawValue)
+                } catch {
+                    print(error)
+                }
+                
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -74,13 +121,13 @@ class FileManagerTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        let fetchRequestFile: NSFetchRequest<File> = File.fetchRequest()
+        
         
         do {
             
-            let fileResults = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequestFile)
+            let filesInDirectiry = try fileManager.contentsOfDirectory(atPath: tempDir)
             
-            return fileResults.count
+            return filesInDirectiry.count
             
             
         } catch  {
@@ -93,22 +140,46 @@ class FileManagerTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "FileCell", for: indexPath)
-
-        let fetchRequestFile: NSFetchRequest<File> = File.fetchRequest()
         
         do {
             
-            let fileResults = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequestFile)
-
-            cell.textLabel?.text = fileResults.first!.fileName?.name!
+             let filesInDirectiry = try fileManager.contentsOfDirectory(atPath: tempDir)
             
-            print("\(fileResults.first!.fileName!.name!)")
+            cell.textLabel?.text = filesInDirectiry[indexPath.row]
             
         } catch  {
             print(error)
         }
         
          return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        
+       activityIndicator.startAnimating()
+        
+        do {
+           let file = try fileManager.contentsOfDirectory(atPath: tempDir)[indexPath.row]
+            
+            let patch = (tempDir as NSString).appendingPathComponent(file)
+          
+            selectedFile = try NSString(contentsOfFile: patch, encoding: String.Encoding.utf8.rawValue) as String
+            
+            
+        } catch  {
+            print(error)
+        }
+        
+        
+               measureJurnal = formatingText(textToFormat: selectedFile! as NSString)
+        
+        
+     
+        
+     
+        
+     return indexPath
+        
     }
     
 
@@ -147,14 +218,21 @@ class FileManagerTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+   
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "GoToViewFile" {
+            
+            (segue.destination as! ViewFileViewController).presentedText = measureJurnal
+            
+        }
+        
+        activityIndicator.stopAnimating()
+        
     }
-    */
+    
 
 }

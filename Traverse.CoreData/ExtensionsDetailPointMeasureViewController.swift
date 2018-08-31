@@ -53,8 +53,9 @@ extension DetailPointMeasureViewController {
         
         //MARK: -        • Проверка горизонтального и вертикального угла:
         
-        let hZAngleFromTextField = MeasurementAngle(textField: hZTextField)
-        let vAngleFromTextField = MeasurementAngle(textField: vATextField)
+        
+        let vAngleFromTextField = VertAngle(textValue: vATextField.text, textDegree: nil)
+        let hZAngleFromTextField = HorAngle(verticalAngle: vAngleFromTextField, textValue: hZTextField.text, textDegree: nil)
         
         
         if hZTextField.text! == willSelectedPoint?.measurement?.horizontalAngle?.textValue!  {
@@ -63,13 +64,7 @@ extension DetailPointMeasureViewController {
             
         } else {
             
-            willSelectedPoint?.measurement?.horizontalAngle?.degree = hZAngleFromTextField.degree!
-            willSelectedPoint?.measurement?.horizontalAngle?.minutes = hZAngleFromTextField.minutes!
-            willSelectedPoint?.measurement?.horizontalAngle?.seconds = hZAngleFromTextField.seconds!
-            willSelectedPoint?.measurement?.horizontalAngle?.textValue = hZAngleFromTextField.textValue
-            willSelectedPoint?.measurement?.horizontalAngle?.radianValue = hZAngleFromTextField.radianValue!
-            
-            
+            willSelectedPoint?.measurement?.horizontalAngle?.textValue = hZAngleFromTextField.angleAsText!
             
             print("\n\(self.description) Показания горизонтального круга сохранены, угол равен: \(willSelectedPoint!.measurement!.horizontalAngle!.textValue!)")
         }
@@ -80,12 +75,7 @@ extension DetailPointMeasureViewController {
             
         } else {
             
-            willSelectedPoint?.measurement?.verticalAngle?.degree = vAngleFromTextField.degree!
-            willSelectedPoint?.measurement?.verticalAngle?.minutes = vAngleFromTextField.minutes!
-            willSelectedPoint?.measurement?.verticalAngle?.seconds = vAngleFromTextField.seconds!
-            willSelectedPoint?.measurement?.verticalAngle?.textValue = vAngleFromTextField.textValue
-            willSelectedPoint?.measurement?.verticalAngle?.radianValue = vAngleFromTextField.radianValue!
-            
+            willSelectedPoint?.measurement?.verticalAngle?.textValue = vAngleFromTextField.angleAsText!
             
             print("\n\(self.description) Показания вертикального круга сохранены")
             
@@ -184,8 +174,6 @@ extension DetailPointMeasureViewController {
         CoreDataManager.instance.saveContext()
     }
     
-    
-    
 }
 
 extension DetailPointMeasureViewController {
@@ -212,5 +200,19 @@ extension DetailPointMeasureViewController {
     
 }
 
-
+extension DetailPointMeasureViewController {
+   
+    func returnAngles(verticalAngle: VerticalAngle, horizontalAngle: HorizontalAngle) -> (VertAngle, HorAngle) {
+    
+        let verticalAngle = VertAngle(textValue: verticalAngle.textValue!, textDegree: nil)
+        
+        let horiazontalAngle = HorAngle(verticalAngle: verticalAngle, textValue: horizontalAngle.textValue!, textDegree: nil)
+        
+        return (verticalAngle, horiazontalAngle)
+        
+    }
+    
+    
+    
+}
 

@@ -57,39 +57,24 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
     @IBAction func unwindToDetailStationVC (sender: UIStoryboardSegue) {
     }
     
+
     @IBAction func addNewStationAction(_ sender: Any) {
         
         
         //  MARK: - Создание запроса на ввод имени станции
         let alert = UIAlertController.init(title: "Добавьте станцию", message: "Введите в текстовое поле имя вашей новой станции", preferredStyle: .alert)
         
-        
         alert.addTextField { (textField) in textField.placeholder = "Название"} // добавление текстового поля в запрос на созданине станции
-        
-        
-        
         
         //        MARK: - Релизация кнопки "Добавить":
         let alertActionAdd = UIAlertAction.init(title: "Добавить", style: UIAlertActionStyle.default) { (alertAction) in
             if alert.textFields?.first?.text != "" {
                 
-                
-                
                 let alertFixedOrNotStation = UIAlertController.init(title: "Категория положения станции", message: "Является ли положение станции фиксированным", preferredStyle: .actionSheet)
-                
-                
-                
                 
                 let alertActionFixedStation = UIAlertAction.init(title: "Да", style: .default, handler: { (alertAction) in
                     
-                    
-                    
-                    
                     let alertInputCoordinateController = UIAlertController.init(title: "Координаты станции", message: "Введите координаты станции", preferredStyle: .alert)
-                    
-                    
-                    
-                    
                     
                     //  MARK: -  Настройка текстовых полей для ввода координат:
                     
@@ -110,9 +95,6 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
                         
                     })
                     
-                    
-                    
-                    
                     let alertAddCoordinatAction = UIAlertAction.init(title: "Сохранить", style: UIAlertActionStyle.default, handler: {  (alertAction) in
                         
                         if  alertInputCoordinateController.textFields?[0].text! != "" && alertInputCoordinateController.textFields?[1].text! != "" && alertInputCoordinateController.textFields?[2].text! != "" {
@@ -132,13 +114,9 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
                             
                             self.present(alertError, animated: true, completion: nil)
                             
-                            
-                            
                         }
                         
                     })
-                    
-                    
                     
                     let alertActionCancel = UIAlertAction.init(title: "Cancel", style: UIAlertActionStyle.cancel) { (alertAction) in
                         print("push cancel")
@@ -226,7 +204,7 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
         
         self.tableView.backgroundColor = UIColor.gray
         self.tableView.separatorColor = UIColor.magenta
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLineEtched
+        
         
         
         do {
@@ -471,7 +449,18 @@ class StationsTableViewController: UITableViewController, NSFetchedResultsContro
         
     }
     
+    @IBAction func removeAllButtonAction(_ sender: Any) {
+        
+        let stations = fetchedResultController.fetchedObjects!
+        
+        
+        for sta in stations {
+            
+            CoreDataManager.instance.persistentContainer.viewContext.delete(sta)
+            
+        }
+        
+        CoreDataManager.instance.saveContext()
+    }
     
 }
-
-

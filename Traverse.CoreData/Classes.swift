@@ -10,11 +10,9 @@ import Foundation
 import UIKit
 import CoreData
 
-
 class CurrentData {
     
     static let instance = CurrentData()
-    
     
     func returnDate() -> String
     {
@@ -38,7 +36,6 @@ class CustomCell: UITableViewCell {
     
     @IBOutlet weak var dataInitLabel: UILabel!
     
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -46,7 +43,6 @@ class CustomCell: UITableViewCell {
         self.layer.borderWidth = 1
         self.layer.borderColor = #colorLiteral(red: 0.7946271728, green: 0.6012833646, blue: 0.9686274529, alpha: 0.5649882277).cgColor
         self.clipsToBounds = true
-        
         
     }
     
@@ -78,14 +74,11 @@ class Customisation {
         textField.backgroundColor = #colorLiteral(red: 0.8642458376, green: 1, blue: 0.8972792964, alpha: 1)
         textField.layer.cornerRadius = 5
         
-        
-        
         if placeholder != nil {
             textField.placeholder = "координата \(placeholder!)"
             let leftImageView = UIImageView()
             leftImageView.layer.cornerRadius = 5
             leftImageView.clipsToBounds = true
-            
             
             switch placeholder! {
             case "x":
@@ -100,14 +93,12 @@ class Customisation {
             
             leftImageView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
             
-            
             textField.leftView = leftImageView
             
         } else {
             
             textField.placeholder = "Горизонтальное проложение"
         }        
-        
         
     }
     
@@ -116,10 +107,10 @@ class Customisation {
     /// - Parameters:
     ///   - textField: Текстовое поле, над которым будет выполнена процедура настройки.
     ///   - placeholder: Текст, который должен указываться в placeholder выбранного текстового поля.
-    func customozationTextFieldForPicker(textField: UITextField, placeholder: String, showSideCircle: Bool) {
+    func customozationTextFieldForPicker(textField: UITextField, placeholder: String) {
         
         let pickerView = PickerView.init()
-        pickerView.configPickerView(textField: textField, dataForPicker: DataModel.getData(), showSideCircle: showSideCircle)
+        pickerView.configPickerView(textField: textField, dataForPicker: DataModel.getData())
         textField.inputView = pickerView
         textField.placeholder = "\(placeholder)"
         textField.borderStyle = UITextBorderStyle.roundedRect
@@ -130,10 +121,7 @@ class Customisation {
         textField.textAlignment = .center
         textField.font = UIFont(name: UIFontTextStyle.title1.rawValue, size: 20)
         
-        
-        
     }
-    
     
     /// Данная функция преобразовывает значение типа NSDecimalNumber в текст с текущим региональным разделителем десятичной дроби
     ///
@@ -175,13 +163,14 @@ class Customisation {
     /// - Returns: Функция возвращает опциональный NSDecimalNumber?, если содержимое текстового поля соответствует данному значению типа.
     func returnTextAsDecimalNumber(textField: UITextField) -> NSDecimalNumber? {
         
-        
         var textFieldValue: String? {
             
             get{
                 
                 if textField.text?.contains(",") == true {
+                    
                     return textField.text?.replacingOccurrences(of: ",", with: ".")
+                    
                 }
                 
                 return textField.text
@@ -189,13 +178,16 @@ class Customisation {
             }
             
         }
+        
         print("\nПреобразованное значение текстового поля: \(textFieldValue!)")
         return NSDecimalNumber(string: textFieldValue)
         
     }
     
     deinit {
+        
         print("\n\(self)Экземпляр класса удален из оперативной памяти")
+        
     }
     
 }
@@ -203,36 +195,40 @@ class Customisation {
 class MeasurementAngle {
     
     private var textField: UITextField?
-    var degree: Int16?
-    var minutes: Int16?
-    var seconds: Int16?
+    private var texDegree: String?
+    var degree: Measurement<UnitAngle>?
+    var minutes: Measurement<UnitAngle>?
+    var seconds: Measurement<UnitAngle>?
     var textValue: String?
     var radianValue: Double?
     
     private func setup() {
         
-        if textField?.text != "" && textField?.text != nil {
-            var textAngle = textField?.text!
-            let replacingText: [String] = ["˚", "'", "\""]
+        if textField?.text != ""  {
+            var textAngle = textField?.text ?? texDegree
+            let replacingText: [String] = [UnitAngle.degrees.symbol, UnitAngle.arcMinutes.symbol,
+                                           UnitAngle.arcSeconds.symbol, "˚", "'", "\""]
             for item in replacingText {
                 textAngle = textAngle?.replacingOccurrences(of: item, with: "")
             }
-            let splityngText: [String.CharacterView] = textAngle!.characters.split(separator: " ")
+            let splityngText: [String.SubSequence] = textAngle!.split(separator: " ")
             let degreeText = String(splityngText[0])
             let minutesText = String(splityngText[1])
             let secondsText = String(splityngText[2])
             
-            degree = Int16(degreeText)!
-            minutes = Int16(minutesText)!
-            seconds = Int16(secondsText)!
-            textValue = "\(degree!)˚ " + "\(minutes!)' " + "\(seconds!)\""
-            radianValue = Double(degree!) + Double(minutes!)/60 + Double(seconds!)/60
+            degree = Measurement(value: Double(degreeText)!, unit: UnitAngle.degrees)
+            minutes = Measurement(value: Double(minutesText)!, unit: UnitAngle.arcMinutes)
+            seconds = Measurement(value: Double(secondsText)!, unit: UnitAngle.arcSeconds)
             
-            print("\n\(self)Текстовое поле не пустое, выполнена установка значений измеренного угла")
+            textValue = "\(Int(round(degree!.value)))\(degree!.unit.symbol) \(Int(round(minutes!.value)))\(minutes!.unit.symbol) \(Int(round(seconds!.value)))\(seconds!.unit.symbol)"
+            
+            radianValue = degree!.converted(to: UnitAngle.radians).value + minutes!.converted(to: UnitAngle.radians).value + seconds!.converted(to: UnitAngle.radians).value
+            
+            print("\n\(self) Текстовое поле не пустое, выполнена установка значений измеренного угла")
             
         } else {
             
-            print("\n\(self)Текстовое поле пустое")
+            print("\n\(self) Текстовое поле пустое")
             degree = nil
             minutes = nil
             seconds = nil
@@ -242,8 +238,9 @@ class MeasurementAngle {
         }
         
     }
-    init(textField: UITextField?) {
+    init(textField: UITextField?, textDegree: String?) {
         self.textField = textField
+        self.texDegree = textDegree
         setup()
     }
     
@@ -253,115 +250,6 @@ class MeasurementAngle {
     
 }
 
-class ResultMeasure {
-    
-    var viewController: UIViewController!
-    
-    var stations = [Station]()
-    
-    var points = [Point]()
-    
-    var angles = (left: [Double](), right: [Double](), delta: [Double](), sumAngles: Double())
-    
-    var distances = (left: [NSNumber](), right: [NSNumber]())
-    
-    var theoreticSumAngles = Double()
-    
-    var index = 0
-
-    
-    func setup() {
-        
-        
-        let fetchRequest: NSFetchRequest = Station.fetchRequest()
-        fetchRequest.returnsObjectsAsFaults = false
-        let dateDescription = NSSortDescriptor(key: "dateInitStation", ascending: true)
-        
-        do {
-            
-            stations = try CoreDataManager.instance.persistentContainer.viewContext.fetch(fetchRequest)
-            
-            
-        } catch  {
-            
-            print(error)
-            
-        }
-        
-        for station in stations {
-            
-            let pts = station.point?.allObjects as! [Point]
-            
-            for point in pts {
-                
-                if point.isStation == true { // точка является станцией
-                    
-                    if point.measurement?.horizontalAngle?.leftCircle == true { //измерение при КЛ
-                        
-                        angles.left.append(point.measurement!.horizontalAngle!.radianValue)
-                        
-                        distances.left.append(point.measurement!.horizontalDistance!)
-                        
-                    } else { // измерение при КП
-                        
-                        angles.right.append(point.measurement!.horizontalAngle!.radianValue)
-                        
-                        distances.right.append(point.measurement!.horizontalDistance!)
-                        
-                    }
-                    
-                }
-                
-            }
-            
-        }
-
-        
-        differenceAngle(forAngles: &angles.left, viewController: viewController)
-        differenceAngle(forAngles: &angles.right, viewController: viewController)
-        
-        theoreticSumAngles = Double(180*(stations.count - 2))
-        
-        
-        
-        for leftAngle in angles.left {
-            
-            angles.delta.append((leftAngle + angles.right[index])/2)
-            
-            index += 1
-            
-        }
-        
-        
-        for delta in angles.delta {
-            
-            angles.sumAngles += delta
-            
-            
-        }
-        
-        /// Функция для проверки работоспособнсти свойств и методов класса, заполнения переменных данными.
-        func check() {
-            
-            print("\nСписок станций:\(stations)")
-            print("\nСписок точек: \(points)")
-            print("\nСписок левых и правых углов: \(angles)")
-            print("\nТеретическая сумма углов: \(theoreticSumAngles)")
-            
-        }
-        
-        check()
-    }
-    
-    init(indexPath: IndexPath, viewController: UIViewController) {
-        
-        self.viewController = viewController
-        
-        setup()
-        
-    }
-    
-}
 
 
 

@@ -11,8 +11,12 @@ import CoreData
 
 class MeasurementsListViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
+    // MARK:- Properties:
+    
+    /// Станция, выбранная из списка StationsTableViewController.
     var didSelectedStation: Station?
     
+    /// Точка, выбранная из списка измерений MeasurementsListViewController.
     var selectedPoint: Point?
     
     var indexPathSelectedPoint: IndexPath?
@@ -21,14 +25,14 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
     
     let formater = DateFormatter()
     
-    func leftCircleTrue() {
+    @objc func leftCircleTrue() {
         
         leftCircle = true
         print("\nОтчет по горизонтальному лимбу при КЛ")
         
     }
     
-    func leftCircleFalse() {
+    @objc func leftCircleFalse() {
         
         leftCircle = false
         print("\nОтчет по горизонтальному лимбу при КП")
@@ -95,13 +99,13 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
                     
                     alertInsertCoordinateController.addTextField(configurationHandler: {   (textFieldHorizontalAngle) in
                         
-                        Customisation.instance.customozationTextFieldForPicker(textField: textFieldHorizontalAngle, placeholder: "горизонтальный лимб", showSideCircle: true)
+                        Customisation.instance.customozationTextFieldForPicker(textField: textFieldHorizontalAngle, placeholder: "горизонтальный лимб")
                         
                     })
                     
                     alertInsertCoordinateController.addTextField(configurationHandler: {   (textFieldVerticalAngle) in
                         
-                        Customisation.instance.customozationTextFieldForPicker(textField: textFieldVerticalAngle, placeholder: "вертикальный круг", showSideCircle: false)
+                        Customisation.instance.customozationTextFieldForPicker(textField: textFieldVerticalAngle, placeholder: "вертикальный круг")
                     })
                     
                     alertInsertCoordinateController.addTextField(configurationHandler: {  (distanceTextField) in
@@ -146,13 +150,13 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
                     
                     alertInsertMeasureController.addTextField(configurationHandler: { (textFieldHorizontalAngle) in
                         
-                        Customisation.instance.customozationTextFieldForPicker(textField: textFieldHorizontalAngle, placeholder: "горизонтальный лимб", showSideCircle: true)
+                        Customisation.instance.customozationTextFieldForPicker(textField: textFieldHorizontalAngle, placeholder: "горизонтальный лимб")
                         
                     })
                     
                     alertInsertMeasureController.addTextField(configurationHandler: { (textFieldVerticalAngle) in
                         
-                        Customisation.instance.customozationTextFieldForPicker(textField: textFieldVerticalAngle, placeholder: "вертикальный угол", showSideCircle: false)
+                        Customisation.instance.customozationTextFieldForPicker(textField: textFieldVerticalAngle, placeholder: "вертикальный угол")
                         
                     })
                     
@@ -260,9 +264,12 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
         cell.namePointLabel.text = point.namePoint
         cell.dataInitLabel.text = formater.string(from: point.dateInit! as Date)
         
+        let verticalAngle = VertAngle(textValue: point.measurement?.verticalAngle?.textValue, textDegree: nil)
+        
+        let horizontalAngle = HorAngle.init(verticalAngle: verticalAngle, textValue: point.measurement?.horizontalAngle?.textValue, textDegree: nil)
         
         
-        if point.measurement?.horizontalAngle?.leftCircle == true {
+        if horizontalAngle.leftCircle == true {
             
             cell.verticalCirclePositionLabel.text! = "КЛ"
             
@@ -293,8 +300,8 @@ class MeasurementsListViewController: UITableViewController, NSFetchedResultsCon
         
         let deletAction = UITableViewRowAction.init(style: .default, title: "Удалить") { (alertAction, indexPath) in
             // Delete the row from the data source
-            
-            let point = self.didSelectedStation?.point?.allObjects[indexPath.row] as! Point
+            let sortDescriptor = NSSortDescriptor(key: "dateInit", ascending: false)
+            let point = self.didSelectedStation?.point?.sortedArray(using: [sortDescriptor])[indexPath.row] as! Point
             CoreDataManager.instance.persistentContainer.viewContext.delete(point)
             
             CoreDataManager.instance.saveContext()

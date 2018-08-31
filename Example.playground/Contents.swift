@@ -310,6 +310,7 @@ prob.sumAngles.second
 prob.theoreticAvgAngles
 
 
+/// Данный класс вычисляет сумму измеренных углов. Аргументами класса является массив измеренных горизонтальных углов [HorAngle]  при круге право и круге лево.
 class MeasurementsAngles {
     
     //    Properties:
@@ -479,7 +480,7 @@ class MeasurementsAngles {
 
     let rightRewardAngleThree = HorAngle(verticalAngle: verticalAngle, textValue: "90 00 00", textDegree: nil)
 
-    let measureAngles = MeasurementsAngles(leftAngles: [leftForwardAngleOne, leftRewardAngleOne, leftForwardAngleTwo, leftRewardAngleTwo, leftForwardAngleThree, leftRewardAngleThree], rightAngles: [rightForwardAngleOne, rightRewardAngleTwo, rightForwardAngleTwo, rightRewardAngleTwo, rightForwardAngleThree, rightRewardAngleThree])
+    let measureAngles = MeasurementsAngles(leftAngles: [leftForwardAngleOne, leftRewardAngleOne, leftForwardAngleTwo, leftRewardAngleTwo, leftForwardAngleThree, leftRewardAngleThree], rightAngles: [rightForwardAngleOne, rightForwardAngleTwo, rightRewardAngleThree, rightRewardAngleOne, rightRewardAngleTwo, rightRewardAngleThree])
 
 measureAngles.forwardLeftAngles.count
 measureAngles.forwardRightAngles.count
@@ -489,12 +490,13 @@ measureAngles.forwardLeftAngles[0].angleAsText
 measureAngles.rewardLeftAngles[0].angleAsText
 measureAngles.forwardRightAngles[2].angleAsText
 measureAngles.rewardRightAngle[2].angleAsText
-measureAngles.measurementLeftAngles[0].angleAsText
-measureAngles.measurementRightAngles[0].angleAsText
+measureAngles.measurementLeftAngles[2].angleAsText
+measureAngles.measurementRightAngles[2].angleAsText
 measureAngles.measurementLeftAngles[0].angleInRadians
 
 
-// пример конвертации угла в радианы, а именно ковертация градусов пинут и секунд:
+
+// пример конвертации угла в радианы, а именно ковертация градусов минут и секунд:
 
 var radAngle = Measurement(value: measureAngles.measurementLeftAngles[0].angleInRadians!, unit: UnitAngle.radians)
 radAngle.converted(to: UnitAngle.degrees)

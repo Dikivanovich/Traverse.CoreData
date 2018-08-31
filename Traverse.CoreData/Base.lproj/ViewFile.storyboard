@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="DF3-9o-j7q">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View File View Controller-->
+        <scene sceneID="E2y-Ep-Ynx">
+            <objects>
+                <viewController id="DF3-9o-j7q" customClass="ViewFileViewController" customModule="Traverse_CoreData" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="m6O-6v-Ri7"/>
+                        <viewControllerLayoutGuide type="bottom" id="giN-nT-K79"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7FC-Om-iaa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JMp-Ya-0Sw">
+                                <rect key="frame" x="16" y="20" width="34" height="30"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <segue destination="gUY-1R-K86" kind="unwind" unwindAction="unwindFromViewFileControllerWithSender:" id="Krc-ZK-vW2"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yuC-hN-o6a">
+                                <rect key="frame" x="16" y="60" width="343" height="587"/>
+                                <color key="backgroundColor" red="0.9917985016912666" green="1" blue="0.85613318688332618" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JMp-Ya-0Sw" secondAttribute="trailingMargin" id="MHb-df-7q6"/>
+                            <constraint firstItem="yuC-hN-o6a" firstAttribute="centerX" secondItem="7FC-Om-iaa" secondAttribute="centerX" id="Xd4-hP-91y"/>
+                            <constraint firstItem="yuC-hN-o6a" firstAttribute="centerY" secondItem="7FC-Om-iaa" secondAttribute="centerY" constant="20" id="aZ3-E3-rNN"/>
+                            <constraint firstItem="yuC-hN-o6a" firstAttribute="leading" secondItem="7FC-Om-iaa" secondAttribute="leadingMargin" id="bgt-bR-sa3"/>
+                            <constraint firstItem="JMp-Ya-0Sw" firstAttribute="top" secondItem="m6O-6v-Ri7" secondAttribute="bottom" id="iso-cG-VNC"/>
+                            <constraint firstItem="yuC-hN-o6a" firstAttribute="top" secondItem="m6O-6v-Ri7" secondAttribute="bottom" constant="40" id="obm-Xh-JJ7"/>
+                            <constraint firstItem="JMp-Ya-0Sw" firstAttribute="leading" secondItem="7FC-Om-iaa" secondAttribute="leadingMargin" id="vY9-dF-RQk"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
+                    <connections>
+                        <outlet property="textView" destination="yuC-hN-o6a" id="eiO-r6-6Rl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kHd-0p-pCw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="gUY-1R-K86" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2.5" y="-305.5"/>
+        </scene>
+    </scenes>
+</document>
